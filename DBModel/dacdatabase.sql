@@ -13,12 +13,10 @@
 
 
 -- Dumping database structure for dac
-DROP DATABASE IF EXISTS `dac`;
 CREATE DATABASE IF NOT EXISTS `dac` /*!40100 DEFAULT CHARACTER SET ascii */;
 USE `dac`;
 
 -- Dumping structure for table dac.allergies
-DROP TABLE IF EXISTS `allergies`;
 CREATE TABLE IF NOT EXISTS `allergies` (
   `ALLERGY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ALLERGY_NAME` varchar(50) NOT NULL,
@@ -26,9 +24,9 @@ CREATE TABLE IF NOT EXISTS `allergies` (
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.allergies: ~8 rows (approximately)
+-- Dumping data for table dac.allergies: ~10 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
-INSERT INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
+REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
 	(2, 'Sulfa Drug', 'Antibiotic allergy'),
 	(3, 'Tetracycline', 'Antibiotic allergy'),
@@ -42,7 +40,6 @@ INSERT INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
 /*!40000 ALTER TABLE `allergies` ENABLE KEYS */;
 
 -- Dumping structure for table dac.doctor
-DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE IF NOT EXISTS `doctor` (
   `DOCTOR_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
@@ -57,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 
 -- Dumping data for table dac.doctor: ~16 rows (approximately)
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS`, `CITY`, `STATE`, `ZIP`) VALUES
+REPLACE INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS`, `CITY`, `STATE`, `ZIP`) VALUES
 	(1, 'Dr. Robert B. Rook', 'Family Practice', '501-329-2946', '919 Locust Street ', 'Conway', 'AR', '72034'),
 	(2, 'Dr. David Naylor', 'Family Practice', '501-329-3824', '2425 Dave Ward Drive', 'Conway', 'AR', '72034'),
 	(3, 'Dr. Bart Thornberry', 'Family Practice', '501-327-2611', '2869 College Ave', 'Conway', 'AR', '72034'),
@@ -77,7 +74,6 @@ INSERT INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS`
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 
 -- Dumping structure for table dac.frequency
-DROP TABLE IF EXISTS `frequency`;
 CREATE TABLE IF NOT EXISTS `frequency` (
   `FREQUENCY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FREQUENCY` time DEFAULT '00:00:00',
@@ -86,14 +82,13 @@ CREATE TABLE IF NOT EXISTS `frequency` (
 
 -- Dumping data for table dac.frequency: ~3 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
-INSERT INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
-	(1, '06:00:00'),
+REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
+	(1, '00:00:05'),
 	(2, '12:00:00'),
 	(3, '24:00:00');
 /*!40000 ALTER TABLE `frequency` ENABLE KEYS */;
 
 -- Dumping structure for table dac.lab
-DROP TABLE IF EXISTS `lab`;
 CREATE TABLE IF NOT EXISTS `lab` (
   `LAB_ID` int(11) NOT NULL,
   `LAB_NAME` varchar(50) NOT NULL,
@@ -101,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `lab` (
   PRIMARY KEY (`LAB_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab: ~37 rows (approximately)
+-- Dumping data for table dac.lab: ~40 rows (approximately)
 /*!40000 ALTER TABLE `lab` DISABLE KEYS */;
-INSERT INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
+REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 	(1, 'RBC', 'Red Blood Cell Count'),
 	(2, 'Hemoglobin', 'Hemoglobin'),
 	(3, 'Hematocrit', 'Hematocrit'),
@@ -147,7 +142,6 @@ INSERT INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 /*!40000 ALTER TABLE `lab` ENABLE KEYS */;
 
 -- Dumping structure for table dac.lab_pulled
-DROP TABLE IF EXISTS `lab_pulled`;
 CREATE TABLE IF NOT EXISTS `lab_pulled` (
   `LAB_PULLED_ID` int(11) NOT NULL,
   `LAB_DATE` date NOT NULL,
@@ -164,9 +158,9 @@ CREATE TABLE IF NOT EXISTS `lab_pulled` (
   CONSTRAINT `patient_lab_pulled_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab_pulled: ~12 rows (approximately)
+-- Dumping data for table dac.lab_pulled: ~18 rows (approximately)
 /*!40000 ALTER TABLE `lab_pulled` DISABLE KEYS */;
-INSERT INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
+REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
 	(1, '2017-02-03', 11, 20, 6, '37'),
 	(2, '2017-02-03', 11, 18, 6, '82'),
 	(3, '2017-02-03', 11, 14, 6, '84'),
@@ -178,11 +172,16 @@ INSERT INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, `
 	(9, '2016-02-05', 11, 14, 5, '91'),
 	(10, '2016-02-05', 11, 16, 6, '5.2%'),
 	(11, '2016-02-05', 11, 17, 6, '153'),
-	(12, '2016-02-05', 11, 19, 6, '100');
+	(12, '2016-02-05', 11, 19, 6, '100'),
+	(13, '2016-08-16', 11, 20, 6, '37'),
+	(14, '2016-08-16', 11, 18, 6, '69'),
+	(15, '2016-08-16', 11, 14, 6, '75'),
+	(16, '2016-08-16', 11, 16, 6, '5.1%'),
+	(17, '2016-08-16', 11, 17, 6, '157'),
+	(18, '2016-08-16', 11, 19, 6, '102');
 /*!40000 ALTER TABLE `lab_pulled` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medical_condition
-DROP TABLE IF EXISTS `medical_condition`;
 CREATE TABLE IF NOT EXISTS `medical_condition` (
   `MEDICAL_CONDITION_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
@@ -191,9 +190,9 @@ CREATE TABLE IF NOT EXISTS `medical_condition` (
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_condition: ~27 rows (approximately)
+-- Dumping data for table dac.medical_condition: ~30 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
-INSERT INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `NAME`, `DESCRIPTION`, `URL`) VALUES
+REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `NAME`, `DESCRIPTION`, `URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
 	(2, 'Diabetes', '&lt;p&gt;&lt;span class="qt0"&gt;Diabetes&lt;/span&gt; is a disease in which your blood glucose, or blood sugar, levels are too high.  Glucose comes from the foods you eat. Insulin is a hormone that helps the glucose get into your cells to give them energy.  With type 1 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, your body does not make insulin.  With type 2 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, the more common type, your body does not make or use insulin well. Without enough insulin, the glucose stays in your blood. You can also have prediabetes.  This means that your blood sugar is higher than normal but not high enough to be called &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.  Having prediabetes puts you at a higher risk of getting type 2 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Over time, having too much glucose in your blood can cause serious problems.    It can damage your eyes, kidneys, and nerves. &lt;span class="qt0"&gt;Diabetes&lt;/span&gt; can also cause heart disease, stroke and even the need to remove a limb. Pregnant women can also get &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, called gestational &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Blood tests can show if you have &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. One type of test, the A1C, can also check on how you are managing your &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. Exercise, weight control and sticking to your meal plan can help control your &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. You should also monitor your blood glucose level and take medicine if prescribed. \n&lt;/p&gt;&lt;p&gt;NIH: National Institute of &lt;span class="qt0"&gt;Diabetes&lt;/span&gt; and Digestive and Kidney Diseases&lt;/p&gt;', 'https://medlineplus.gov/diabetes.html'),
 	(3, 'Hypertension', '&lt;p&gt;Blood pressure is the force of your blood pushing against the walls of your arteries. Each time your heart beats, it pumps blood into the arteries. Your &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;blood pressure is highest&lt;/span&gt;&lt;/span&gt; when your heart beats, pumping the blood. This is called systolic pressure. When your heart is at rest, between beats, your blood pressure falls. This is called diastolic pressure. &lt;/p&gt;&lt;p&gt;Your blood pressure reading uses these two numbers. Usually the systolic number comes before or above the diastolic number. A reading of&lt;/p&gt;&lt;ul&gt;&lt;li&gt;119/79 or lower is normal blood pressure&lt;/li&gt;&lt;li&gt;140/90 or higher is &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Between 120 and 139 for the top number, or between 80 and 89 for the bottom number is called prehypertension. Prehypertension means you may end up with &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt;, unless you take steps to prevent it.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span class="qt0"&gt;&lt;span class="qt1"&gt;High blood pressure&lt;/span&gt;&lt;/span&gt; usually has no symptoms, but it can cause serious problems such as stroke, heart failure, heart attack and kidney failure.&lt;/p&gt;&lt;p&gt;You can control &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt; through healthy lifestyle habits such as exercise and the DASH diet and taking medicines, if needed. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/highbloodpressure.html'),
@@ -227,7 +226,6 @@ INSERT INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `NAME`, `DESCRIPTION`, 
 /*!40000 ALTER TABLE `medical_condition` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medical_history
-DROP TABLE IF EXISTS `medical_history`;
 CREATE TABLE IF NOT EXISTS `medical_history` (
   `MEDICAL_HISTORY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DATE_DIAGNOSED` date NOT NULL,
@@ -243,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
 
 -- Dumping data for table dac.medical_history: ~4 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
-INSERT INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
+REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
 	(2, '2016-09-16', 11, NULL, 16),
 	(3, '2009-02-03', 11, '2009-02-20', 7),
@@ -251,7 +249,6 @@ INSERT INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_
 /*!40000 ALTER TABLE `medical_history` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medication
-DROP TABLE IF EXISTS `medication`;
 CREATE TABLE IF NOT EXISTS `medication` (
   `MEDICATION_ID` int(11) NOT NULL,
   `NAME` varchar(50) NOT NULL,
@@ -261,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `medication` (
 
 -- Dumping data for table dac.medication: ~38 rows (approximately)
 /*!40000 ALTER TABLE `medication` DISABLE KEYS */;
-INSERT INTO `medication` (`MEDICATION_ID`, `NAME`, `DESCRIPTION`) VALUES
+REPLACE INTO `medication` (`MEDICATION_ID`, `NAME`, `DESCRIPTION`) VALUES
 	(1, 'Albuterol', 'Asthma Medication '),
 	(2, 'Advair', 'Asthma'),
 	(3, 'Dlimepiride', 'Diabetes - Sulfonylureas'),
@@ -303,12 +300,11 @@ INSERT INTO `medication` (`MEDICATION_ID`, `NAME`, `DESCRIPTION`) VALUES
 /*!40000 ALTER TABLE `medication` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient
-DROP TABLE IF EXISTS `patient`;
 CREATE TABLE IF NOT EXISTS `patient` (
   `PATIENT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FIRST_NAME` varchar(50) NOT NULL,
   `LAST_NAME` varchar(50) NOT NULL,
-  `BIRTHDAY` date NOT NULL,
+  `DOB` date NOT NULL,
   `GENDER` varchar(1) NOT NULL,
   `ADDRESS` varchar(100) NOT NULL,
   `CITY` varchar(50) NOT NULL,
@@ -319,9 +315,9 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`PATIENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient: ~10 rows (approximately)
+-- Dumping data for table dac.patient: ~11 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `BIRTHDAY`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
+REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
 	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '501-976-2427', '72032', 'jeanne.gagnon@example.com'),
 	(2, 'Hailey', 'Iam', '1987-01-30', 'F', '8954 Disputed Rd', 'Conway', 'AR', '501-719-6534', '72034', 'hailey.lam@example.com'),
 	(3, 'Phil', 'Harrison', '1984-06-17', 'M', '6256 Alexander Road', 'Conway', 'AR', '501-539-4546', '72034', 'phil.harrison@example.com'),
@@ -336,7 +332,6 @@ INSERT INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `BIRTHDAY`, `GEN
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient_allergy
-DROP TABLE IF EXISTS `patient_allergy`;
 CREATE TABLE IF NOT EXISTS `patient_allergy` (
   `PATIENT_ALLERGY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PATIENT_ID` int(11) NOT NULL,
@@ -350,12 +345,11 @@ CREATE TABLE IF NOT EXISTS `patient_allergy` (
 
 -- Dumping data for table dac.patient_allergy: ~1 rows (approximately)
 /*!40000 ALTER TABLE `patient_allergy` DISABLE KEYS */;
-INSERT INTO `patient_allergy` (`PATIENT_ALLERGY_ID`, `PATIENT_ID`, `ALLERGY_ID`) VALUES
+REPLACE INTO `patient_allergy` (`PATIENT_ALLERGY_ID`, `PATIENT_ID`, `ALLERGY_ID`) VALUES
 	(1, 11, 8);
 /*!40000 ALTER TABLE `patient_allergy` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient_vital
-DROP TABLE IF EXISTS `patient_vital`;
 CREATE TABLE IF NOT EXISTS `patient_vital` (
   `PATIENT_VITAL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PATIENT_ID` int(11) NOT NULL DEFAULT '0',
@@ -367,11 +361,11 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   KEY `VITAL_ID` (`VITAL_ID`),
   CONSTRAINT `PATIENT_ID` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`),
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~10 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~15 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
-INSERT INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE`) VALUES
+REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
 	(2, 11, 2, '100', '2017-02-03'),
 	(3, 11, 3, '126/79', '2017-02-03'),
@@ -381,11 +375,15 @@ INSERT INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALU
 	(7, 11, 2, '95', '2016-02-05'),
 	(8, 11, 3, '119/77', '2016-02-05'),
 	(9, 11, 4, '13', '2016-02-05'),
-	(10, 11, 5, '173', '2016-02-05');
+	(10, 11, 5, '173', '2016-02-05'),
+	(11, 11, 1, '98.2', '2016-08-16'),
+	(12, 11, 2, '97', '2016-08-16'),
+	(13, 11, 3, '121/83', '2016-08-16'),
+	(14, 11, 4, '16', '2016-08-16'),
+	(15, 11, 5, '195', '2016-08-16');
 /*!40000 ALTER TABLE `patient_vital` ENABLE KEYS */;
 
 -- Dumping structure for table dac.pharmacy
-DROP TABLE IF EXISTS `pharmacy`;
 CREATE TABLE IF NOT EXISTS `pharmacy` (
   `PHARMACY_ID` int(11) NOT NULL,
   `NAME` varchar(50) NOT NULL,
@@ -396,9 +394,9 @@ CREATE TABLE IF NOT EXISTS `pharmacy` (
   PRIMARY KEY (`PHARMACY_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.pharmacy: ~8 rows (approximately)
+-- Dumping data for table dac.pharmacy: ~10 rows (approximately)
 /*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
-INSERT INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`) VALUES
+REPLACE INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`) VALUES
 	(1, 'Conway Medcare Pharmacy', ' 2521 College Ave ', 'AR', 'Conway', '72034'),
 	(2, 'Cornerstone Pharmacy Conway', ' 815 Hogan Ln #10 ', 'AR', 'ConWay', '72034'),
 	(3, 'Walgreens', '850 W Oak Street', 'AR', 'Conway', '72032'),
@@ -412,7 +410,6 @@ INSERT INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`
 /*!40000 ALTER TABLE `pharmacy` ENABLE KEYS */;
 
 -- Dumping structure for table dac.prescription
-DROP TABLE IF EXISTS `prescription`;
 CREATE TABLE IF NOT EXISTS `prescription` (
   `PRESCRIPTION_ID` int(11) NOT NULL,
   `DATE` date NOT NULL,
@@ -434,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
 
 -- Dumping data for table dac.prescription: ~4 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
-INSERT INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
+REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
 	(1, '2017-01-15', '20mg', 16, 11, 3, 6),
 	(2, '2016-12-09', '325mg', 14, 11, 3, 6),
 	(3, '2017-03-03', '50mg', 24, 11, 3, 6),
@@ -442,13 +439,12 @@ INSERT INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `MEDICATION_ID`
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 
 -- Dumping structure for table dac.prescription_reminder
-DROP TABLE IF EXISTS `prescription_reminder`;
 CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   `REMINDER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FREQUENCY_ID` int(11) NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `PRESCRIPTION_ID` int(11) NOT NULL,
-  `START_TIME` datetime DEFAULT NULL,
+  `START_TIME` time DEFAULT NULL,
   PRIMARY KEY (`REMINDER_ID`),
   KEY `patient_id_fk` (`PATIENT_ID`),
   KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
@@ -458,14 +454,13 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription_reminder: ~0 rows (approximately)
+-- Dumping data for table dac.prescription_reminder: ~1 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
-INSERT INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `START_TIME`) VALUES
-	(1, 1, 11, 1, '2017-03-03 15:35:21');
+REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `START_TIME`) VALUES
+	(1, 1, 11, 1, '15:35:21');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vaccination
-DROP TABLE IF EXISTS `vaccination`;
 CREATE TABLE IF NOT EXISTS `vaccination` (
   `VACCINE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `VACCINE_NAME` varchar(50) NOT NULL,
@@ -476,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `vaccination` (
 
 -- Dumping data for table dac.vaccination: ~11 rows (approximately)
 /*!40000 ALTER TABLE `vaccination` DISABLE KEYS */;
-INSERT INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `DESCRIPTION`) VALUES
+REPLACE INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `DESCRIPTION`) VALUES
 	(1, 'Hepatitis B Shot 1', 'YES', 'hepatitis B'),
 	(2, 'Hepatitis B Shot 2', 'YES', 'hempititis B'),
 	(3, 'Hepatitis B Shot 3', 'NO', 'hempititis B'),
@@ -491,7 +486,6 @@ INSERT INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `DE
 /*!40000 ALTER TABLE `vaccination` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vaccination_given
-DROP TABLE IF EXISTS `vaccination_given`;
 CREATE TABLE IF NOT EXISTS `vaccination_given` (
   `VACCINATION_GIVEN_ID` int(11) NOT NULL,
   `DATE` date NOT NULL,
@@ -510,12 +504,11 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
 
 -- Dumping data for table dac.vaccination_given: ~1 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
-INSERT INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
+REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
 	(1, '2010-06-16', NULL, 11, 4, 6);
 /*!40000 ALTER TABLE `vaccination_given` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vitals
-DROP TABLE IF EXISTS `vitals`;
 CREATE TABLE IF NOT EXISTS `vitals` (
   `VITAL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) DEFAULT '0',
@@ -525,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `vitals` (
 
 -- Dumping data for table dac.vitals: ~6 rows (approximately)
 /*!40000 ALTER TABLE `vitals` DISABLE KEYS */;
-INSERT INTO `vitals` (`VITAL_ID`, `NAME`, `DESCRIPTION`) VALUES
+REPLACE INTO `vitals` (`VITAL_ID`, `NAME`, `DESCRIPTION`) VALUES
 	(1, 'Temp', 'Body Temp'),
 	(2, 'Pulse', 'Heart Rate'),
 	(3, 'Blood Pressure', 'Systolic/Diastolic'),
