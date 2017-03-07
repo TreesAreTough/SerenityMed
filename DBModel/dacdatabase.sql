@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `allergies` (
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.allergies: ~10 rows (approximately)
+-- Dumping data for table dac.allergies: ~8 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
 REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `lab` (
   PRIMARY KEY (`LAB_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab: ~40 rows (approximately)
+-- Dumping data for table dac.lab: ~37 rows (approximately)
 /*!40000 ALTER TABLE `lab` DISABLE KEYS */;
 REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 	(1, 'RBC', 'Red Blood Cell Count'),
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `medical_condition` (
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_condition: ~30 rows (approximately)
+-- Dumping data for table dac.medical_condition: ~27 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
 REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `NAME`, `DESCRIPTION`, `URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
@@ -315,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`PATIENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient: ~11 rows (approximately)
+-- Dumping data for table dac.patient: ~9 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
 REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
 	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '501-976-2427', '72032', 'jeanne.gagnon@example.com'),
@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   `PATIENT_ID` int(11) NOT NULL DEFAULT '0',
   `VITAL_ID` int(11) NOT NULL DEFAULT '0',
   `VALUE` varchar(50) NOT NULL DEFAULT '0',
-  `DATE` date DEFAULT NULL,
+  `DATE_TAKEN` date DEFAULT NULL,
   PRIMARY KEY (`PATIENT_VITAL_ID`),
   KEY `PATIENT_ID` (`PATIENT_ID`),
   KEY `VITAL_ID` (`VITAL_ID`),
@@ -363,17 +363,17 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~15 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~14 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
-REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE`) VALUES
+REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
 	(2, 11, 2, '100', '2017-02-03'),
-	(3, 11, 3, '126/79', '2017-02-03'),
+	(3, 11, 3, '141/90', '2017-02-03'),
 	(4, 11, 4, '15', '2017-02-03'),
-	(5, 11, 5, '185', '2017-02-03'),
+	(5, 11, 5, '186', '2017-02-03'),
 	(6, 11, 1, '98.5', '2016-02-05'),
 	(7, 11, 2, '95', '2016-02-05'),
-	(8, 11, 3, '119/77', '2016-02-05'),
+	(8, 11, 3, '135/87', '2016-02-05'),
 	(9, 11, 4, '13', '2016-02-05'),
 	(10, 11, 5, '173', '2016-02-05'),
 	(11, 11, 1, '98.2', '2016-08-16'),
@@ -394,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `pharmacy` (
   PRIMARY KEY (`PHARMACY_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.pharmacy: ~10 rows (approximately)
+-- Dumping data for table dac.pharmacy: ~8 rows (approximately)
 /*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
 REPLACE INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`) VALUES
 	(1, 'Conway Medcare Pharmacy', ' 2521 College Ave ', 'AR', 'Conway', '72034'),
@@ -454,11 +454,25 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription_reminder: ~1 rows (approximately)
+-- Dumping data for table dac.prescription_reminder: ~0 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
 REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `START_TIME`) VALUES
 	(1, 1, 11, 1, '15:35:21');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
+
+-- Dumping structure for table dac.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PATEINT_ID` int(11) NOT NULL,
+  `PASSWORD` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  KEY `PATEINT_ID` (`PATEINT_ID`),
+  CONSTRAINT `PATEINT_ID` FOREIGN KEY (`PATEINT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+
+-- Dumping data for table dac.user: ~0 rows (approximately)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vaccination
 CREATE TABLE IF NOT EXISTS `vaccination` (
