@@ -76,27 +76,25 @@ REPLACE INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS
 -- Dumping structure for table dac.frequency
 CREATE TABLE IF NOT EXISTS `frequency` (
   `FREQUENCY_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `FREQUENCY` time DEFAULT '00:00:00',
+  `FREQUENCY` int(11) NOT NULL,
   PRIMARY KEY (`FREQUENCY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.frequency: ~3 rows (approximately)
+-- Dumping data for table dac.frequency: ~1 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
 REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
-	(1, '00:00:05'),
-	(2, '12:00:00'),
-	(3, '24:00:00');
+	(1, 60);
 /*!40000 ALTER TABLE `frequency` ENABLE KEYS */;
 
 -- Dumping structure for table dac.lab
 CREATE TABLE IF NOT EXISTS `lab` (
-  `LAB_ID` int(11) NOT NULL,
+  `LAB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `LAB_NAME` varchar(50) NOT NULL,
   `DESCRIPTION` varchar(50) NOT NULL,
   PRIMARY KEY (`LAB_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab: ~37 rows (approximately)
+-- Dumping data for table dac.lab: ~40 rows (approximately)
 /*!40000 ALTER TABLE `lab` DISABLE KEYS */;
 REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 	(1, 'RBC', 'Red Blood Cell Count'),
@@ -143,24 +141,24 @@ REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 
 -- Dumping structure for table dac.lab_pulled
 CREATE TABLE IF NOT EXISTS `lab_pulled` (
-  `LAB_PULLED_ID` int(11) NOT NULL,
-  `LAB_DATE` date NOT NULL,
+  `LAB_PULLED_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DATE_TAKEN` date NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `LAB_ID` int(11) NOT NULL,
   `DOCTOR_ID` int(11) NOT NULL,
   `VALUE` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`LAB_PULLED_ID`),
   KEY `doctor_lab_pulled_fk` (`DOCTOR_ID`),
-  KEY `lab_lab_pulled_fk` (`LAB_ID`),
   KEY `patient_lab_pulled_fk` (`PATIENT_ID`),
+  KEY `lab_id_fk` (`LAB_ID`),
   CONSTRAINT `doctor_lab_pulled_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `lab_lab_pulled_fk` FOREIGN KEY (`LAB_ID`) REFERENCES `lab` (`LAB_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `lab_id_fk` FOREIGN KEY (`LAB_ID`) REFERENCES `lab` (`LAB_ID`),
   CONSTRAINT `patient_lab_pulled_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab_pulled: ~18 rows (approximately)
+-- Dumping data for table dac.lab_pulled: ~3 rows (approximately)
 /*!40000 ALTER TABLE `lab_pulled` DISABLE KEYS */;
-REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
+REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `DATE_TAKEN`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
 	(1, '2017-02-03', 11, 20, 6, '37'),
 	(2, '2017-02-03', 11, 18, 6, '82'),
 	(3, '2017-02-03', 11, 14, 6, '84'),
@@ -178,7 +176,8 @@ REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, 
 	(15, '2016-08-16', 11, 14, 6, '75'),
 	(16, '2016-08-16', 11, 16, 6, '5.1%'),
 	(17, '2016-08-16', 11, 17, 6, '157'),
-	(18, '2016-08-16', 11, 19, 6, '102');
+	(18, '2016-08-16', 11, 19, 6, '102'),
+	(19, '2015-03-08', 11, 17, 6, '200');
 /*!40000 ALTER TABLE `lab_pulled` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medical_condition
@@ -250,11 +249,11 @@ REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT
 
 -- Dumping structure for table dac.medication
 CREATE TABLE IF NOT EXISTS `medication` (
-  `MEDICATION_ID` int(11) NOT NULL,
+  `MEDICATION_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
   `DESCRIPTION` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`MEDICATION_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.medication: ~38 rows (approximately)
 /*!40000 ALTER TABLE `medication` DISABLE KEYS */;
@@ -318,17 +317,17 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table dac.patient: ~9 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
 REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
-	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '501-976-2427', '72032', 'jeanne.gagnon@example.com'),
-	(2, 'Hailey', 'Iam', '1987-01-30', 'F', '8954 Disputed Rd', 'Conway', 'AR', '501-719-6534', '72034', 'hailey.lam@example.com'),
-	(3, 'Phil', 'Harrison', '1984-06-17', 'M', '6256 Alexander Road', 'Conway', 'AR', '501-539-4546', '72034', 'phil.harrison@example.com'),
-	(4, 'Rosie', 'Davies', '1964-08-29', 'F', '9745 Grafton Street', 'Conway', 'AR', '501-981-1225', '72032', 'rosie.davies@example.com'),
-	(5, 'Arnold', 'Jacobs', '1984-12-13', 'M', '9166 New Road', 'Conway', 'AR', '501-295-8387', '72034', 'arnold.jacobs@example.com'),
-	(6, 'Ellen', 'Hicks', '1987-08-30', 'F', '6389 Lone Wolf Trail', 'Conway', 'AR', '501-467-6727', '72032', 'ellen.hicks@example.com'),
-	(7, 'Wesley', 'Williamson', '1982-08-17', 'M', '1004 Manor Road', 'Conway', 'AR', '501-236-395', '72032', 'wesley.williamson@example.com'),
-	(8, 'Cody', 'Styers', '1990-10-28', 'M', '1672 st. Lawrence Ave', 'Conway', 'AR', '501-515-7225', '72034', 'cstye417@gmail.com'),
-	(9, 'Ashley', 'Jumper', '1989-02-26', 'F', '6320 Groveland Terrace', 'Conway', 'AR', '501-343-9513', '72034', 'ajumper12@gmail.com'),
-	(10, 'David', 'Mack', '1988-02-28', 'M', '23 Lovers Ln', 'Conway', 'AR', '501-428-1287', '72034', 'ajumper12@gmail.com'),
-	(11, 'Mike', 'Jones', '1987-05-24', 'M', '52 Caney Creek Rd', 'Conway', 'AR', '501-343-9513', '72032', 'ajumper12@gmail.com');
+	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '5019762427', '72032', 'jeanne.gagnon@example.com'),
+	(2, 'Hailey', 'Iam', '1987-01-30', 'F', '8954 Disputed Rd', 'Conway', 'AR', '5017196534', '72034', 'hailey.lam@example.com'),
+	(3, 'Phil', 'Harrison', '1984-06-17', 'M', '6256 Alexander Road', 'Conway', 'AR', '5015394546', '72034', 'phil.harrison@example.com'),
+	(4, 'Rosie', 'Davies', '1964-08-29', 'F', '9745 Grafton Street', 'Conway', 'AR', '5019811225', '72032', 'rosie.davies@example.com'),
+	(5, 'Arnold', 'Jacobs', '1984-12-13', 'M', '9166 New Road', 'Conway', 'AR', '5012958387', '72034', 'arnold.jacobs@example.com'),
+	(6, 'Ellen', 'Hicks', '1987-08-30', 'F', '6389 Lone Wolf Trail', 'Conway', 'AR', '5014676727', '72032', 'ellen.hicks@example.com'),
+	(7, 'Wesley', 'Williamson', '1982-08-17', 'M', '1004 Manor Road', 'Conway', 'AR', '5012363951', '72032', 'wesley.williamson@example.com'),
+	(8, 'Cody', 'Styers', '1990-10-28', 'M', '1672 st. Lawrence Ave', 'Conway', 'AR', '5015157225', '72034', 'cstye417@gmail.com'),
+	(9, 'Ashley', 'Jumper', '1989-02-26', 'F', '6320 Groveland Terrace', 'Conway', 'AR', '5013439513', '72034', 'ajumper12@gmail.com'),
+	(10, 'David', 'Mack', '1988-02-28', 'M', '23 Lovers Ln', 'Conway', 'AR', '5014281287', '72034', 'ajumper12@gmail.com'),
+	(11, 'Mike', 'Jones', '1987-05-24', 'M', '52 Caney Creek Rd', 'Conway', 'AR', '5013439513', '72032', 'ajumper12@gmail.com');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient_allergy
@@ -361,9 +360,9 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   KEY `VITAL_ID` (`VITAL_ID`),
   CONSTRAINT `PATIENT_ID` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`),
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~14 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~15 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
@@ -380,21 +379,22 @@ REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VAL
 	(12, 11, 2, '97', '2016-08-16'),
 	(13, 11, 3, '121/83', '2016-08-16'),
 	(14, 11, 4, '16', '2016-08-16'),
-	(15, 11, 5, '195', '2016-08-16');
+	(15, 11, 5, '195', '2016-08-16'),
+	(17, 11, 5, '230', '2015-03-08');
 /*!40000 ALTER TABLE `patient_vital` ENABLE KEYS */;
 
 -- Dumping structure for table dac.pharmacy
 CREATE TABLE IF NOT EXISTS `pharmacy` (
-  `PHARMACY_ID` int(11) NOT NULL,
+  `PHARMACY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
   `ADDRESS` varchar(50) NOT NULL,
   `STATE` varchar(50) NOT NULL,
   `CITY` varchar(50) NOT NULL,
   `ZIP` varchar(50) NOT NULL,
   PRIMARY KEY (`PHARMACY_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.pharmacy: ~8 rows (approximately)
+-- Dumping data for table dac.pharmacy: ~10 rows (approximately)
 /*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
 REPLACE INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`) VALUES
 	(1, 'Conway Medcare Pharmacy', ' 2521 College Ave ', 'AR', 'Conway', '72034'),
@@ -411,7 +411,7 @@ REPLACE INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP
 
 -- Dumping structure for table dac.prescription
 CREATE TABLE IF NOT EXISTS `prescription` (
-  `PRESCRIPTION_ID` int(11) NOT NULL,
+  `PRESCRIPTION_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DATE` date NOT NULL,
   `DOSAGE` varchar(50) NOT NULL,
   `MEDICATION_ID` int(11) NOT NULL,
@@ -420,16 +420,16 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   `DOCTOR_ID` int(11) NOT NULL,
   PRIMARY KEY (`PRESCRIPTION_ID`),
   KEY `doctor_perscription_fk` (`DOCTOR_ID`),
-  KEY `pharmacy_perscription_fk` (`PHARMACY_ID`),
-  KEY `medication_perscription_fk` (`MEDICATION_ID`),
   KEY `patient_perscription_fk` (`PATIENT_ID`),
+  KEY `medication_id_fk` (`MEDICATION_ID`),
+  KEY `pharmacy_id_fk` (`PHARMACY_ID`),
   CONSTRAINT `doctor_perscription_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `medication_perscription_fk` FOREIGN KEY (`MEDICATION_ID`) REFERENCES `medication` (`MEDICATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `medication_id_fk` FOREIGN KEY (`MEDICATION_ID`) REFERENCES `medication` (`MEDICATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_perscription_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pharmacy_perscription_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+  CONSTRAINT `pharmacy_id_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription: ~4 rows (approximately)
+-- Dumping data for table dac.prescription: ~3 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
 REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
 	(1, '2017-01-15', '20mg', 16, 11, 3, 6),
@@ -444,20 +444,20 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   `FREQUENCY_ID` int(11) NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `PRESCRIPTION_ID` int(11) NOT NULL,
-  `START_TIME` time DEFAULT NULL,
+  `NEXT_REMINDER` time DEFAULT NULL,
   PRIMARY KEY (`REMINDER_ID`),
   KEY `patient_id_fk` (`PATIENT_ID`),
-  KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
   KEY `frequency_id_fk` (`FREQUENCY_ID`),
+  KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
   CONSTRAINT `frequency_id_fk` FOREIGN KEY (`FREQUENCY_ID`) REFERENCES `frequency` (`FREQUENCY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_id_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.prescription_reminder: ~0 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
-REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `START_TIME`) VALUES
-	(1, 1, 11, 1, '15:35:21');
+REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
+	(2, 1, 11, 1, '09:14:33');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
 
 -- Dumping structure for table dac.user
@@ -501,7 +501,7 @@ REPLACE INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `D
 
 -- Dumping structure for table dac.vaccination_given
 CREATE TABLE IF NOT EXISTS `vaccination_given` (
-  `VACCINATION_GIVEN_ID` int(11) NOT NULL,
+  `VACCINATION_GIVEN_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DATE` date NOT NULL,
   `DOCUMENTATION` longblob,
   `PATIENT_ID` int(11) NOT NULL,
@@ -514,9 +514,9 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
   CONSTRAINT `doctor_vaccination_given_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_vaccination_given_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vaccinations_vaccination_given_fk` FOREIGN KEY (`VACCINE_ID`) REFERENCES `vaccination` (`VACCINE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.vaccination_given: ~1 rows (approximately)
+-- Dumping data for table dac.vaccination_given: ~0 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
 REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
 	(1, '2010-06-16', NULL, 11, 4, 6);
