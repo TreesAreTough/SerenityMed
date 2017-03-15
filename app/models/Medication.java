@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class Medication
 {
     @Column (name ="MEDICATION_ID")
-    public Integer medicationId;
+    public Long medicationId;
 
     @Column (name ="MEDICATION_NAME")
     public String medicationName;

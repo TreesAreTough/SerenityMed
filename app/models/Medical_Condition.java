@@ -4,10 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class MedicalCondition
+public class Medical_Condition
 {
     @Column (name="MEDICAL_CONDITION_ID")
-    public Integer medicalConditionId;
+    public Long medicalConditionId;
 
     @Column (name="MC_NAME")
     public String mcName;

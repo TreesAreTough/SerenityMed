@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class Lab
 {
     @Column (name="LAB_ID")
-    public Integer labId;
+    public Long labId;
 
     @Column (name="LAB_NAME")
     public String labName;

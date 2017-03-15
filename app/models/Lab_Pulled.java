@@ -5,21 +5,24 @@ import javax.persistence.Entity;
 import java.sql.Date;
 
 @Entity
-public class LabPulled
+public class Lab_Pulled
 {
     @Column (name ="LAB_PULLED_ID")
-    public Integer labPulledId;
+    public Long labPulledId;
 
     @Column (name ="LAB_DATE")
     public Date labDate;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientId;
 
     @Column (name ="LAB_ID")
-    public Integer labId;
+    public Long labId;
 
     @Column (name ="DOCTOR_ID")
-    public Integer doctorId;
+    public Long doctorId;
+
+    @Column (name="VALUE")
+    public String value;
 
 }

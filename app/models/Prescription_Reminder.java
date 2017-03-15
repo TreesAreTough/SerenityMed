@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import java.sql.Time;
 
 @Entity
-public class PrescriptionReminder
+public class Prescription_Reminder
 {
     @Column (name = "REMINDER_ID")
     public Integer reminderId;

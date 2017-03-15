@@ -4,18 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class MedicalHistory
+public class Medical_History
 {
     @Column (name ="MEDICAL_HISTORY_ID")
-    public Integer medicalHistoryId;
+    public Long medicalHistoryId;
 
     @Column (name ="DATE_DIAGNOSED")
-    public Integer dateDiagnosed;
+    public Long dateDiagnosed;
 
     @Column (name ="DATE_RESOLVED")
     public String dateResolved;
 
     @Column (name ="MEDICAL_CONDITION_ID")
-    public Integer medicalConditionId;
+    public Long medicalConditionId;
 
 }

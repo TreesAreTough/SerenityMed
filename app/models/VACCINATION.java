@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class VACCINATION
 {
     @Column (name="VACCINE_ID")
-    public Integer vaccineId;
+    public Long vaccineId;
 
     @Column (name="VACCINE_NAME")
     public String vaccineName;

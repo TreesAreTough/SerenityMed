@@ -9,7 +9,7 @@ import java.sql.Date;
 public class VaccinationGiven
 {
     @Column (name ="VACCINATION_GIVEN_ID")
-    public Integer vaccinationGivenId;
+    public Long vaccinationGivenId;
 
     @Column (name ="DATA")
     public Date data;
@@ -18,12 +18,12 @@ public class VaccinationGiven
     public Blob documentation;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientId;
 
     @Column (name ="VACCINE_ID")
-    public Integer vaccineId;
+    public Long vaccineId;
 
     @Column (name ="DOCTOR_ID")
-    public Integer doctorId;
+    public Long doctorId;
 
 }

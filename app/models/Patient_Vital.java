@@ -5,10 +5,10 @@ import javax.persistence.Entity;
 import java.sql.Date;
 
 @Entity
-public class PatientVital
+public class Patient_Vital
 {
     @Column (name ="PATIENT_VITAL_ID")
-    public Integer patientVitalId;
+    public Long patientVitalId;
 
     @Column (name ="VALUE")
     public String value;
@@ -17,9 +17,9 @@ public class PatientVital
     public Date date;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientId;
 
     @Column (name ="VITAL_ID")
-    public Integer vitalId;
+    public Long vitalId;
 
 }

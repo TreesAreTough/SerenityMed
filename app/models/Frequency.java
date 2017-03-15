@@ -8,7 +8,7 @@ import java.sql.Time;
 public class Frequency
 {
     @Column (name="FREQUENCY_ID")
-    public Integer frequencyId;
+    public Long frequencyId;
 
     @Column (name="FREQUENCY")
     public Time frequency;

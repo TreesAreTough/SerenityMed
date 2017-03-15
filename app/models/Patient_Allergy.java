@@ -4,14 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class PatientAllergy
+public class Patient_Allergy
 {
     @Column (name ="PATIENT_ALLERGY_ID")
-    public Integer patientAllergyId;
+    public Long patientAllergyId;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientId;
 
     @Column (name ="ALLERGY_ID")
-    public Integer allergyId;
+    public Long allergyId;
 }

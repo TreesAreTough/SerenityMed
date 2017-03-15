@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class Allergies
 {
     @Column (name="ALLERGY_ID")
-    public Integer allergyId;
+    public Long allergyId;
 
     @Column (name="ALLERGY_NAME")
     public String allergyName;

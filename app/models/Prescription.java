@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class Prescription
 {
     @Column (name ="PRESCRIPTION_ID")
-    public Integer prescriptionId;
+    public Long prescriptionId;
 
     @Column (name ="DATE_TAKEN")
     public String dateTaken;
@@ -17,17 +17,17 @@ public class Prescription
     public String dosage;
 
     @Column (name ="MEDICATION_ID")
-    public Integer medicationId;
+    public Long medicationId;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientId;
 
     @Column (name ="PHARMACY_ID")
-    public Integer pharamcyId;
+    public Long pharamcyId;
 
     @Column (name ="DOCTOR_ID")
-    public Integer doctorId;
+    public Long doctorId;
 
     @Column (name ="FREQUENCY_ID")
-    public Integer frequencyId;
+    public Long frequencyId;
 }
