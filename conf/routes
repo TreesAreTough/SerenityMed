@@ -10,3 +10,13 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Patient
 GET     /                    controllers.PatientController.getPatient
+GET     /test                controllers.PatientController.bootstrapTest()
+GET     /404                 controllers.PatientController.get404()
+GET     /chartBasic          controllers.PatientController.getChartsBasic()
+GET     /chartInteractive    controllers.PatientController.getChartsInteractive()
+GET     /formBootstrap       controllers.PatientController.getFormBootStrapElements()
+
+
+
+
+

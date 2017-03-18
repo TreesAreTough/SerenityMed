@@ -29,4 +29,30 @@ public class PatientController extends Controller
 
         return ok(toJson(patients));
     }
+
+    public Result bootstrapTest()
+    {
+        return ok(views.html.formFancyElements.render());
+    }
+
+    public Result getChartsBasic()
+    {
+        return ok(views.html.chartsbasic.render());
+    }
+
+    public Result getChartsInteractive()
+    {
+        return ok(views.html.chartsinteractive.render());
+    }
+
+    public Result getFormBootStrapElements()
+    {
+        return ok(views.html.formBootstrapElements.render());
+    }
+
+    public Result get404()
+    {
+        return ok(views.html.page404.render());
+
+    }
 }

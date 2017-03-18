@@ -20,13 +20,13 @@ USE `dac`;
 CREATE TABLE IF NOT EXISTS `allergies` (
   `ALLERGY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ALLERGY_NAME` varchar(50) NOT NULL,
-  `DESCRITION` varchar(50) NOT NULL,
+  `ALLERGY_DESCRIPTION` varchar(50) NOT NULL,
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.allergies: ~8 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
-REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
+REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `ALLERGY_DESCRIPTION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
 	(2, 'Sulfa Drug', 'Antibiotic allergy'),
 	(3, 'Tetracycline', 'Antibiotic allergy'),
@@ -42,19 +42,19 @@ REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `DESCRITION`) VALUES
 -- Dumping structure for table dac.doctor
 CREATE TABLE IF NOT EXISTS `doctor` (
   `DOCTOR_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) NOT NULL,
-  `SPECALTY` varchar(50) NOT NULL,
-  `PHONE_NUMBER` varchar(50) NOT NULL,
-  `ADDRESS` varchar(50) NOT NULL,
-  `CITY` varchar(50) NOT NULL,
-  `STATE` varchar(50) NOT NULL,
-  `ZIP` varchar(50) NOT NULL,
+  `DOC_NAME` varchar(50) NOT NULL,
+  `DOC_SPECALTY` varchar(50) NOT NULL,
+  `DOC_PHONE_NUMBER` varchar(50) NOT NULL,
+  `DOC_ADDRESS` varchar(50) NOT NULL,
+  `DOC_CITY` varchar(50) NOT NULL,
+  `DOC_STATE` varchar(50) NOT NULL,
+  `DOC_ZIP` varchar(50) NOT NULL,
   PRIMARY KEY (`DOCTOR_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.doctor: ~16 rows (approximately)
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-REPLACE INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS`, `CITY`, `STATE`, `ZIP`) VALUES
+REPLACE INTO `doctor` (`DOCTOR_ID`, `DOC_NAME`, `DOC_SPECALTY`, `DOC_PHONE_NUMBER`, `DOC_ADDRESS`, `DOC_CITY`, `DOC_STATE`, `DOC_ZIP`) VALUES
 	(1, 'Dr. Robert B. Rook', 'Family Practice', '501-329-2946', '919 Locust Street ', 'Conway', 'AR', '72034'),
 	(2, 'Dr. David Naylor', 'Family Practice', '501-329-3824', '2425 Dave Ward Drive', 'Conway', 'AR', '72034'),
 	(3, 'Dr. Bart Thornberry', 'Family Practice', '501-327-2611', '2869 College Ave', 'Conway', 'AR', '72034'),
@@ -73,30 +73,262 @@ REPLACE INTO `doctor` (`DOCTOR_ID`, `NAME`, `SPECALTY`, `PHONE_NUMBER`, `ADDRESS
 	(16, 'Dr. Karl Landberg', 'Gastroenterology', '501-336-9620', '1375 Old Morrilton Hwy', 'Conway', 'AR', '72032');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 
+-- Dumping structure for table dac.drug_interaction
+CREATE TABLE IF NOT EXISTS `drug_interaction` (
+  `DRUG_INTERACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `RXCUI` int(11) NOT NULL,
+  `INTER_RXCUI` int(11) NOT NULL,
+  `INTER_DESCRIPTION` varchar(500) NOT NULL,
+  PRIMARY KEY (`DRUG_INTERACTION_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=ascii;
+
+-- Dumping data for table dac.drug_interaction: ~194 rows (approximately)
+/*!40000 ALTER TABLE `drug_interaction` DISABLE KEYS */;
+REPLACE INTO `drug_interaction` (`DRUG_INTERACTION_ID`, `RXCUI`, `INTER_RXCUI`, `INTER_DESCRIPTION`) VALUES
+	(1, 435, 5487, 'Albuterol may increase the hypokalemic activities of Hydrochlorothiazide'),
+	(2, 435, 18631, 'Albuterol may increase the QTc-prolonging activities of Azithromycin'),
+	(3, 435, 72625, 'Duloxetine may increase the tachycardic activities of Albuterol'),
+	(4, 435, 8787, 'Propranolol may decrease the bronchodilatory activities of Albuterol'),
+	(5, 435, 703, 'Albuterol may increase the QTc-prolonging activities of Amiodarone'),
+	(6, 435, 1760, 'Bromocriptine may increase the hypertensive activities of Albuterol'),
+	(7, 301543, 29046, 'The serum concentration of Advair can be increased when it is combined with Lisinopril'),
+	(8, 301543, 5487, 'Advair may increase the hypokalemic activities of Hydrochlorothiazide'),
+	(9, 301543, 596, 'The risk or severity of adverse effects can be increased when Alprazolam is combined with Advair'),
+	(10, 301543, 18631, 'Advair may increase the QTc-prolonging activities of Azithromycin'),
+	(11, 301543, 3640, 'The metabolism of Advair can be decreased when combined with Doxycycline'),
+	(12, 301543, 161, 'The serum concentration of Advair can be increased when it is combined with Acetaminophen'),
+	(13, 301543, 10582, '"The serum concentration of Advair can be decreased when it is combined with Levothyroxine'),
+	(14, 301543, 72625, 'The risk or severity of adverse effects can be increased when Advair is combined with Duloxetine'),
+	(15, 301543, 11170, 'The metabolism of Advair can be decreased when combined with Verapamil'),
+	(16, 301543, 8787, 'The serum concentration of Advair can be increased when it is combined with Propranolol'),
+	(17, 301543, 703, 'The serum concentration of Advair can be increased when it is combined with Amiodarone'),
+	(18, 301543, 83367, 'The serum concentration of Advair can be increased when it is combined with Atorvastatin'),
+	(19, 301543, 10689, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Advair'),
+	(20, 301543, 6375, 'The risk or severity of adverse effects can be increased when Advair is combined with Levodopa'),
+	(21, 301543, 1760, 'Bromocriptine may increase the hypertensive activities of Advair'),
+	(22, 301543, 6448, 'The risk or severity of adverse effects can be increased when Lithium is combined with Advair'),
+	(23, 301543, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Advair'),
+	(24, 301543, 11289, 'Advair may increase the anticoagulant activities of Warfarin'),
+	(25, 301543, 4637, 'The risk or severity of adverse effects can be increased when Advair is combined with Galantamine'),
+	(26, 301542, 6468, 'The serum concentration of Advair can be increased when it is combined with Loperamide'),
+	(27, 25789, 5487, 'The therapeutic efficacy of Glimepiride can be decreased when used in combination with Hydrochlorothiazide'),
+	(28, 25789, 72625, 'Duloxetine may increase the hypoglycemic activities of Glimepiride'),
+	(29, 25789, 8787, 'Propranolol may increase the hypoglycemic activities of Glimepiride'),
+	(30, 25789, 703, 'The metabolism of Glimepiride can be decreased when combined with Amiodarone'),
+	(31, 25789, 83367, 'Atorvastatin may increase the hypoglycemic activities of Glimepiride'),
+	(32, 25789, 11118, 'The metabolism of Glimepiride can be decreased when combined with Valproic Acid'),
+	(33, 25789, 11289, 'Glimepiride may increase the anticoagulant activities of Warfarin'),
+	(34, 6809, 5487, 'The therapeutic efficacy of Metformin can be decreased when used in combination with Hydrochlorothiazide'),
+	(35, 6809, 72625, 'Duloxetine may increase the hypoglycemic activities of Metformin'),
+	(36, 6809, 11170, 'The therapeutic efficacy of Metformin can be decreased when used in combination with Verapamil'),
+	(37, 29046, 5487, 'The risk or severity of adverse effects can be increased when Lisinopril is combined with Hydrochlorothiazide'),
+	(38, 29046, 596, 'The serum concentration of Alprazolam can be increased when it is combined with Lisinopril'),
+	(39, 29046, 161, 'The serum concentration of Acetaminophen can be increased when it is combined with Lisinopril'),
+	(40, 29046, 72625, 'Lisinopril may increase the orthostatic hypotensive activities of Duloxetine'),
+	(41, 29046, 11170, 'The metabolism of Verapamil can be decreased when combined with Lisinopril'),
+	(42, 29046, 8787, 'The risk or severity of adverse effects can be increased when Propranolol is combined with Lisinopril'),
+	(43, 29046, 703, 'The risk or severity of adverse effects can be increased when Lisinopril is combined with Amiodarone'),
+	(44, 29046, 83367, 'The serum concentration of Atorvastatin can be increased when it is combined with Lisinopril'),
+	(45, 29046, 6375, 'Lisinopril may increase the orthostatic hypotensive activities of Levodopa'),
+	(46, 29046, 1760, 'The serum concentration of Bromocriptine can be increased when it is combined with Lisinopril'),
+	(47, 29046, 6448, 'The serum concentration of Lithium can be increased when it is combined with Lisinopril'),
+	(48, 29046, 11118, 'The serum concentration of Valproic Acid can be decreased when it is combined with Lisinopril'),
+	(49, 29046, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Lisinopril'),
+	(50, 29046, 6468, 'The serum concentration of Loperamide can be increased when it is combined with Lisinopril'),
+	(51, 5487, 72625, 'Hydrochlorothiazide may increase the orthostatic hypotensive activities of Duloxetine'),
+	(52, 5487, 11170, 'The risk or severity of adverse effects can be increased when Verapamil is combined with Hydrochlorothiazide'),
+	(53, 5487, 8787, 'The risk or severity of adverse effects can be increased when Propranolol is combined with Hydrochlorothiazide'),
+	(54, 5487, 703, 'The risk or severity of adverse effects can be increased when Hydrochlorothiazide is combined with Amiodarone'),
+	(55, 5487, 10689, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Hydrochlorothiazide'),
+	(56, 5487, 6375, 'Hydrochlorothiazide may increase the orthostatic hypotensive activities of Levodopa'),
+	(57, 5487, 1760, 'The risk or severity of adverse effects can be increased when Hydrochlorothiazide is combined with Bromocriptine'),
+	(58, 5487, 6448, 'Hydrochlorothiazide may decrease the excretion rate of Lithium which could result in a higher serum level'),
+	(59, 42568, 18631, 'The metabolism of Bupropion can be decreased when combined with Azithromycin'),
+	(60, 42568, 3640, 'The metabolism of Bupropion can be decreased when combined with Doxycycline'),
+	(61, 42568, 161, 'The metabolism of Acetaminophen can be decreased when combined with Bupropion'),
+	(62, 42568, 72625, 'The serum concentration of Duloxetine can be increased when it is combined with Bupropion'),
+	(63, 42568, 11170, 'The metabolism of Bupropion can be decreased when combined with Verapamil'),
+	(64, 42568, 8787, 'The metabolism of Propranolol can be decreased when combined with Bupropion'),
+	(65, 42568, 703, 'The metabolism of Bupropion can be decreased when combined with Amiodarone'),
+	(66, 42568, 10689, 'The therapeutic efficacy of Tramadol can be decreased when used in combination with Bupropion'),
+	(67, 42568, 6375, 'The risk or severity of adverse effects can be increased when Levodopa is combined with Bupropion'),
+	(68, 42568, 1760, 'The risk or severity of adverse effects can be increased when Bromocriptine is combined with Bupropion'),
+	(69, 42568, 11118, 'The metabolism of Bupropion can be decreased when combined with Valproic Acid'),
+	(70, 42568, 4637, 'The metabolism of Galantamine can be decreased when combined with Bupropion'),
+	(71, 42568, 6468, 'The metabolism of Loperamide can be decreased when combined with Bupropion'),
+	(72, 352741, 596, 'The risk or severity of adverse effects can be increased when Alprazolam is combined with Lexapro'),
+	(73, 352741, 18631, 'Azithromycin may increase the QTc-prolonging activities of Lexapro'),
+	(74, 352741, 10582, 'The therapeutic efficacy of Levothyroxine can be decreased when used in combination with Lexapro'),
+	(75, 352741, 72625, 'The risk or severity of adverse effects can be increased when Duloxetine is combined with Lexapro'),
+	(76, 352741, 11170, 'The metabolism of Lexapro can be decreased when combined with Verapami'),
+	(77, 352741, 703, 'Amiodarone may increase the QTc-prolonging activities of Lexapro'),
+	(78, 352741, 10689, 'Lexapro may increase the neuroexcitatory activities of Tramadol'),
+	(79, 352741, 6375, 'The risk or severity of adverse effects can be increased when Levodopa is combined with Lexapro'),
+	(80, 352741, 1760, 'The risk or severity of adverse effects can be increased when Lexapro is combined with Bromocriptine'),
+	(81, 352741, 6448, 'Lithium may increase the serotonergic activities of Lexapro'),
+	(82, 352741, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Lexapro'),
+	(83, 352741, 11289, 'Lexapro may increase the anticoagulant activities of Warfarin'),
+	(84, 352741, 4637, 'The metabolism of Galantamine can be decreased when combined with Lexapro'),
+	(85, 596, 3640, 'The metabolism of Alprazolam can be decreased when combined with Doxycycline'),
+	(86, 596, 72625, 'The risk or severity of adverse effects can be increased when Alprazolam is combined with Duloxetine'),
+	(87, 596, 11170, 'The metabolism of Alprazolam can be decreased when combined with Verapamil'),
+	(88, 596, 703, 'The metabolism of Alprazolam can be decreased when combined with Amiodarone'),
+	(89, 596, 10689, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Alprazolam'),
+	(90, 596, 6375, 'The risk or severity of adverse effects can be increased when Alprazolam is combined with Levodopa'),
+	(91, 596, 6448, 'The risk or severity of adverse effects can be increased when Alprazolam is combined with Lithium'),
+	(92, 596, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Alprazolam'),
+	(93, 18631, 3640, 'The metabolism of Azithromycin can be decreased when combined with Doxycycline'),
+	(94, 18631, 161, 'The serum concentration of Acetaminophen can be increased when it is combined with Azithromycin'),
+	(95, 18631, 72625, 'The metabolism of Duloxetine can be decreased when combined with Azithromycin'),
+	(96, 18631, 11170, 'The metabolism of Azithromycin can be decreased when combined with Verapamil'),
+	(97, 18631, 8787, 'The serum concentration of Propranolol can be increased when it is combined with Azithromycin'),
+	(98, 18631, 703, 'QT prolonging agents - QT prolonging agents'),
+	(99, 18631, 83367, 'Azithromycin may increase the myopathic rhabdomyolysis activities of Atorvastatin'),
+	(100, 18631, 1760, 'The serum concentration of Bromocriptine can be increased when it is combined with Azithromycin'),
+	(101, 18631, 6448, 'Lithium may increase the QTc-prolonging activities of Azithromycin'),
+	(102, 18631, 11289, 'The metabolism of Warfarin can be decreased when combined with Azithromycin'),
+	(103, 18631, 4637, 'Galantamine may increase the QTc-prolonging activities of Azithromycin'),
+	(104, 18631, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Azithromycin'),
+	(105, 3640, 161, 'The metabolism of Acetaminophen can be decreased when combined with Doxycycline'),
+	(106, 3640, 10582, 'The metabolism of Levothyroxine can be decreased when combined with Doxycycline'),
+	(107, 3640, 11170, 'The metabolism of Verapamil can be decreased when combined with Doxycycline'),
+	(108, 3640, 8787, 'The metabolism of Propranolol can be decreased when combined with Doxycycline'),
+	(109, 3640, 703, 'The metabolism of Amiodarone can be decreased when combined with Doxycycline'),
+	(110, 3640, 83367, 'The metabolism of Atorvastatin can be decreased when combined with Doxycycline'),
+	(111, 3640, 10689, 'The metabolism of Tramadol can be decreased when combined with Doxycycline'),
+	(112, 3640, 1760, 'The metabolism of Bromocriptine can be decreased when combined with Doxycycline'),
+	(113, 3640, 11289, 'The metabolism of Warfarin can be decreased when combined with Doxycycline'),
+	(114, 3640, 4637, 'The metabolism of Galantamine can be decreased when combined with Doxycycline'),
+	(115, 3640, 6468, 'The metabolism of Loperamide can be decreased when combined with Doxycycline'),
+	(116, 3640, 723, 'The therapeutic efficacy of Amoxicillin can be decreased when used in combination with Doxycycline'),
+	(117, 153010, 161, 'The serum concentration of Ibuprofen can be increased when it is combined with Acetaminophen'),
+	(118, 153010, 10582, 'The serum concentration of Ibuprofen can be decreased when it is combined with Levothyroxine'),
+	(119, 153010, 11170, 'The serum concentration of Ibuprofen can be decreased when it is combined with Verapamil'),
+	(120, 153010, 8787, 'The serum concentration of Ibuprofen can be increased when it is combined with Propranolol'),
+	(121, 153010, 703, 'The metabolism of Ibuprofen can be decreased when combined with Amiodarone'),
+	(122, 153010, 83367, 'The serum concentration of Ibuprofen can be increased when it is combined with Atorvastatin'),
+	(123, 153010, 1760, 'The serum concentration of Ibuprofen can be increased when it is combined with Bromocriptine'),
+	(124, 153010, 6448, 'The serum concentration of Lithium can be increased when it is combined with Ibuprofen'),
+	(125, 153010, 11118, 'The metabolism of Ibuprofen can be decreased when combined with Valproic Acid'),
+	(126, 153010, 11289, 'Ibuprofen may increase the anticoagulant activities of Warfarin'),
+	(127, 153010, 77655, 'The risk or severity of adverse effects can be increased when Ibuprofen is combined with Zoledronic acid'),
+	(128, 153010, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Ibuprofen'),
+	(129, 153010, 6468, 'The serum concentration of Ibuprofen can be increased when it is combined with Loperamide'),
+	(130, 161, 10582, 'The serum concentration of Acetaminophen can be decreased when it is combined with Levothyroxine'),
+	(131, 161, 72625, 'The metabolism of Acetaminophen can be decreased when combined with Duloxetine'),
+	(132, 161, 11170, 'The metabolism of Acetaminophen can be decreased when combined with Verapamil'),
+	(133, 161, 8787, 'The serum concentration of Propranolol can be increased when it is combined with Acetaminophen'),
+	(134, 161, 703, 'The metabolism of Acetaminophen can be decreased when combined with Amiodarone'),
+	(135, 161, 83367, 'The serum concentration of Acetaminophen can be increased when it is combined with Atorvastatin'),
+	(136, 161, 1760, 'The serum concentration of Bromocriptine can be increased when it is combined with Acetaminophen'),
+	(137, 161, 11118, 'The metabolism of Acetaminophen can be decreased when combined with Valproic Acid'),
+	(138, 161, 11289, 'Acetaminophen may increase the anticoagulant activities of Warfarin'),
+	(139, 161, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Acetaminophen'),
+	(140, 161, 6468, '"The serum concentration of Loperamide can be increased when it is combined with Acetaminophen'),
+	(141, 10582, 72625, 'The therapeutic efficacy of Levothyroxine can be decreased when used in combination with Duloxetine'),
+	(142, 10582, 11170, 'The metabolism of Levothyroxine can be decreased when combined with Verapamil'),
+	(143, 10582, 8787, 'The serum concentration of Propranolol can be decreased when it is combined with Levothyroxine'),
+	(144, 10582, 703, 'The metabolism of Levothyroxine can be decreased when combined with Amiodarone'),
+	(145, 10582, 1760, 'The serum concentration of Bromocriptine can be decreased when it is combined with Levothyroxine'),
+	(146, 10582, 11289, 'Levothyroxine may increase the anticoagulant activities of Warfarin'),
+	(147, 10582, 6851, 'The serum concentration of Methotrexate can be decreased when it is combined with Levothyroxine'),
+	(148, 84815, 72625, 'The metabolism of Dextroamphetamine can be decreased when combined with Duloxetine'),
+	(149, 84815, 703, 'The metabolism of Dextroamphetamine can be decreased when combined with Amiodarone'),
+	(150, 84815, 10689, 'Amphetamine may increase the analgesic activities of Tramadol'),
+	(151, 84815, 6448, 'Lithium may decrease the stimulatory activities of Dextroamphetamine'),
+	(152, 72625, 11170, 'Verapamil may increase the orthostatic hypotensive activities of Duloxetine'),
+	(153, 72625, 8787, 'Propranolol may increase the orthostatic hypotensive activities of Duloxetine'),
+	(154, 72625, 703, 'Amiodarone may increase the orthostatic hypotensive activities of Duloxetine'),
+	(155, 72625, 10689, 'Duloxetine may increase the neuroexcitatory activities of Tramadol'),
+	(156, 72625, 6375, 'Levodopa may increase the orthostatic hypotensive activities of Duloxetine'),
+	(157, 72625, 1760, 'Bromocriptine may increase the orthostatic hypotensive activities of Duloxetine'),
+	(158, 72625, 6448, 'Lithium may increase the serotonergic activities of Duloxetine'),
+	(159, 72625, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Duloxetine'),
+	(160, 72625, 11289, 'Duloxetine may increase the anticoagulant activities of Warfarin'),
+	(161, 72625, 4637, 'The metabolism of Galantamine can be decreased when combined with Duloxetine'),
+	(162, 72625, 6468, 'The metabolism of Loperamide can be decreased when combined with Duloxetine'),
+	(163, 11170, 8787, 'The risk or severity of adverse effects can be increased when Propranolol is combined with Verapamil'),
+	(164, 11170, 703, 'Verapamil may increase the bradycardic activities of Amiodarone'),
+	(165, 11170, 83367, 'The serum concentration of Verapamil can be increased when it is combined with Atorvastatin'),
+	(166, 11170, 10689, 'The metabolism of Tramadol can be decreased when combined with Verapamil'),
+	(167, 11170, 6375, 'Verapamil may increase the orthostatic hypotensive activities of Levodopa'),
+	(168, 11170, 1760, 'The metabolism of Bromocriptine can be decreased when combined with Verapamil'),
+	(169, 11170, 6448, 'Verapamil may increase the neurotoxic activities of Lithium'),
+	(170, 11170, 11118, 'The metabolism of Verapamil can be decreased when combined with Valproic Acid'),
+	(171, 11170, 11289, 'The metabolism of Warfarin can be decreased when combined with Verapamil'),
+	(172, 11170, 4637, 'The metabolism of Galantamine can be decreased when combined with Verapamil'),
+	(173, 11170, 6851, '"The serum concentration of Methotrexate can be decreased when it is combined with Verapamil'),
+	(174, 11170, 6468, 'The metabolism of Loperamide can be decreased when combined with Verapamil'),
+	(175, 8787, 703, 'Amiodarone may increase the bradycardic activities of Propranolol'),
+	(176, 8787, 83367, 'The serum concentration of Propranolol can be increased when it is combined with Atorvastatin'),
+	(177, 8787, 6375, 'Propranolol may increase the orthostatic hypotensive activities of Levodopa'),
+	(178, 8787, 1760, 'Bromocriptine may increase the atrioventricular blocking (AV block) activities of Propranolol'),
+	(179, 8787, 4637, 'Galantamine may increase the bradycardic activities of Propranolol'),
+	(180, 8787, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Propranolol'),
+	(181, 8787, 6468, 'The serum concentration of Propranolol can be increased when it is combined with Loperamide'),
+	(182, 703, 10689, 'The therapeutic efficacy of Tramadol can be decreased when used in combination with Amiodarone'),
+	(183, 703, 6375, 'Amiodarone may increase the orthostatic hypotensive activities of Levodopa'),
+	(184, 703, 1760, 'The metabolism of Bromocriptine can be decreased when combined with Amiodarone'),
+	(185, 703, 6448, 'Lithium may increase the QTc-prolonging activities of Amiodarone'),
+	(186, 703, 11118, 'The metabolism of Valproic Acid can be decreased when combined with Amiodarone'),
+	(187, 703, 11289, 'Amiodarone may increase the anticoagulant activities of Warfarin'),
+	(188, 703, 4637, 'The metabolism of Galantamine can be decreased when combined with Amiodarone'),
+	(189, 703, 6851, 'The serum concentration of Methotrexate can be decreased when it is combined with Amiodarone'),
+	(190, 703, 6468, 'The metabolism of Loperamide can be decreased when combined with Amiodarone'),
+	(191, 83367, 1760, 'The serum concentration of Bromocriptine can be increased when it is combined with Atorvastatin'),
+	(192, 83367, 11289, 'Atorvastatin may increase the anticoagulant activities of Warfarin'),
+	(193, 83367, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Atorvastatin'),
+	(194, 83367, 6468, 'The serum concentration of Loperamide can be increased when it is combined with Atorvastatin'),
+	(195, 217713, 10689, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Sumatriptan'),
+	(196, 217713, 1760, 'Bromocriptine may increase the vasoconstricting activities of Sumatriptan'),
+	(197, 217713, 6448, 'The risk or severity of adverse effects can be increased when Sumatriptan is combined with Lithium'),
+	(198, 217713, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Sumatriptan'),
+	(199, 217713, 6468, 'The serum concentration of Loperamide can be increased when it is combined with Sumatriptan'),
+	(200, 10689, 6375, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Levodopa'),
+	(201, 10689, 1760, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Bromocriptine'),
+	(202, 10689, 6448, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Lithium'),
+	(203, 10689, 11118, 'The risk or severity of adverse effects can be increased when Tramadol is combined with Valproic Acid'),
+	(204, 10689, 11289, 'Tramadol may increase the anticoagulant activities of Warfarin'),
+	(205, 6375, 1760, 'Bromocriptine may increase the orthostatic hypotensive activities of Levodopa'),
+	(206, 6375, 6448, 'The risk or severity of adverse effects can be increased when Lithium is combined with Levodopa'),
+	(207, 6375, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Levodopa'),
+	(208, 1760, 6448, 'The risk or severity of adverse effects can be increased when Bromocriptine is combined with Lithium'),
+	(209, 1760, 6851, 'The serum concentration of Methotrexate can be increased when it is combined with Bromocriptine'),
+	(210, 1760, 6468, 'The serum concentration of Loperamide can be increased when it is combined with Bromocriptine'),
+	(211, 6448, 11118, 'The risk or severity of adverse effects can be increased when Valproic Acid is combined with Lithium'),
+	(212, 11118, 11289, 'The metabolism of Warfarin can be decreased when combined with Valproic Acid'),
+	(213, 11289, 327361, 'The serum concentration of Warfarin can be decreased when it is combined with Adalimumab'),
+	(214, 191831, 327361, 'Adalimumab may increase the immunosuppressive activities of Infliximab'),
+	(215, 6851, 6468, 'The serum concentration of Methotrexate can be increased when it is combined with Loperamide'),
+	(216, 6851, 723, 'The serum concentration of Methotrexate can be increased when it is combined with Amoxicillin');
+/*!40000 ALTER TABLE `drug_interaction` ENABLE KEYS */;
+
 -- Dumping structure for table dac.frequency
 CREATE TABLE IF NOT EXISTS `frequency` (
   `FREQUENCY_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FREQUENCY` int(11) NOT NULL,
   PRIMARY KEY (`FREQUENCY_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.frequency: ~1 rows (approximately)
+-- Dumping data for table dac.frequency: ~2 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
 REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
-	(1, 60);
+	(1, 60),
+	(4, 5),
+	(5, 1);
 /*!40000 ALTER TABLE `frequency` ENABLE KEYS */;
 
 -- Dumping structure for table dac.lab
 CREATE TABLE IF NOT EXISTS `lab` (
   `LAB_ID` int(11) NOT NULL AUTO_INCREMENT,
   `LAB_NAME` varchar(50) NOT NULL,
-  `DESCRIPTION` varchar(50) NOT NULL,
+  `LAB_DESCRIPTION` varchar(50) NOT NULL,
   PRIMARY KEY (`LAB_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.lab: ~40 rows (approximately)
 /*!40000 ALTER TABLE `lab` DISABLE KEYS */;
-REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
+REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `LAB_DESCRIPTION`) VALUES
 	(1, 'RBC', 'Red Blood Cell Count'),
 	(2, 'Hemoglobin', 'Hemoglobin'),
 	(3, 'Hematocrit', 'Hematocrit'),
@@ -142,7 +374,7 @@ REPLACE INTO `lab` (`LAB_ID`, `LAB_NAME`, `DESCRIPTION`) VALUES
 -- Dumping structure for table dac.lab_pulled
 CREATE TABLE IF NOT EXISTS `lab_pulled` (
   `LAB_PULLED_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DATE_TAKEN` date NOT NULL,
+  `LAB_DATE` date NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `LAB_ID` int(11) NOT NULL,
   `DOCTOR_ID` int(11) NOT NULL,
@@ -156,9 +388,9 @@ CREATE TABLE IF NOT EXISTS `lab_pulled` (
   CONSTRAINT `patient_lab_pulled_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.lab_pulled: ~3 rows (approximately)
+-- Dumping data for table dac.lab_pulled: ~19 rows (approximately)
 /*!40000 ALTER TABLE `lab_pulled` DISABLE KEYS */;
-REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `DATE_TAKEN`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
+REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `LAB_DATE`, `PATIENT_ID`, `LAB_ID`, `DOCTOR_ID`, `VALUE`) VALUES
 	(1, '2017-02-03', 11, 20, 6, '37'),
 	(2, '2017-02-03', 11, 18, 6, '82'),
 	(3, '2017-02-03', 11, 14, 6, '84'),
@@ -183,15 +415,15 @@ REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `DATE_TAKEN`, `PATIENT_ID`, `LAB_ID`
 -- Dumping structure for table dac.medical_condition
 CREATE TABLE IF NOT EXISTS `medical_condition` (
   `MEDICAL_CONDITION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) NOT NULL,
-  `DESCRIPTION` longtext NOT NULL,
-  `URL` varchar(100) NOT NULL,
+  `MC_NAME` varchar(50) NOT NULL,
+  `MC_DESCRIPTION` longtext NOT NULL,
+  `MC_URL` varchar(100) NOT NULL,
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.medical_condition: ~27 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
-REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `NAME`, `DESCRIPTION`, `URL`) VALUES
+REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `MC_NAME`, `MC_DESCRIPTION`, `MC_URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
 	(2, 'Diabetes', '&lt;p&gt;&lt;span class="qt0"&gt;Diabetes&lt;/span&gt; is a disease in which your blood glucose, or blood sugar, levels are too high.  Glucose comes from the foods you eat. Insulin is a hormone that helps the glucose get into your cells to give them energy.  With type 1 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, your body does not make insulin.  With type 2 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, the more common type, your body does not make or use insulin well. Without enough insulin, the glucose stays in your blood. You can also have prediabetes.  This means that your blood sugar is higher than normal but not high enough to be called &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.  Having prediabetes puts you at a higher risk of getting type 2 &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Over time, having too much glucose in your blood can cause serious problems.    It can damage your eyes, kidneys, and nerves. &lt;span class="qt0"&gt;Diabetes&lt;/span&gt; can also cause heart disease, stroke and even the need to remove a limb. Pregnant women can also get &lt;span class="qt0"&gt;diabetes&lt;/span&gt;, called gestational &lt;span class="qt0"&gt;diabetes&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Blood tests can show if you have &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. One type of test, the A1C, can also check on how you are managing your &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. Exercise, weight control and sticking to your meal plan can help control your &lt;span class="qt0"&gt;diabetes&lt;/span&gt;. You should also monitor your blood glucose level and take medicine if prescribed. \n&lt;/p&gt;&lt;p&gt;NIH: National Institute of &lt;span class="qt0"&gt;Diabetes&lt;/span&gt; and Digestive and Kidney Diseases&lt;/p&gt;', 'https://medlineplus.gov/diabetes.html'),
 	(3, 'Hypertension', '&lt;p&gt;Blood pressure is the force of your blood pushing against the walls of your arteries. Each time your heart beats, it pumps blood into the arteries. Your &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;blood pressure is highest&lt;/span&gt;&lt;/span&gt; when your heart beats, pumping the blood. This is called systolic pressure. When your heart is at rest, between beats, your blood pressure falls. This is called diastolic pressure. &lt;/p&gt;&lt;p&gt;Your blood pressure reading uses these two numbers. Usually the systolic number comes before or above the diastolic number. A reading of&lt;/p&gt;&lt;ul&gt;&lt;li&gt;119/79 or lower is normal blood pressure&lt;/li&gt;&lt;li&gt;140/90 or higher is &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Between 120 and 139 for the top number, or between 80 and 89 for the bottom number is called prehypertension. Prehypertension means you may end up with &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt;, unless you take steps to prevent it.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span class="qt0"&gt;&lt;span class="qt1"&gt;High blood pressure&lt;/span&gt;&lt;/span&gt; usually has no symptoms, but it can cause serious problems such as stroke, heart failure, heart attack and kidney failure.&lt;/p&gt;&lt;p&gt;You can control &lt;span class="qt0"&gt;&lt;span class="qt1"&gt;high blood pressure&lt;/span&gt;&lt;/span&gt; through healthy lifestyle habits such as exercise and the DASH diet and taking medicines, if needed. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/highbloodpressure.html'),
@@ -236,66 +468,68 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
   KEY `patient_current_medical_condition_fk` (`PATIENT_ID`),
   CONSTRAINT `medical_condition_current_medical_condition_fk` FOREIGN KEY (`MEDICAL_CONDITION_ID`) REFERENCES `medical_condition` (`MEDICAL_CONDITION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_current_medical_condition_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_history: ~4 rows (approximately)
+-- Dumping data for table dac.medical_history: ~7 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
 REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
 	(2, '2016-09-16', 11, NULL, 16),
 	(3, '2009-02-03', 11, '2009-02-20', 7),
-	(4, '2001-10-03', 11, '2001-10-13', 30);
+	(4, '2001-10-03', 11, '2001-10-13', 30),
+	(11, '2017-03-15', 11, NULL, 8),
+	(12, '2017-03-15', 1, '2017-03-17', 24);
 /*!40000 ALTER TABLE `medical_history` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medication
 CREATE TABLE IF NOT EXISTS `medication` (
   `MEDICATION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) NOT NULL,
-  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `MEDICATION_NAME` varchar(50) NOT NULL,
+  `RXCUI` float DEFAULT NULL,
   PRIMARY KEY (`MEDICATION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.medication: ~38 rows (approximately)
 /*!40000 ALTER TABLE `medication` DISABLE KEYS */;
-REPLACE INTO `medication` (`MEDICATION_ID`, `NAME`, `DESCRIPTION`) VALUES
-	(1, 'Albuterol', 'Asthma Medication '),
-	(2, 'Advair', 'Asthma'),
-	(3, 'Dlimepiride', 'Diabetes - Sulfonylureas'),
-	(4, 'Metformin', 'Diabetes '),
-	(5, 'Lisinopril', 'ACE inhib - Hypertention'),
-	(6, 'Hydrochlorothiazide', 'loop diruetic - hypertention'),
-	(7, 'Wellbutrin', 'Depression/ weightloss'),
-	(8, 'Lexapro', 'SSRI Depression and anxiety'),
-	(9, 'Alprazolam', 'Xanax'),
-	(10, 'Azithromycin', 'Macralid - antibiotic pnu.'),
-	(11, 'Doxycycline', 'Trycyclin - antibiotic pnu.'),
-	(12, 'NSAID', 'Advil'),
-	(13, 'Oseltamivir phosphate', 'Tamiflu'),
-	(14, 'Acetaminophen', 'Tylenol'),
-	(15, 'Levothyroxine', 'Hypothyroid'),
-	(16, 'Adderall', 'ADD'),
-	(17, 'Duloxetine ', 'Fibromyalgia'),
-	(18, 'Verapamil', 'Arrythmia, Hypertention'),
-	(19, 'Propranolol', 'Arrythmia, Hypertention'),
-	(20, 'Amiodarone', 'Arrythmia'),
-	(21, 'Atorvastatin', 'CAD - statin'),
-	(22, 'Fluticasone', 'Corticosteroid - Emphyzema'),
-	(23, 'Imitrex', 'Migrain'),
-	(24, 'Tramadol', 'Opiate'),
-	(25, 'Levodopa', 'Parkinson\'s'),
-	(26, 'Bromocriptine', 'Parkinson\'s'),
-	(27, 'Lithium', 'Bipolar'),
-	(28, 'Valproic Acid', 'Bipolar'),
-	(29, 'Warfarin', 'Blood Thinner'),
-	(30, 'Galantamine', 'Alzheimer'),
-	(31, ' Fosamax', 'Osteoparosis'),
-	(32, 'Zoledronic Acid', 'Osteoparosis'),
-	(33, 'Acyclovir', 'Antiviral - Shingles'),
-	(34, 'Infliximab', 'Immune Modulator - Chrons'),
-	(35, 'Methotrexate', 'Chrons, RA'),
-	(36, 'Loperamide', 'IBS'),
-	(37, 'Adalimumab', 'immune modulator, chrons, RA'),
-	(38, 'Amoxicillin', 'Penicillin, step');
+REPLACE INTO `medication` (`MEDICATION_ID`, `MEDICATION_NAME`, `RXCUI`) VALUES
+	(1, 'Albuterol', 435),
+	(2, 'Advair', 301543),
+	(3, 'glimepiride', 25789),
+	(4, 'Metformin', 6809),
+	(5, 'Lisinopril', 29046),
+	(6, 'Hydrochlorothiazide', 5487),
+	(7, 'Wellbutrin', 42568),
+	(8, 'Lexapro', 352741),
+	(9, 'Alprazolam', 596),
+	(10, 'Azithromycin', 18631),
+	(11, 'Doxycycline', 3640),
+	(12, 'Advil', 153010),
+	(13, 'Oseltamivir phosphate', 259275),
+	(14, 'Acetaminophen', 161),
+	(15, 'Levothyroxine', 10582),
+	(16, 'Adderall', 84815),
+	(17, 'Duloxetine ', 72625),
+	(18, 'Verapamil', 11170),
+	(19, 'Propranolol', 8787),
+	(20, 'Amiodarone', 703),
+	(21, 'Atorvastatin', 83367),
+	(22, 'Fluticasone', 41126),
+	(23, 'Imitrex', 217713),
+	(24, 'Tramadol', 10689),
+	(25, 'Levodopa', 6375),
+	(26, 'Bromocriptine', 1760),
+	(27, 'Lithium', 6448),
+	(28, 'Valproic Acid', 11118),
+	(29, 'Warfarin', 11289),
+	(30, 'Galantamine', 4637),
+	(31, 'Fosamax', 114265),
+	(32, 'Zoledronic Acid', 77655),
+	(33, 'Acyclovir', 281),
+	(34, 'Infliximab', 191831),
+	(35, 'Methotrexate', 6851),
+	(36, 'Loperamide', 6468),
+	(37, 'Adalimumab', 327361),
+	(38, 'Amoxicillin', 723);
 /*!40000 ALTER TABLE `medication` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient
@@ -304,7 +538,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `FIRST_NAME` varchar(50) NOT NULL,
   `LAST_NAME` varchar(50) NOT NULL,
   `DOB` date NOT NULL,
-  `GENDER` varchar(1) NOT NULL,
+  `GENDER` varchar(50) NOT NULL,
   `ADDRESS` varchar(100) NOT NULL,
   `CITY` varchar(50) NOT NULL,
   `STATE` varchar(2) NOT NULL,
@@ -314,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`PATIENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient: ~9 rows (approximately)
+-- Dumping data for table dac.patient: ~11 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
 REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
 	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '5019762427', '72032', 'jeanne.gagnon@example.com'),
@@ -340,12 +574,13 @@ CREATE TABLE IF NOT EXISTS `patient_allergy` (
   KEY `patient_patient_allergy_fk` (`PATIENT_ID`),
   CONSTRAINT `allergies_patient_allergy_fk` FOREIGN KEY (`ALLERGY_ID`) REFERENCES `allergies` (`ALLERGY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_patient_allergy_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_allergy: ~1 rows (approximately)
+-- Dumping data for table dac.patient_allergy: ~3 rows (approximately)
 /*!40000 ALTER TABLE `patient_allergy` DISABLE KEYS */;
 REPLACE INTO `patient_allergy` (`PATIENT_ALLERGY_ID`, `PATIENT_ID`, `ALLERGY_ID`) VALUES
-	(1, 11, 8);
+	(1, 11, 8),
+	(2, 11, 1);
 /*!40000 ALTER TABLE `patient_allergy` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient_vital
@@ -362,7 +597,7 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~15 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~14 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
@@ -376,7 +611,7 @@ REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VAL
 	(9, 11, 4, '13', '2016-02-05'),
 	(10, 11, 5, '173', '2016-02-05'),
 	(11, 11, 1, '98.2', '2016-08-16'),
-	(12, 11, 2, '97', '2016-08-16'),
+	(12, 11, 2, '97 ', '2016-08-16'),
 	(13, 11, 3, '121/83', '2016-08-16'),
 	(14, 11, 4, '16', '2016-08-16'),
 	(15, 11, 5, '195', '2016-08-16'),
@@ -386,17 +621,17 @@ REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VAL
 -- Dumping structure for table dac.pharmacy
 CREATE TABLE IF NOT EXISTS `pharmacy` (
   `PHARMACY_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) NOT NULL,
-  `ADDRESS` varchar(50) NOT NULL,
-  `STATE` varchar(50) NOT NULL,
-  `CITY` varchar(50) NOT NULL,
-  `ZIP` varchar(50) NOT NULL,
+  `PHARM_NAME` varchar(50) NOT NULL,
+  `PHARM_ADDRESS` varchar(50) NOT NULL,
+  `PHARM_STATE` varchar(50) NOT NULL,
+  `PHARM_CITY` varchar(50) NOT NULL,
+  `PHARM_ZIP` varchar(50) NOT NULL,
   PRIMARY KEY (`PHARMACY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.pharmacy: ~10 rows (approximately)
 /*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
-REPLACE INTO `pharmacy` (`PHARMACY_ID`, `NAME`, `ADDRESS`, `STATE`, `CITY`, `ZIP`) VALUES
+REPLACE INTO `pharmacy` (`PHARMACY_ID`, `PHARM_NAME`, `PHARM_ADDRESS`, `PHARM_STATE`, `PHARM_CITY`, `PHARM_ZIP`) VALUES
 	(1, 'Conway Medcare Pharmacy', ' 2521 College Ave ', 'AR', 'Conway', '72034'),
 	(2, 'Cornerstone Pharmacy Conway', ' 815 Hogan Ln #10 ', 'AR', 'ConWay', '72034'),
 	(3, 'Walgreens', '850 W Oak Street', 'AR', 'Conway', '72032'),
@@ -414,6 +649,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   `PRESCRIPTION_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DATE` date NOT NULL,
   `DOSAGE` varchar(50) NOT NULL,
+  `FREQUENCY_ID` int(11) NOT NULL,
   `MEDICATION_ID` int(11) NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `PHARMACY_ID` int(11) NOT NULL,
@@ -423,41 +659,48 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   KEY `patient_perscription_fk` (`PATIENT_ID`),
   KEY `medication_id_fk` (`MEDICATION_ID`),
   KEY `pharmacy_id_fk` (`PHARMACY_ID`),
+  KEY `FREQUENCY_ID` (`FREQUENCY_ID`),
   CONSTRAINT `doctor_perscription_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `frequency_id_fk` FOREIGN KEY (`FREQUENCY_ID`) REFERENCES `frequency` (`FREQUENCY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `medication_id_fk` FOREIGN KEY (`MEDICATION_ID`) REFERENCES `medication` (`MEDICATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_perscription_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pharmacy_id_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription: ~3 rows (approximately)
+-- Dumping data for table dac.prescription: ~10 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
-REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
-	(1, '2017-01-15', '20mg', 16, 11, 3, 6),
-	(2, '2016-12-09', '325mg', 14, 11, 3, 6),
-	(3, '2017-03-03', '50mg', 24, 11, 3, 6),
-	(4, '2016-05-07', '25mg', 23, 11, 3, 6);
+REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
+	(1, '2017-01-15', '20mg', 1, 16, 11, 3, 6),
+	(2, '2016-12-09', '325mg', 4, 14, 11, 3, 7),
+	(3, '2017-03-03', '50mg', 4, 35, 11, 7, 6),
+	(4, '2016-05-07', '25mg', 5, 23, 11, 3, 6),
+	(5, '2017-03-15', '800mg', 1, 12, 11, 7, 11),
+	(6, '2017-03-15', '16mg', 4, 6, 11, 7, 4),
+	(7, '2017-03-15', '10mg', 4, 20, 11, 7, 1),
+	(8, '2017-03-15', '300mg', 1, 15, 11, 7, 6),
+	(9, '2017-03-15', '10mg', 1, 24, 11, 7, 1),
+	(10, '2017-03-15', '20mg', 1, 27, 11, 7, 14);
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 
 -- Dumping structure for table dac.prescription_reminder
 CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   `REMINDER_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `FREQUENCY_ID` int(11) NOT NULL,
   `PATIENT_ID` int(11) NOT NULL,
   `PRESCRIPTION_ID` int(11) NOT NULL,
   `NEXT_REMINDER` time DEFAULT NULL,
   PRIMARY KEY (`REMINDER_ID`),
   KEY `patient_id_fk` (`PATIENT_ID`),
-  KEY `frequency_id_fk` (`FREQUENCY_ID`),
   KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
-  CONSTRAINT `frequency_id_fk` FOREIGN KEY (`FREQUENCY_ID`) REFERENCES `frequency` (`FREQUENCY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_id_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription_reminder: ~0 rows (approximately)
+-- Dumping data for table dac.prescription_reminder: ~4 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
-REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `FREQUENCY_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
-	(2, 1, 11, 1, '09:14:33');
+REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
+	(2, 11, 1, '09:56:43'),
+	(4, 11, 3, '09:55:49'),
+	(7, 11, 4, '09:55:45');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
 
 -- Dumping structure for table dac.user
@@ -479,13 +722,13 @@ CREATE TABLE IF NOT EXISTS `vaccination` (
   `VACCINE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `VACCINE_NAME` varchar(50) NOT NULL,
   `BOOSTER_REQUIRED` varchar(50) NOT NULL,
-  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `VACCINE_DESCRIPTION` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`VACCINE_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.vaccination: ~11 rows (approximately)
 /*!40000 ALTER TABLE `vaccination` DISABLE KEYS */;
-REPLACE INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `DESCRIPTION`) VALUES
+REPLACE INTO `vaccination` (`VACCINE_ID`, `VACCINE_NAME`, `BOOSTER_REQUIRED`, `VACCINE_DESCRIPTION`) VALUES
 	(1, 'Hepatitis B Shot 1', 'YES', 'hepatitis B'),
 	(2, 'Hepatitis B Shot 2', 'YES', 'hempititis B'),
 	(3, 'Hepatitis B Shot 3', 'NO', 'hempititis B'),
@@ -514,30 +757,33 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
   CONSTRAINT `doctor_vaccination_given_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_vaccination_given_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vaccinations_vaccination_given_fk` FOREIGN KEY (`VACCINE_ID`) REFERENCES `vaccination` (`VACCINE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.vaccination_given: ~0 rows (approximately)
+-- Dumping data for table dac.vaccination_given: ~5 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
 REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
-	(1, '2010-06-16', NULL, 11, 4, 6);
+	(1, '2010-06-16', NULL, 11, 4, 6),
+	(4, '2017-03-14', NULL, 11, 1, 7),
+	(5, '2017-03-14', NULL, 11, 2, 2),
+	(6, '2017-03-14', NULL, 11, 3, 7);
 /*!40000 ALTER TABLE `vaccination_given` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vitals
 CREATE TABLE IF NOT EXISTS `vitals` (
   `VITAL_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) DEFAULT '0',
-  `DESCRIPTION` varchar(50) DEFAULT '0',
+  `VITAL_NAME` varchar(50) NOT NULL,
+  `VITAL_DESCRIPTION` varchar(50) NOT NULL,
   PRIMARY KEY (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.vitals: ~6 rows (approximately)
 /*!40000 ALTER TABLE `vitals` DISABLE KEYS */;
-REPLACE INTO `vitals` (`VITAL_ID`, `NAME`, `DESCRIPTION`) VALUES
-	(1, 'Temp', 'Body Temp'),
-	(2, 'Pulse', 'Heart Rate'),
+REPLACE INTO `vitals` (`VITAL_ID`, `VITAL_NAME`, `VITAL_DESCRIPTION`) VALUES
+	(1, 'Temp in Degrees', 'Body Temp'),
+	(2, 'Pulse in bpm', 'Heart Rate'),
 	(3, 'Blood Pressure', 'Systolic/Diastolic'),
-	(4, 'RR', 'Respiration Rate'),
-	(5, 'Weight', 'lbs'),
+	(4, 'RR in Breath per min', 'Respiration Rate'),
+	(5, 'Weight in lbs', 'lbs'),
 	(6, 'BMI', 'Body Mass Index');
 /*!40000 ALTER TABLE `vitals` ENABLE KEYS */;
 
