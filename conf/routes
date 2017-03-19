@@ -18,6 +18,20 @@ GET     /formBootstrap       controllers.PatientController.getFormBootStrapEleme
 GET     /formFancy           controllers.PatientController.getFormFancyElements
 GET     /formInplace         controllers.PatientController.getFormInplace()
 GET     /formLayouts         controllers.PatientController.getFormLayouts()
+GET     /formTextEditor      controllers.PatientController.getFormTextEditor()
+GET     /formValidations     controllers.PatientController.getFormValidations()
+GET     /formWizard          controllers.PatientController.getFormWizard()
+GET     /index               controllers.PatientController.getIndex()
+GET     /index2              controllers.PatientController.getIndex2()
+GET     /maps                controllers.PatientController.getMaps()
+GET     /505                 controllers.PatientController.get505()
+GET     /pageBlank           controllers.PatientController.getPageBlank()
+GET     /pageFaq             controllers.PatientController.getPageFaq()
+
+
+
+
+
 
 
 
