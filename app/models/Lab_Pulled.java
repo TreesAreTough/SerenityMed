@@ -1,28 +1,30 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
-public class Lab_Pulled
+public class LabPulled
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="LAB_PULLED_ID")
-    public Long labPulledId;
+    public Long labPulledID;
 
     @Column (name ="LAB_DATE")
-    public Date labDate;
+    public LocalDate labDate;
 
     @Column (name ="PATIENT_ID")
-    public Long patientId;
+    public Long patientID;
 
     @Column (name ="LAB_ID")
-    public Long labId;
+    public Long labID;
 
     @Column (name ="DOCTOR_ID")
-    public Long doctorId;
+    public Long doctorID;
 
-    @Column (name="VALUE")
+    @Column(name = "VALUE")
     public String value;
 
 }

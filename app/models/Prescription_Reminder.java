@@ -1,22 +1,24 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalTime;
 
 @Entity
 public class Prescription_Reminder
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "REMINDER_ID")
-    public Integer reminderId;
+    public Long reminderID;
 
-    @Column (name = "START_TIME")
-    public Time startTime;
+    @Column (name = "NEXT_REMINDER")
+    public LocalTime nextReminder;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientID;
 
     @Column (name = "PRESCRIPTION_ID")
-    public Integer prescriptionId;
+    public Long prescriptionID;
 
 }

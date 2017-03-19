@@ -1,15 +1,16 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.sql.Time;
+import javax.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 public class Frequency
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="FREQUENCY_ID")
-    public Long frequencyId;
+    public Long frequencyID;
 
     @Column (name="FREQUENCY")
-    public Time frequency;
+    public LocalTime frequency;
 }

@@ -1,13 +1,14 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Doctor
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="DOCTOR_ID")
-    public Long doctorId;
+    public Long doctorID;
 
     @Column (name="DOC_NAME")
     public String docName;
@@ -15,8 +16,8 @@ public class Doctor
     @Column (name="DOC_SPECIALITY")
     public String docSpeciality;
 
-    @Column (name="DOC_PHONE")
-    public String docPhone;
+    @Column (name="DOC_PHONE_NUMBER")
+    public String docPhoneNumber;
 
     @Column (name="DOC_ADDRESS")
     public String docAddress;

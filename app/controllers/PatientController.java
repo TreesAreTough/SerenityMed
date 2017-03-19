@@ -29,4 +29,46 @@ public class PatientController extends Controller
 
         return ok(toJson(patients));
     }
+
+
+    public Result getChartsBasic()
+    {
+        return ok(views.html.chartsbasic.render());
+    }
+
+    public Result getChartsInteractive()
+    {
+        return ok(views.html.chartsinteractive.render());
+    }
+
+    public Result getFormBootStrapElements()
+    {
+        return ok(views.html.formBootstrapElements.render());
+    }
+
+    public Result getFormFancyElements()
+    {
+        return ok(views.html.formFancyElements.render());
+    }
+
+    public Result getFormInplace()
+    {
+        return ok(views.html.formInplaceEditing.render());
+    }
+
+    public Result getFormLayouts()
+    {
+        return ok(views.html.formLayouts.render());
+    }
+
+    public Result get404()
+    {
+        return ok(views.html.page404.render());
+
+    }
+
+    public Result bootstrapTest()
+    {
+        return ok(views.html.formTextEditor.render());
+    }
 }

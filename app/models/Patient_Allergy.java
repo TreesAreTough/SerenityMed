@@ -1,17 +1,18 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
-public class Patient_Allergy
+public class PatientAllergy
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="PATIENT_ALLERGY_ID")
-    public Long patientAllergyId;
+    public Long patientAllergyID;
 
     @Column (name ="PATIENT_ID")
-    public Long patientId;
+    public Long patientID;
 
     @Column (name ="ALLERGY_ID")
-    public Long allergyId;
+    public Long allergyID;
 }

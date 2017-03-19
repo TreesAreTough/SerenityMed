@@ -1,21 +1,26 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-public class Medical_History
+public class MedicalHistory
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="MEDICAL_HISTORY_ID")
-    public Long medicalHistoryId;
+    public Long medicalHistoryID;
 
     @Column (name ="DATE_DIAGNOSED")
-    public Long dateDiagnosed;
+    public LocalDate dateDiagnosed;
 
     @Column (name ="DATE_RESOLVED")
-    public String dateResolved;
+    public LocalDate dateResolved;
 
     @Column (name ="MEDICAL_CONDITION_ID")
-    public Long medicalConditionId;
+    public Long medicalConditionID;
+
+    @Column(name = "PATIENT_ID")
+    public Long patientID;
 
 }

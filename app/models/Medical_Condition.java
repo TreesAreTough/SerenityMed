@@ -1,18 +1,22 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
-public class Medical_Condition
+public class MedicalCondition
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="MEDICAL_CONDITION_ID")
-    public Long medicalConditionId;
+    public Long medicalConditionID;
 
     @Column (name="MC_NAME")
     public String mcName;
 
     @Column (name="MC_DESCRIPTION")
     public String mcDescription;
+
+    @Column(name = "MC_URL")
+    public String mcURL;
 
 }
