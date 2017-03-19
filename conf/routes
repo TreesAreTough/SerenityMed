@@ -15,7 +15,11 @@ GET     /404                 controllers.PatientController.get404()
 GET     /chartBasic          controllers.PatientController.getChartsBasic()
 GET     /chartInteractive    controllers.PatientController.getChartsInteractive()
 GET     /formBootstrap       controllers.PatientController.getFormBootStrapElements()
-GET     /formInplace         controllers.PatientController.getFormFancyElements()
+GET     /formFancy           controllers.PatientController.getFormFancyElements
+GET     /formInplace         controllers.PatientController.getFormInplace()
+
+
+
 
 
 

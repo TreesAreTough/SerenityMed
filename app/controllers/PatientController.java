@@ -51,6 +51,11 @@ public class PatientController extends Controller
         return ok(views.html.formFancyElements.render());
     }
 
+    public Result getFormInplace()
+    {
+        return ok(views.html.formInplaceEditing.render());
+    }
+
     public Result get404()
     {
         return ok(views.html.page404.render());
@@ -59,6 +64,6 @@ public class PatientController extends Controller
 
     public Result bootstrapTest()
     {
-        return ok(views.html.formInplaceEditing.render());
+        return ok(views.html.formLayouts.render());
     }
 }
