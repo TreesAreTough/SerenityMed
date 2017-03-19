@@ -1,13 +1,14 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Vitals
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="VITAL_ID")
-    public Integer vitalId;
+    public Long vitalID;
 
     @Column (name="VITAL_NAME")
     public String vitalName;

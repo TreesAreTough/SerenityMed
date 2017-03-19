@@ -1,25 +1,27 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 public class PatientVital
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="PATIENT_VITAL_ID")
-    public Integer patientVitalId;
+    public Long patientVitalID;
 
     @Column (name ="VALUE")
     public String value;
 
-    @Column (name ="DATE")
-    public Date date;
+    @Column (name ="DATE_TAKEN")
+    public LocalDate dateTaken;
 
     @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    public Long patientID;
 
     @Column (name ="VITAL_ID")
-    public Integer vitalId;
+    public Long vitalID;
 
 }

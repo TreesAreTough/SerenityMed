@@ -1,13 +1,14 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Pharmacy
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="PHARMACY_ID")
-    public Integer pharmacyId;
+    public Long pharmacyID;
 
     @Column (name ="PHARM_NAME")
     public String pharmName;

@@ -1,29 +1,28 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Blob;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 public class VaccinationGiven
 {
-    @Column (name ="VACCINATION_GIVEN_ID")
-    public Integer vaccinationGivenId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="VACCINATION_GIVEN_ID")
+    public Long vaccinationGivenID;
 
-    @Column (name ="DATA")
-    public Date data;
+    @Column(name ="DATE")
+    public LocalDate date;
 
-    @Column (name ="DOCUMENTATION")
-    public Blob documentation;
+    @Column(name ="PATIENT_ID")
+    public Long patientID;
 
-    @Column (name ="PATIENT_ID")
-    public Integer patientId;
+    @Column(name ="VACCINE_ID")
+    public Long vaccineID;
 
-    @Column (name ="VACCINE_ID")
-    public Integer vaccineId;
-
-    @Column (name ="DOCTOR_ID")
-    public Integer doctorId;
+    @Column(name ="DOCTOR_ID")
+    public Long doctorID;
 
 }

@@ -30,10 +30,6 @@ public class PatientController extends Controller
         return ok(toJson(patients));
     }
 
-    public Result bootstrapTest()
-    {
-        return ok(views.html.formFancyElements.render());
-    }
 
     public Result getChartsBasic()
     {
@@ -50,9 +46,19 @@ public class PatientController extends Controller
         return ok(views.html.formBootstrapElements.render());
     }
 
+    public Result getFormFancyElements()
+    {
+        return ok(views.html.formFancyElements.render());
+    }
+
     public Result get404()
     {
         return ok(views.html.page404.render());
 
+    }
+
+    public Result bootstrapTest()
+    {
+        return ok(views.html.formInplaceEditing.render());
     }
 }
