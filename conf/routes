@@ -17,6 +17,10 @@ GET     /chartInteractive    controllers.PatientController.getChartsInteractive(
 GET     /formBootstrap       controllers.PatientController.getFormBootStrapElements()
 GET     /formFancy           controllers.PatientController.getFormFancyElements
 GET     /formInplace         controllers.PatientController.getFormInplace()
+GET     /formLayouts         controllers.PatientController.getFormLayouts()
+
+
+
 
 
 
