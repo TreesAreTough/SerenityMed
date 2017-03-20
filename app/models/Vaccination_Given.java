@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
-public class VaccinationGiven
+public class Vaccination_Given
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

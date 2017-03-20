@@ -141,9 +141,19 @@ public class PatientController extends Controller
         return ok(views.html.pagePricingTables.render());
     }
 
-    public Result bootstrapTest()
+    public Result getProjectDetail()
     {
         return ok(views.html.pageProjectDetail.render());
+    }
+
+    public Result getPageProject()
+    {
+        return ok(views.html.pageProjects.render());
+    }
+
+    public Result bootstrapTest()
+    {
+        return ok(views.html.pageRegister.render());
     }
 
 

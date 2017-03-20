@@ -33,6 +33,8 @@ GET     /pageLogin           controllers.PatientController.getPageLogin()
 GET     /pageLoginAlt        controllers.PatientController.getPageLoginAlt()
 GET     /pageNewMessage      controllers.PatientController.getNewMessage()
 GET     /pagePricing         controllers.PatientController.getPagePricingTables()
+GET     /pageProjectDetail   controllers.PatientController.getProjectDetail()
+GET     /pageProject         controllers.PatientController.getPageProject()
 
 
 

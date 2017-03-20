@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 @Entity
-public class PrescriptionReminder
+public class Prescription_Reminder
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
