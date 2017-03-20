@@ -111,10 +111,42 @@ public class PatientController extends Controller
         return ok(views.html.pageFaq.render());
     }
 
-    public Result bootstrapTest()
+    public Result getPageInbox()
     {
         return ok(views.html.pageInbox.render());
     }
+
+    public Result getPageKnowledge()
+    {
+        return ok(views.html.pageKnowledgebase.render());
+    }
+
+    public Result getPageLogin()
+    {
+        return ok(views.html.pageLogin.render());
+    }
+
+    public Result getPageLoginAlt()
+    {
+        return ok(views.html.pageLoginAlt.render());
+    }
+
+    public Result getNewMessage()
+    {
+        return ok(views.html.pageNewMessage.render());
+    }
+
+    public Result getPagePricingTables()
+    {
+        return ok(views.html.pagePricingTables.render());
+    }
+
+    public Result bootstrapTest()
+    {
+        return ok(views.html.pageProjectDetail.render());
+    }
+
+
 
 
 }

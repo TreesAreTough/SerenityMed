@@ -5,7 +5,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Basic Charts | QueenAdmin - Beautiful Admin Dashboard</title>
+	<title>Pricing Tables | QueenAdmin - Beautiful Admin Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -24,7 +24,7 @@
 	<link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
 
-<body class="fixed-top-active basic-charts">
+<body class="fixed-top-active ">
 	<!-- WRAPPER -->
 	<div class="wrapper">
 		<!-- TOP NAV BAR -->
@@ -33,7 +33,7 @@
 				<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
 				<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 				<div class="logo pull-left">
-					<a href="@routes.PatientController.getIndex()">
+					<a href="@routes.PatientController.getIndex">
 						<img src="@routes.Assets.at("bootstrap/assets/img/queenadmin-logo.png")" alt="QueenAdmin Logo" />
 					</a>
 				</div>
@@ -321,9 +321,9 @@
 							</ul>
 						</li>
 						<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
-						<li class="has-submenu">
+						<li class="has-submenu active">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
-							<ul class="list-unstyled sub-menu collapse">
+							<ul class="list-unstyled sub-menu collapse in">
 								<li><a href="page-projects.html"><span class="text">Projects</span></a></li>
 								<li><a href="page-project-detail.html"><span class="text">Project Detail</span></a></li>
 								<li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
@@ -334,22 +334,22 @@
 								<li><a href="@routes.PatientController.getPageKnowledge()"><span class="text">Knowledge Base</span></a></li>
 								<li><a href="page-submit-ticket.html"><span class="text">Submit Ticket</span></a></li>
 								<li><a href="@routes.PatientController.getPageFaq()"><span class="text">FAQ</span></a></li>
-								<li><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
 								<li><a href="page-invoice.html"><span class="text">Invoice</span></a></li>
 								<li><a href="page-register.html"><span class="text">Register</span></a></li>
 								<li><a href="@routes.PatientController.getPageLogin()"><span class="text">Login</span></a></li>
 								<li><a href="@routes.PatientController.getPageLoginAlt()"><span class="text">Login Alt.</span></a></li>
 								<li><a href="@routes.PatientController.get404"><span class="text">Not Found 404</span></a></li>
-								<li><a href="@routes.PatientController.get505"><span class="text">Error 505</span></a></li>
+								<li><a href="@routes.PatientController.get505()"><span class="text">Error 505</span></a></li>
 								<li><a href="@routes.PatientController.getPageBlank()"><span class="text">Blank Page</span></a></li>
 							</ul>
 						</li>
 					</ul>
 					<h3>ESSENTIALS</h3>
 					<ul class="main-menu">
-						<li class="has-submenu active">
+						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
-							<ul class="list-unstyled sub-menu collapse in">
+							<ul class="list-unstyled sub-menu collapse">
 								<li class="active"><a href="@routes.PatientController.getChartsBasic"><span class="text">Basic</span></a></li>
 								<li><a href="@routes.PatientController.getChartsInteractive()"><span class="text">Interactive Charts</span></a></li>
 							</ul>
@@ -387,189 +387,203 @@
 		<!-- COLUMN RIGHT -->
 		<div id="col-right" class="col-right ">
 			<div class="container-fluid primary-content">
-				<!-- PRIMARY CONTENT HEADING -->
-				<div class="primary-content-heading clearfix">
-					<h2>BASIC CHARTS</h2>
-					<ul class="breadcrumb pull-left">
-						<li><i class="icon ion-home"></i><a href="#">Home</a></li>
-						<li><a href="#">Charts</a></li>
-						<li class="active">Basic Charts</li>
-					</ul>
-					<div class="sticky-content pull-right">
-						<div class="btn-group btn-dropdown">
-							<button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i class="icon ion-android-star"></i> Favorites</button>
-							<ul class="dropdown-menu dropdown-menu-right list-inline">
-								<li><a href="#"><i class="icon ion-pie-graph"></i> <span>Statistics</span></a></li>
-								<li><a href="#"><i class="icon ion-email"></i> <span>Inbox</span></a></li>
-								<li><a href="#"><i class="icon ion-chatboxes"></i> <span>Chat</span></a></li>
-								<li><a href="#"><i class="icon ion-help-circled"></i> <span>Help</span></a></li>
-								<li><a href="#"><i class="icon ion-gear-a"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="icon ion-help-buoy"></i> <span>Support</span></a></li>
+				<!-- ADVANCED PRICING -->
+				<h3>Advanced Pricing Table</h3>
+				<div class="advanced-pricing-table">
+					<h4 class="plan-heading">Choose Your Plan</h4>
+					<div class="row">
+						<div class="col-md-2 hidden-xs hidden-sm">
+							<ul class="list-unstyled plan-features">
+								<li>&nbsp;</li>
+								<li>Storage</li>
+								<li>Speed</li>
+								<li>Database</li>
+								<li>SSL
+									<button type="button" class="btn btn-link btn-default btn-plan-popover"><i class="icon ion-help-circled"></i></button>
+								</li>
+								<li>Email
+									<button type="button" class="btn btn-link btn-default btn-plan-popover"><i class="icon ion-help-circled"></i></button>
+								</li>
+								<li>Statistic</li>
+								<li>Support</li>
 							</ul>
 						</div>
-						<button type="button" class="btn btn-default btn-sm btn-quick-task" data-toggle="modal" data-target="#quick-task-modal"><i class="icon ion-edit"></i> Quick Task</button>
-					</div>
-					<!-- quick task modal -->
-					<div class="modal fade" id="quick-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">Quick Task</h4>
-								</div>
-								<div class="modal-body">
-									<form class="form-horizontal" role="form">
-										<div class="form-group">
-											<label for="task-title" class="control-label sr-only">Title</label>
-											<div class="col-sm-12">
-												<input type="text" class="form-control" id="task-title" placeholder="Title">
-											</div>
+						<div class="col-md-10">
+							<div class="row plan-items-wrapper">
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-default">
+											<strong>STARTER</strong>
+											<span class="price">$0 <span class="duration">/ mo</span></span>
 										</div>
-										<div class="form-group">
-											<label class="control-label sr-only">Description</label>
-											<div class="col-sm-12">
-												<textarea class="form-control" name="task-description" rows="5" cols="30" placeholder="Description"></textarea>
-											</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>5 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 2 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>1 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-close-round text-danger"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>50 <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="icon ion-close-round text-danger"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-green">
+											<strong>BASIC</strong>
+											<span class="price">$25 <span class="duration">/ mo</span></span>
 										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save Task</button>
-									</form>
+										<ul class="list-unstyled plan-detail-list">
+											<li>25 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 5 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>3 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>150 <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="plan-item popular">
+										<div class="pricing bg-blue">
+											<div class="popular-text">POPULAR</div>
+											<strong>STANDARD</strong>
+											<span class="price">$79 <span class="duration">/ mo</span></span>
+										</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>50 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 10 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>5 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>Unlimited <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-seagreen">
+											<strong>PLUS</strong>
+											<span class="price">$149 <span class="duration">/ mo</span></span>
+										</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>100 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 20 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>8 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>Unlimited <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- end quick task modal -->
-				</div>
-				<!-- END PRIMARY CONTENT HEADING -->
-				<div class="row">
-					<div class="col-md-6">
-						<!-- LINE CHART -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-arrow-graph-up-right"></i> <span>LINE CHART</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="flot-chart" id="demo-line-chart"></div>
-							</div>
-						</div>
-						<!-- END LINE CHART -->
-						<!-- VERTICAL BAR CHART  -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-stats-bars"></i> <span>VERTICAL BAR CHART</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="flot-chart" id="demo-vertical-bar-chart"></div>
-							</div>
-						</div>
-						<!-- END VERTICAL BAR CHART  -->
-					</div>
-					<div class="col-md-6">
-						<!-- AREA CHART -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-arrow-graph-up-right"></i> <span>AREA CHART</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="flot-chart" id="demo-area-chart"></div>
-							</div>
-						</div>
-						<!-- END AREA CHART -->
-						<!-- WIDGET HORIZONTAL BAR CHART  -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-stats-bars"></i> <span>HORIZONTAL BAR CHART</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="flot-chart" id="demo-horizontal-bar-chart"></div>
-							</div>
-						</div>
-						<!-- END WIDGET HORIZONTAL BAR CHART  -->
 					</div>
 				</div>
-				<!-- COMBINING CHART TYPES -->
-				<div class="widget">
-					<div class="widget-header clearfix">
-						<h3><i class="icon ion-stats-bars"></i> <span>COMBINING CHART TYPES</span></h3>
-						<div class="btn-group widget-header-toolbar visible-lg">
-							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-							<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-						</div>
+				<!-- END ADVANCED PRICING -->
+				<br />
+				<hr />
+				<br/>
+				<!-- BASIC PRICING -->
+				<h3>Basic Pricing Table</h3>
+				<div class="basic-pricing-table">
+					<div class="plan-heading">
+						<h4>The 1st month is on us</h4>
+						<p class="text-muted">30-days free trial. Feel free to try any plan, you can change it later</p>
 					</div>
-					<div class="widget-content">
-						<div class="flot-chart" id="demo-multi-types-chart"></div>
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-ribbon-b plan-icon"></i>
+								<h4>Starter</h4>
+								<strong class="price">FREE</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>5 GB</strong> upload quota</li>
+									<li><strong>10 GB</strong> file storage</li>
+									<li><strong>Up to 2 Mbps</strong> download speed</li>
+									<li><strong>Professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-ribbon-a plan-icon"></i>
+								<h4>Premium</h4>
+								<p class="pricing-badge"><span>BEST VALUE</span></p>
+								<strong class="price">
+						$49<span class="duration">/mo</span>
+					</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>20 GB</strong> upload quota</li>
+									<li><strong>100 GB</strong> file storage</li>
+									<li><strong>Exceptional</strong> download speed</li>
+									<li><strong>Professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-trophy plan-icon"></i>
+								<h4>Professional</h4>
+								<strong class="price">
+						$99<span class="duration">/mo</span>
+					</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>Unlimited</strong> upload quota</li>
+									<li><strong>Unlimited</strong> file storage</li>
+									<li><strong>Exceptional</strong> download speed</li>
+									<li><strong>Priority professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- END COMBINING CHART TYPES -->
-				<div class="row">
-					<div class="col-md-6">
-						<!-- DONUT CHART -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-pie-graph"></i> <span>DONUT CHART</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
+				<!-- END BASIC PRICING -->
+				<br />
+				<hr />
+				<br/>
+				<!-- SIMPLE PRICING, 1 PLAN -->
+				<h3>Simple Pricing Table, 1 Plan</h3>
+				<div class="simple-pricing-table">
+					<h4 class="plan-heading">Single Price, Multiple Benefits</h4>
+					<div class="plan-content">
+						<div class="row">
+							<div class="col-md-6">
+								<strong class="price">
+						<span class="currency">$</span><span class="number">27</span><span class="duration">/ mo</span>
+					</strong>
 							</div>
-							<div class="widget-content">
-								<div class="flot-chart" id="demo-donut-chart"></div>
+							<div class="col-md-6">
+								<ul class="list-unstyled plan-detail-list">
+									<li><i class="icon ion-checkmark"></i> <strong>Unlimited</strong> upload quota and storage</li>
+									<li><i class="icon ion-checkmark"></i> <strong>Exceptional</strong> download speed</li>
+									<li><i class="icon ion-checkmark"></i> Feel safe with our <strong>professional support</strong></li>
+									<li><i class="icon ion-checkmark"></i> <strong>50+</strong> built-in templates</li>
+									<li><i class="icon ion-checkmark"></i> Customizable plan with <strong>lower price</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary btn-lg btn-block">
+									<strong>SIGN UP</strong>
+									<span>30-days free trial</span>
+									<span>Accept all major credit cards</span>
+								</button>
 							</div>
 						</div>
-						<!-- END DONUT CHART -->
 					</div>
-					<div class="col-md-6">
-						<!-- MINI CHARTS -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-stats-bars"></i> <span>MINI CHARTS</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<h4>Mini Bar Charts</h4>
-								<div class="row">
-									<div class="col-xs-4"><span id="mini-bar-chart1"></span></div>
-									<div class="col-xs-4"><span id="mini-bar-chart2"></span></div>
-									<div class="col-xs-4"><span id="mini-bar-chart3"></span></div>
-								</div>
-								<hr />
-								<h4>Mini Pie Charts</h4>
-								<div class="row">
-									<div class="col-xs-4"><span id="mini-pie-chart1"></span></div>
-									<div class="col-xs-4"><span id="mini-pie-chart2"></span></div>
-									<div class="col-xs-4"><span id="mini-pie-chart3"></span></div>
-								</div>
-								<hr />
-								<h4>Mini Line Charts</h4>
-								<div class="row">
-									<div class="col-xs-4"><span id="mini-line-chart1" class="inlinesparkline">Loading...</span></div>
-									<div class="col-xs-4"><span id="mini-line-chart2" class="inlinesparkline">Loading...</span></div>
-									<div class="col-xs-4"><span id="mini-line-chart3" class="inlinesparkline">Loading...</span></div>
-								</div>
-							</div>
-						</div>
-						<!-- END MINI CHARTS -->
+					<div class="plan-footer">
+						<p>Need a custom plan? Please <a href="#">contact us</a>. You can also customize your plan once you've registered later.</p>
 					</div>
 				</div>
+				<!-- END SIMPLE PRICING, 1 PLAN -->
 			</div>
 			<div class="right-sidebar">
 				<!-- CHAT -->
@@ -642,14 +656,7 @@
 	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
 	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
 	<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.time.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.pie.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/jquery-sparkline/jquery.sparkline.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/queen-charts.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-page.js")"></script>
 </body>
 
 </html>
