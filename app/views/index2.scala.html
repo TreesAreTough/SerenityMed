@@ -11,17 +11,17 @@
 	<meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
 	<meta name="author" content="The Develovers">
 	<!-- CSS -->
-	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/ionicons.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/main.css" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/bootstrap.css")" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/ionicons.css")" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/main.css")" rel="stylesheet" type="text/css">
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
 	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="assets/ico/queenadmin-favicon144x144.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114" href="assets/ico/queenadmin-favicon114x114.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="assets/ico/queenadmin-favicon72x72.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="assets/ico/queenadmin-favicon57x57.png">
-	<link rel="shortcut icon" href="assets/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon144x144.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon114x114.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon72x72.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon57x57.png")">
+	<link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
 
 <body class="fixed-top-active dashboard">
@@ -33,8 +33,8 @@
 				<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
 				<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 				<div class="logo pull-left">
-					<a href="index.html">
-						<img src="assets/img/queenadmin-logo.png" alt="QueenAdmin Logo" />
+					<a href="@routes.PatientController.getIndex()">
+						<img src="@routes.Assets.at("bootstrap/assets/img/queenadmin-logo.png")" alt="QueenAdmin Logo" />
 					</a>
 				</div>
 			</div>
@@ -60,19 +60,19 @@
 									<ul class="dropdown-menu" role="menu">
 										<li>
 											<p><strong>Dark Side Nav</strong></p>
-											<button type="button" class="btn-skin nav-dark full-dark" data-skin="assets/css/skins/full-dark.css"></button>
-											<button type="button" class="btn-skin nav-dark green" data-skin="assets/css/skins/green.css"></button>
-											<button type="button" class="btn-skin nav-dark blue" data-skin="assets/css/skins/blue.css"></button>
-											<button type="button" class="btn-skin nav-dark darkorange" data-skin="assets/css/skins/darkorange.css"></button>
-											<button type="button" class="btn-skin nav-dark seagreen" data-skin="assets/css/skins/seagreen.css"></button>
+											<button type="button" class="btn-skin nav-dark full-dark" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-dark.css")"></button>
+											<button type="button" class="btn-skin nav-dark green" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green.css")"></button>
+											<button type="button" class="btn-skin nav-dark blue" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue.css")"></button>
+											<button type="button" class="btn-skin nav-dark darkorange" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange.css")"></button>
+											<button type="button" class="btn-skin nav-dark seagreen" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen.css")"></button>
 										</li>
 										<li>
 											<p><strong>Light Side Nav</strong></p>
-											<button type="button" class="btn-skin nav-light full-white" data-skin="assets/css/skins/full-white.css"></button>
-											<button type="button" class="btn-skin nav-light green green-light-nav" data-skin="assets/css/skins/green-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light blue blue-light-nav" data-skin="assets/css/skins/blue-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light darkorange darkorange-light-nav" data-skin="assets/css/skins/darkorange-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light seagreen seagreen-light-nav" data-skin="assets/css/skins/seagreen-light-nav.css"></button>
+											<button type="button" class="btn-skin nav-light full-white" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-white.css")"></button>
+											<button type="button" class="btn-skin nav-light green green-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light blue blue-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light darkorange darkorange-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light seagreen seagreen-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen-light-nav.css")"></button>
 										</li>
 										<li>
 											<label class="fancy-checkbox">
@@ -101,7 +101,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user1.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user1.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Antonius</h5>
@@ -115,7 +115,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user2.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user2.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Michael</h5>
@@ -129,7 +129,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user3.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user3.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Stella</h5>
@@ -143,7 +143,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user4.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user4.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Jane Doe</h5>
@@ -157,7 +157,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user5.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user5.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">John Simmons</h5>
@@ -250,7 +250,7 @@
 				<div class="logged-user">
 					<div class="btn-group">
 						<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/img/user-loggedin.png" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
+							<img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li>
@@ -293,21 +293,21 @@
 						<li class="has-submenu active">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Dashboards</span></a>
 							<ul class="list-unstyled sub-menu collapse in">
-								<li><a href="index.html"><span class="text">Dashboard v1</span></a></li>
-								<li class="active"><a href="index2.html"><span class="text">Dashboard v2</span></a></li>
+								<li><a href="@routes.PatientController.getIndex()"><span class="text">Dashboard v1</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getIndex2()"><span class="text">Dashboard v2</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Forms</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li><a href="form-fancy-elements.html"><span class="text">Fancy Elements</span></a></li>
-								<li><a href="form-inplace-editing.html"><span class="text">In-place Editing</span></a></li>
-								<li><a href="form-bootstrap-elements.html"><span class="text">Bootstrap Elements</span></a></li>
-								<li><a href="form-layouts.html"><span class="text">Form Layouts</span></a></li>
-								<li><a href="form-validations.html"><span class="text">Validation</span></a></li>
+								<li><a href="@routes.PatientController.getFormFancyElements()"><span class="text">Fancy Elements</span></a></li>
+								<li><a href="@routes.PatientController.getFormInplace()"><span class="text">In-place Editing</span></a></li>
+								<li><a href="@routes.PatientController.getFormBootStrapElements"><span class="text">Bootstrap Elements</span></a></li>
+								<li><a href="@routes.PatientController.getFormLayouts()"><span class="text">Form Layouts</span></a></li>
+								<li><a href="@routes.PatientController.getFormValidations()"><span class="text">Validation</span></a></li>
 								<li><a href="form-upload.html"><span class="text">File Upload</span></a></li>
-								<li><a href="form-text-editor.html"><span class="text">Text Editor</span></a></li>
-								<li><a href="form-wizard.html"><span class="text">Wizards</span></a></li>
+								<li><a href="@routes.PatientController.getFormTextEditor()"><span class="text">Text Editor</span></a></li>
+								<li><a href="@routes.PatientController.getFormWizard()"><span class="text">Wizards</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
@@ -324,24 +324,24 @@
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li><a href="page-projects.html"><span class="text">Projects</span></a></li>
-								<li><a href="page-project-detail.html"><span class="text">Project Detail</span></a></li>
+								<li><a href="@routes.PatientController.getPageProject()"><span class="text">Projects</span></a></li>
+								<li><a href="@routes.PatientController.getProjectDetail()"><span class="text">Project Detail</span></a></li>
 								<li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
 								<li><a href="page-search-result.html"><span class="text">Search Result</span></a></li>
-								<li><a href="page-inbox.html"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
+								<li><a href="@routes.PatientController.getPageInbox()"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
 								<li><a href="page-view-message.html"><span class="text">View Message</span></a></li>
-								<li><a href="page-new-message.html"><span class="text">New Message</span></a></li>
-								<li><a href="page-knowledgebase.html"><span class="text">Knowledge Base</span></a></li>
+								<li><a href="@routes.PatientController.getNewMessage()"><span class="text">New Message</span></a></li>
+								<li><a href="@routes.PatientController.getPageKnowledge()"><span class="text">Knowledge Base</span></a></li>
 								<li><a href="page-submit-ticket.html"><span class="text">Submit Ticket</span></a></li>
-								<li><a href="page-faq.html"><span class="text">FAQ</span></a></li>
-								<li><a href="page-pricing-tables.html"><span class="text">Pricing Tables</span></a></li>
+								<li><a href="@routes.PatientController.getPageFaq()"><span class="text">FAQ</span></a></li>
+								<li><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
 								<li><a href="page-invoice.html"><span class="text">Invoice</span></a></li>
 								<li><a href="page-register.html"><span class="text">Register</span></a></li>
-								<li><a href="page-login.html"><span class="text">Login</span></a></li>
-								<li><a href="page-login-alt.html"><span class="text">Login Alt.</span></a></li>
-								<li><a href="page-404.html"><span class="text">Not Found 404</span></a></li>
-								<li><a href="page-505.html"><span class="text">Error 505</span></a></li>
-								<li><a href="page-blank.html"><span class="text">Blank Page</span></a></li>
+								<li><a href="@routes.PatientController.getPageLogin()"><span class="text">Login</span></a></li>
+								<li><a href="@routes.PatientController.getPageLoginAlt()"><span class="text">Login Alt.</span></a></li>
+								<li><a href="@routes.PatientController.get404"><span class="text">Not Found 404</span></a></li>
+								<li><a href="@routes.PatientController.get505()"><span class="text">Error 505</span></a></li>
+								<li><a href="@routes.PatientController.getPageBlank()"><span class="text">Blank Page</span></a></li>
 							</ul>
 						</li>
 					</ul>
@@ -350,8 +350,8 @@
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li class="active"><a href="charts-basic.html"><span class="text">Basic</span></a></li>
-								<li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getChartsBasic"><span class="text">Basic</span></a></li>
+								<li><a href="@routes.PatientController.getChartsInteractive()"><span class="text">Interactive Charts</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
@@ -361,7 +361,7 @@
 								<li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
 							</ul>
 						</li>
-						<li><a href="maps.html"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
+						<li><a href="@routes.PatientController.getMaps()"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
 						<li><a href="typography.html"><i class="icon ion-ios-compose-outline"></i><span class="text">Typography</span></a></li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-navicon"></i><span class="text">Menu Levels</span></a>
@@ -659,7 +659,7 @@
 							<div class="widget-content">
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user1.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user1.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Antonius</a> started following <a href="#">Jack Bay</a></p>
@@ -668,7 +668,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user4.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user4.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Jane Doe</a> likes <a href="#">Jack Bay</a></p>
@@ -677,7 +677,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user2.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user2.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Michael</a> posted something for <a href="#">Jack Bay</a></p>
@@ -686,7 +686,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user6.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user6.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Jack Bay</a> has uploaded two photos</p>
@@ -695,7 +695,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user5.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user5.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Jason</a> has changed his profile picture</p>
@@ -704,7 +704,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user4.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user4.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Jane Doe</a> likes <a href="#">Jack Bay</a></p>
@@ -713,7 +713,7 @@
 								</div>
 								<div class="media activity-item">
 									<a href="#" class="pull-left">
-										<img src="assets/img/user3.png" alt="Avatar" class="media-object avatar">
+										<img src="@routes.Assets.at("bootstrap/assets/img/user3.png")" alt="Avatar" class="media-object avatar">
 									</a>
 									<div class="media-body">
 										<p class="activity-title"><a href="#">Stella Ray</a> is now following <a href="#">Michael</a></p>
@@ -1102,37 +1102,37 @@
 						<strong>Online (4)</strong>
 						<ul class="list-unstyled chat-contacts">
 							<li>
-								<a href="#" id="theusername"><img src="assets/img/user1.png" class="img-circle" alt="Antonius">Antonius</a>
+								<a href="#" id="theusername"><img src="@routes.Assets.at("bootstrap/assets/img/user1.png")" class="img-circle" alt="Antonius">Antonius</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user2.png" class="img-circle" alt="Antonius">Michael Smith</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user2.png")" class="img-circle" alt="Antonius">Michael Smith</a>
 							</li>
 							<li class="away">
-								<a href="#"><img src="assets/img/user3.png" class="img-circle" alt="Antonius">Stella Ray</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user3.png")" class="img-circle" alt="Antonius">Stella Ray</a>
 							</li>
 							<li class="busy">
-								<a href="#"><img src="assets/img/user4.png" class="img-circle" alt="Antonius">Jane Doe</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user4.png")" class="img-circle" alt="Antonius">Jane Doe</a>
 							</li>
 						</ul>
 						<strong>Offline (6)</strong>
 						<ul class="list-unstyled chat-contacts contacts-offline">
 							<li>
-								<a href="#"><img src="assets/img/user5.png" class="img-circle" alt="John Simmons">John Simmons</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user5.png")" class="img-circle" alt="John Simmons">John Simmons</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user6.png" class="img-circle" alt="Jack Bay">Jack Bay</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user6.png")" class="img-circle" alt="Jack Bay">Jack Bay</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user7.png" class="img-circle" alt="Daraiana">Daraiana</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user7.png")" class="img-circle" alt="Daraiana">Daraiana</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user8.png" class="img-circle" alt="Alessio Ferrara">Alessio Ferrara</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user8.png")" class="img-circle" alt="Alessio Ferrara">Alessio Ferrara</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user9.png" class="img-circle" alt="Sorana">Sorana</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user9.png")" class="img-circle" alt="Sorana">Sorana</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user10.png" class="img-circle" alt="Regan Morton">Regan Morton</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user10.png")" class="img-circle" alt="Regan Morton">Regan Morton</a>
 							</li>
 						</ul>
 					</div>
@@ -1144,26 +1144,26 @@
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="assets/js/jquery/jquery-2.1.0.min.js"></script>
-	<script src="assets/js/bootstrap/bootstrap.js"></script>
-	<script src="assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/js/queen-common.js"></script>
-	<script src="assets/js/jquery-ui/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="assets/js/plugins/stat/flot/jquery.flot.min.js"></script>
-	<script src="assets/js/plugins/stat/flot/jquery.flot.resize.min.js"></script>
-	<script src="assets/js/plugins/stat/flot/jquery.flot.time.min.js"></script>
-	<script src="assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="assets/js/plugins/stat/flot/jquery.flot.orderBars.js"></script>
-	<script src="assets/js/plugins/stat/jquery-sparkline/jquery.sparkline.min.js"></script>
-	<script src="assets/js/plugins/dropzone/dropzone.min.js"></script>
-	<script src="assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
-	<script src="assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
-	<script src="assets/js/plugins/google-map/google-map.js"></script>
-	<script src="assets/js/plugins/stat/jquery-easypiechart/jquery.easypiechart.min.js"></script>
-	<script src="assets/js/queen-charts.js"></script>
-	<script src="assets/js/queen-table.js"></script>
-	<script src="assets/js/queen-maps.js"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/bootstrap/bootstrap.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/jquery-ui/jquery-ui-1.10.4.custom.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.time.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/jquery-sparkline/jquery.sparkline.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/dropzone/dropzone.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/jquery.dataTables.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/dataTables.bootstrap.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/google-map/google-map.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/jquery-easypiechart/jquery.easypiechart.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-charts.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-table.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-maps.js")"></script>
 </body>
 
 </html>

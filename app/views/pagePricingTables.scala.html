@@ -5,7 +5,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Bootstrap Elements | QueenAdmin - Beautiful Admin Dashboard</title>
+	<title>Pricing Tables | QueenAdmin - Beautiful Admin Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -24,7 +24,7 @@
 	<link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
 
-<body class="fixed-top-active bootstrap-elements">
+<body class="fixed-top-active ">
 	<!-- WRAPPER -->
 	<div class="wrapper">
 		<!-- TOP NAV BAR -->
@@ -33,7 +33,7 @@
 				<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
 				<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 				<div class="logo pull-left">
-					<a href="@routes.PatientController.getIndex()">
+					<a href="@routes.PatientController.getIndex">
 						<img src="@routes.Assets.at("bootstrap/assets/img/queenadmin-logo.png")" alt="QueenAdmin Logo" />
 					</a>
 				</div>
@@ -297,12 +297,12 @@
 								<li><a href="@routes.PatientController.getIndex2()"><span class="text">Dashboard v2</span></a></li>
 							</ul>
 						</li>
-						<li class="has-submenu active">
+						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Forms</span></a>
-							<ul class="list-unstyled sub-menu collapse in">
+							<ul class="list-unstyled sub-menu collapse">
 								<li><a href="@routes.PatientController.getFormFancyElements()"><span class="text">Fancy Elements</span></a></li>
 								<li><a href="@routes.PatientController.getFormInplace()"><span class="text">In-place Editing</span></a></li>
-								<li class="active"><a href="@routes.PatientController.getFormBootStrapElements"><span class="text">Bootstrap Elements</span></a></li>
+								<li><a href="@routes.PatientController.getFormBootStrapElements"><span class="text">Bootstrap Elements</span></a></li>
 								<li><a href="@routes.PatientController.getFormLayouts()"><span class="text">Form Layouts</span></a></li>
 								<li><a href="@routes.PatientController.getFormValidations()"><span class="text">Validation</span></a></li>
 								<li><a href="form-upload.html"><span class="text">File Upload</span></a></li>
@@ -321,9 +321,9 @@
 							</ul>
 						</li>
 						<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
-						<li class="has-submenu">
+						<li class="has-submenu active">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
-							<ul class="list-unstyled sub-menu collapse">
+							<ul class="list-unstyled sub-menu collapse in">
 								<li><a href="@routes.PatientController.getPageProject()"><span class="text">Projects</span></a></li>
 								<li><a href="@routes.PatientController.getProjectDetail()"><span class="text">Project Detail</span></a></li>
 								<li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
@@ -334,13 +334,13 @@
 								<li><a href="@routes.PatientController.getPageKnowledge()"><span class="text">Knowledge Base</span></a></li>
 								<li><a href="page-submit-ticket.html"><span class="text">Submit Ticket</span></a></li>
 								<li><a href="@routes.PatientController.getPageFaq()"><span class="text">FAQ</span></a></li>
-								<li><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
 								<li><a href="page-invoice.html"><span class="text">Invoice</span></a></li>
 								<li><a href="page-register.html"><span class="text">Register</span></a></li>
 								<li><a href="@routes.PatientController.getPageLogin()"><span class="text">Login</span></a></li>
 								<li><a href="@routes.PatientController.getPageLoginAlt()"><span class="text">Login Alt.</span></a></li>
 								<li><a href="@routes.PatientController.get404"><span class="text">Not Found 404</span></a></li>
-								<li><a href="@routes.PatientController.get505"><span class="text">Error 505</span></a></li>
+								<li><a href="@routes.PatientController.get505()"><span class="text">Error 505</span></a></li>
 								<li><a href="@routes.PatientController.getPageBlank()"><span class="text">Blank Page</span></a></li>
 							</ul>
 						</li>
@@ -387,512 +387,203 @@
 		<!-- COLUMN RIGHT -->
 		<div id="col-right" class="col-right ">
 			<div class="container-fluid primary-content">
-				<!-- PRIMARY CONTENT HEADING -->
-				<div class="primary-content-heading clearfix">
-					<h2>INTERACTIVE CHARTS</h2>
-					<ul class="breadcrumb pull-left">
-						<li><i class="icon ion-home"></i><a href="#">Home</a></li>
-						<li><a href="#">Charts</a></li>
-						<li class="active">Interactive Charts</li>
-					</ul>
-					<div class="sticky-content pull-right">
-						<div class="btn-group btn-dropdown">
-							<button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i class="icon ion-android-star"></i> Favorites</button>
-							<ul class="dropdown-menu dropdown-menu-right list-inline">
-								<li><a href="#"><i class="icon ion-pie-graph"></i> <span>Statistics</span></a></li>
-								<li><a href="#"><i class="icon ion-email"></i> <span>Inbox</span></a></li>
-								<li><a href="#"><i class="icon ion-chatboxes"></i> <span>Chat</span></a></li>
-								<li><a href="#"><i class="icon ion-help-circled"></i> <span>Help</span></a></li>
-								<li><a href="#"><i class="icon ion-gear-a"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="icon ion-help-buoy"></i> <span>Support</span></a></li>
+				<!-- ADVANCED PRICING -->
+				<h3>Advanced Pricing Table</h3>
+				<div class="advanced-pricing-table">
+					<h4 class="plan-heading">Choose Your Plan</h4>
+					<div class="row">
+						<div class="col-md-2 hidden-xs hidden-sm">
+							<ul class="list-unstyled plan-features">
+								<li>&nbsp;</li>
+								<li>Storage</li>
+								<li>Speed</li>
+								<li>Database</li>
+								<li>SSL
+									<button type="button" class="btn btn-link btn-default btn-plan-popover"><i class="icon ion-help-circled"></i></button>
+								</li>
+								<li>Email
+									<button type="button" class="btn btn-link btn-default btn-plan-popover"><i class="icon ion-help-circled"></i></button>
+								</li>
+								<li>Statistic</li>
+								<li>Support</li>
 							</ul>
 						</div>
-						<button type="button" class="btn btn-default btn-sm btn-quick-task" data-toggle="modal" data-target="#quick-task-modal"><i class="icon ion-edit"></i> Quick Task</button>
-					</div>
-					<!-- quick task modal -->
-					<div class="modal fade" id="quick-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">Quick Task</h4>
-								</div>
-								<div class="modal-body">
-									<form class="form-horizontal" role="form">
-										<div class="form-group">
-											<label for="task-title" class="control-label sr-only">Title</label>
-											<div class="col-sm-12">
-												<input type="text" class="form-control" id="task-title" placeholder="Title">
-											</div>
+						<div class="col-md-10">
+							<div class="row plan-items-wrapper">
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-default">
+											<strong>STARTER</strong>
+											<span class="price">$0 <span class="duration">/ mo</span></span>
 										</div>
-										<div class="form-group">
-											<label class="control-label sr-only">Description</label>
-											<div class="col-sm-12">
-												<textarea class="form-control" name="task-description" rows="5" cols="30" placeholder="Description"></textarea>
-											</div>
-										</div>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save Task</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- end quick task modal -->
-				</div>
-				<!-- END PRIMARY CONTENT HEADING -->
-				<div class="row">
-					<div class="col-md-7">
-						<!-- BASIC INPUT -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-ios-compose-outline"></i> <span>BASIC INPUT</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="form-horizontal">
-									<div class="form-group">
-										<label class="col-md-2 control-label">Text Field</label>
-										<div class="col-md-10">
-											<input type="text" class="form-control" placeholder="text field">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Password</label>
-										<div class="col-md-10">
-											<input type="password" class="form-control" value="asecret">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Textarea</label>
-										<div class="col-md-10">
-											<textarea class="form-control" placeholder="textarea" rows="4"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Select</label>
-										<div class="col-md-10">
-											<select class="form-control">
-												<option value="cheese">Cheese</option>
-												<option value="tomatoes">Tomatoes</option>
-												<option value="mozarella">Mozzarella</option>
-												<option value="mushrooms">Mushrooms</option>
-												<option value="pepperoni">Pepperoni</option>
-												<option value="onions">Onions</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Multiple</label>
-										<div class="col-md-10">
-											<select multiple class="form-control">
-												<option value="cheese">Cheese</option>
-												<option value="tomatoes">Tomatoes</option>
-												<option value="mozarella">Mozzarella</option>
-												<option value="mushrooms">Mushrooms</option>
-												<option value="pepperoni">Pepperoni</option>
-												<option value="onions">Onions</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Checkbox</label>
-										<div class="col-md-10">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" value="item1"> Item 1
-												</label>
-											</div>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" value="item2"> Item 2
-												</label>
-											</div>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" value="item3"> Item 3
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Inline</label>
-										<div class="col-md-10">
-											<label class="checkbox-inline">
-												<input type="checkbox" value="item1"> Item 1
-											</label>
-											<label class="checkbox-inline">
-												<input type="checkbox" value="item2"> Item 2
-											</label>
-											<label class="checkbox-inline">
-												<input type="checkbox" value="item3"> Item 3
-											</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Radio Button</label>
-										<div class="col-md-10">
-											<div class="radio">
-												<label>
-													<input type="radio" name="radio" value="radio1"> Radio Item 1
-												</label>
-											</div>
-											<div class="radio">
-												<label>
-													<input type="radio" name="radio" value="radio2"> Radio Item 2
-												</label>
-											</div>
-											<div class="radio">
-												<label>
-													<input type="radio" name="radio" value="radio3"> Radio Item 3
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-2 control-label">Inline</label>
-										<div class="col-md-10">
-											<label class="radio radio-inline">
-												<input type="radio" name="radioinline" value="radio1"> Radio Item 1
-											</label>
-											<label class="radio radio-inline">
-												<input type="radio" name="radioinline" value="radio2"> Radio Item 2
-											</label>
-											<label class="radio radio-inline">
-												<input type="radio" name="radioinline" value="radio3"> Radio Item 3
-											</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="exampleInputFile" class="col-md-2 control-label">File input</label>
-										<div class="col-md-10">
-											<input type="file" id="exampleInputFile">
-											<p class="help-block"><em>Example block-level help text here.</em></p>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label">Static Control</label>
-										<div class="col-sm-10">
-											<p class="form-control-static">email.example.com</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- END BASIC INPUT -->
-						<!-- CONTROL HEIGHT SIZING -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-ios-compose-outline"></i> <span>CONTROL HEIGHT SIZING</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="form-horizontal">
-									<div class="form-group">
-										<label for="exampleInputFile" class="col-md-3 control-label">Large Input</label>
-										<div class="col-md-9">
-											<input class="form-control input-lg" type="text" placeholder=".input-lg">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="exampleInputFile" class="col-md-3 control-label">Default Input</label>
-										<div class="col-md-9">
-											<input class="form-control" type="text" placeholder="Default input">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="exampleInputFile" class="col-md-3 control-label">Small Input</label>
-										<div class="col-md-9">
-											<input class="form-control input-sm" type="text" placeholder=".input-sm">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Large Select</label>
-										<div class="col-md-9">
-											<select class="form-control input-lg">
-												<option value="cheese">Cheese</option>
-												<option value="tomatoes">Tomatoes</option>
-												<option value="mozarella">Mozzarella</option>
-												<option value="mushrooms">Mushrooms</option>
-												<option value="pepperoni">Pepperoni</option>
-												<option value="onions">Onions</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Default Select</label>
-										<div class="col-md-9">
-											<select class="form-control">
-												<option value="cheese">Cheese</option>
-												<option value="tomatoes">Tomatoes</option>
-												<option value="mozarella">Mozzarella</option>
-												<option value="mushrooms">Mushrooms</option>
-												<option value="pepperoni">Pepperoni</option>
-												<option value="onions">Onions</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Small Select</label>
-										<div class="col-md-9">
-											<select class="form-control input-sm">
-												<option value="cheese">Cheese</option>
-												<option value="tomatoes">Tomatoes</option>
-												<option value="mozarella">Mozzarella</option>
-												<option value="mushrooms">Mushrooms</option>
-												<option value="pepperoni">Pepperoni</option>
-												<option value="onions">Onions</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- END CONTROL HEIGHT SIZING -->
-					</div>
-					<div class="col-md-5">
-						<!-- INPUT GROUPS -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-ios-compose-outline"></i> <span>INPUT GROUPS</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<div class="input-group">
-									<span class="input-group-addon"></span>
-									<input type="text" class="form-control" placeholder="Username">
-								</div>
-								<br/>
-								<div class="input-group">
-									<input type="text" class="form-control">
-									<span class="input-group-addon">.00</span>
-								</div>
-								<br/>
-								<div class="input-group">
-									<span class="input-group-addon">$</span>
-									<input type="text" class="form-control">
-									<span class="input-group-addon">.00</span>
-								</div>
-								<br/>
-								<div class="input-group">
-									<input type="text" class="form-control">
-									<span class="input-group-btn"><button class="btn btn-primary" type="button">Go!</button></span>
-								</div>
-								<br/>
-								<div class="input-group">
-									<span class="input-group-btn">
-							<button class="btn btn-warning" type="button">Go!</button>
-						</span>
-									<input type="text" class="form-control">
-								</div>
-								<br />
-								<div class="input-group">
-									<div class="input-group-btn">
-										<button type="button" class="btn btn-default" tabindex="-1">Action</button>
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
-											<span class="caret"></span>
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Separated link</a></li>
+										<ul class="list-unstyled plan-detail-list">
+											<li>5 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 2 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>1 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-close-round text-danger"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>50 <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="icon ion-close-round text-danger"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
 										</ul>
-									</div>
-									<input type="text" class="form-control">
-								</div>
-								<br/>
-								<div class="input-group">
-									<input type="text" class="form-control">
-									<div class="input-group-btn">
-										<button type="button" class="btn btn-warning" tabindex="-1">Action</button>
-										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" tabindex="-1">
-											<span class="caret"></span>
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Separated link</a></li>
-										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
 									</div>
 								</div>
-							</div>
-						</div>
-						<!-- END INPUT GROUPS -->
-						<!-- VALIDATION STATES -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-ios-compose-outline"></i> <span>VALIDATION STATES</span></h3>
-								<div class="btn-group widget-header-toolbar visible-lg">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<h4>Plain</h4>
-								<div class="form-group has-success">
-									<label class="control-label" for="inputSuccess1">Input with success</label>
-									<input type="text" class="form-control" id="inputSuccess1">
-								</div>
-								<div class="form-group has-warning">
-									<label class="control-label" for="inputWarning1">Input with warning</label>
-									<input type="text" class="form-control" id="inputWarning1">
-								</div>
-								<div class="form-group has-error">
-									<label class="control-label" for="inputError1">Input with error</label>
-									<input type="text" class="form-control" id="inputError1">
-								</div>
-								<hr class="inner-separator" />
-								<h4>With Icons</h4>
-								<div class="form-group has-success has-feedback">
-									<label class="control-label" for="inputSuccess2">Input with success</label>
-									<input type="text" class="form-control" id="inputSuccess2">
-									<span class="icon ion-checkmark-circled form-control-feedback"></span>
-								</div>
-								<div class="form-group has-warning has-feedback">
-									<label class="control-label" for="inputWarning2">Input with warning</label>
-									<input type="text" class="form-control" id="inputWarning2">
-									<span class="icon ion-close-circled form-control-feedback"></span>
-								</div>
-								<div class="form-group has-error has-feedback">
-									<label class="control-label" for="inputError2">Input with error</label>
-									<input type="text" class="form-control" id="inputError2">
-									<span class="icon ion-alert-circled form-control-feedback"></span>
-								</div>
-								<hr class="inner-separator" />
-								<h4>On Horizontal Form</h4>
-								<form class="form-horizontal" role="form">
-									<div class="form-group has-success has-feedback">
-										<label class="control-label col-sm-4" for="inputSuccess3">Input</label>
-										<div class="col-sm-8">
-											<input type="text" class="form-control" id="inputSuccess3">
-											<span class="icon ion-checkmark-circled form-control-feedback"></span>
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-green">
+											<strong>BASIC</strong>
+											<span class="price">$25 <span class="duration">/ mo</span></span>
 										</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>25 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 5 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>3 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>150 <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
 									</div>
-								</form>
-								<hr class="inner-separator" />
-								<h4>On Inline Form</h4>
-								<form class="form-inline" role="form">
-									<div class="form-group has-success has-feedback">
-										<label class="control-label" for="inputSuccess4">Input</label>
-										<input type="text" class="form-control" id="inputSuccess4">
-										<span class="icon ion-checkmark-circled form-control-feedback"></span>
+								</div>
+								<div class="col-sm-3">
+									<div class="plan-item popular">
+										<div class="pricing bg-blue">
+											<div class="popular-text">POPULAR</div>
+											<strong>STANDARD</strong>
+											<span class="price">$79 <span class="duration">/ mo</span></span>
+										</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>50 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 10 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>5 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>Unlimited <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
 									</div>
-								</form>
+								</div>
+								<div class="col-sm-3">
+									<div class="plan-item">
+										<div class="pricing bg-seagreen">
+											<strong>PLUS</strong>
+											<span class="price">$149 <span class="duration">/ mo</span></span>
+										</div>
+										<ul class="list-unstyled plan-detail-list">
+											<li>100 GB <span class="text-muted mobile-only">Storage</span></li>
+											<li>Up to 20 Mbps <span class="text-muted mobile-only">Speed</span></li>
+											<li>8 <span class="text-muted mobile-only">Database</span></li>
+											<li><i class="icon ion-checkmark text-success"></i> <span class="text-muted mobile-only">SSL</span></li>
+											<li>Unlimited <span class="text-muted mobile-only">Email Accounts</span></li>
+											<li><i class="ion-checkmark text-success"></i> <span class="text-muted mobile-only">Statistic</span></li>
+											<li>Yes <span class="text-muted mobile-only">Support</span></li>
+										</ul>
+										<button type="button" class="btn btn-primary">SIGN UP</button>
+									</div>
+								</div>
 							</div>
 						</div>
-						<!-- END VALIDATION STATES -->
 					</div>
 				</div>
-				<!-- CONTROL COLUMN SIZING -->
-				<div class="widget">
-					<div class="widget-header clearfix">
-						<h3><i class="icon ion-ios-compose-outline"></i> <span>CONTROL COLUMN SIZING</span></h3>
-						<div class="btn-group widget-header-toolbar visible-lg">
-							<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-							<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-						</div>
+				<!-- END ADVANCED PRICING -->
+				<br />
+				<hr />
+				<br/>
+				<!-- BASIC PRICING -->
+				<h3>Basic Pricing Table</h3>
+				<div class="basic-pricing-table">
+					<div class="plan-heading">
+						<h4>The 1st month is on us</h4>
+						<p class="text-muted">30-days free trial. Feel free to try any plan, you can change it later</p>
 					</div>
-					<div class="widget-content">
-						<div class="row">
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
-							</div>
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
-							</div>
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
-							</div>
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
-							</div>
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
-							</div>
-							<div class="col-sm-2">
-								<input type="text" class="form-control" placeholder=".col-sm-2">
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-ribbon-b plan-icon"></i>
+								<h4>Starter</h4>
+								<strong class="price">FREE</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>5 GB</strong> upload quota</li>
+									<li><strong>10 GB</strong> file storage</li>
+									<li><strong>Up to 2 Mbps</strong> download speed</li>
+									<li><strong>Professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
 							</div>
 						</div>
-						<hr class="inner-separator" />
-						<div class="row">
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-						</div>
-						<hr class="inner-separator" />
-						<div class="row">
-							<div class="col-sm-4">
-								<input type="text" class="form-control" placeholder=".col-sm-4">
-							</div>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" placeholder=".col-sm-4">
-							</div>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" placeholder=".col-sm-4">
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-ribbon-a plan-icon"></i>
+								<h4>Premium</h4>
+								<p class="pricing-badge"><span>BEST VALUE</span></p>
+								<strong class="price">
+						$49<span class="duration">/mo</span>
+					</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>20 GB</strong> upload quota</li>
+									<li><strong>100 GB</strong> file storage</li>
+									<li><strong>Exceptional</strong> download speed</li>
+									<li><strong>Professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
 							</div>
 						</div>
-						<hr class="inner-separator" />
-						<div class="row">
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder=".col-sm-6">
-							</div>
-						</div>
-						<hr class="inner-separator" />
-						<div class="row">
-							<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder=".col-sm-6">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
-							</div>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" placeholder=".col-sm-3">
+						<div class="col-md-4 col-sm-4">
+							<div class="pricing-item">
+								<i class="icon ion-trophy plan-icon"></i>
+								<h4>Professional</h4>
+								<strong class="price">
+						$99<span class="duration">/mo</span>
+					</strong>
+								<ul class="list-unstyled plan-detail-list">
+									<li><strong>Unlimited</strong> upload quota</li>
+									<li><strong>Unlimited</strong> file storage</li>
+									<li><strong>Exceptional</strong> download speed</li>
+									<li><strong>Priority professional support</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary">Free Trial</button>
 							</div>
 						</div>
-						<hr class="inner-separator" />
-						<div class="row">
-							<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder=".col-sm-6">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder=".col-sm-6">
-							</div>
-						</div>
-						<hr class="inner-separator" />
-						<input type="text" class="form-control" placeholder="default column size">
 					</div>
 				</div>
-				<!-- END CONTROL COLUMN SIZING -->
+				<!-- END BASIC PRICING -->
+				<br />
+				<hr />
+				<br/>
+				<!-- SIMPLE PRICING, 1 PLAN -->
+				<h3>Simple Pricing Table, 1 Plan</h3>
+				<div class="simple-pricing-table">
+					<h4 class="plan-heading">Single Price, Multiple Benefits</h4>
+					<div class="plan-content">
+						<div class="row">
+							<div class="col-md-6">
+								<strong class="price">
+						<span class="currency">$</span><span class="number">27</span><span class="duration">/ mo</span>
+					</strong>
+							</div>
+							<div class="col-md-6">
+								<ul class="list-unstyled plan-detail-list">
+									<li><i class="icon ion-checkmark"></i> <strong>Unlimited</strong> upload quota and storage</li>
+									<li><i class="icon ion-checkmark"></i> <strong>Exceptional</strong> download speed</li>
+									<li><i class="icon ion-checkmark"></i> Feel safe with our <strong>professional support</strong></li>
+									<li><i class="icon ion-checkmark"></i> <strong>50+</strong> built-in templates</li>
+									<li><i class="icon ion-checkmark"></i> Customizable plan with <strong>lower price</strong></li>
+								</ul>
+								<button type="button" class="btn btn-primary btn-lg btn-block">
+									<strong>SIGN UP</strong>
+									<span>30-days free trial</span>
+									<span>Accept all major credit cards</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="plan-footer">
+						<p>Need a custom plan? Please <a href="#">contact us</a>. You can also customize your plan once you've registered later.</p>
+					</div>
+				</div>
+				<!-- END SIMPLE PRICING, 1 PLAN -->
 			</div>
 			<div class="right-sidebar">
 				<!-- CHAT -->
@@ -965,6 +656,7 @@
 	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
 	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
 	<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-page.js")"></script>
 </body>
 
 </html>

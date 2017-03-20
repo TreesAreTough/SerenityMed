@@ -5,27 +5,26 @@
 <!--<![endif]-->
 
 <head>
-	<title>Project 123GO | QueenAdmin - Beautiful Admin Dashboard</title>
+	<title>Form Validations | QueenAdmin - Beautiful Admin Dashboard</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
 	<meta name="author" content="The Develovers">
 	<!-- CSS -->
-	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/ionicons.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/main.css" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/bootstrap.css")" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/ionicons.css")" rel="stylesheet" type="text/css">
+	<link href="@routes.Assets.at("bootstrap/assets/css/main.css")" rel="stylesheet" type="text/css">
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
 	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="assets/ico/queenadmin-favicon144x144.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114" href="assets/ico/queenadmin-favicon114x114.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="assets/ico/queenadmin-favicon72x72.png">
-	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="assets/ico/queenadmin-favicon57x57.png">
-	<link rel="shortcut icon" href="assets/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon144x144.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon114x114.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon72x72.png")">
+	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon57x57.png")">
+	<link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
 
-<body class="fixed-top-active ">
+<body class="fixed-top-active form-validation">
 	<!-- WRAPPER -->
 	<div class="wrapper">
 		<!-- TOP NAV BAR -->
@@ -34,8 +33,8 @@
 				<a href="#" id="btn-nav-sidebar-minified" class="btn btn-link btn-nav-sidebar-minified pull-left"><i class="icon ion-arrow-swap"></i></a>
 				<a class="btn btn-link btn-off-canvas pull-left"><i class="icon ion-navicon"></i></a>
 				<div class="logo pull-left">
-					<a href="index.html">
-						<img src="assets/img/queenadmin-logo.png" alt="QueenAdmin Logo" />
+					<a href="@routes.PatientController.getIndex()">
+						<img src="@routes.Assets.at("bootstrap/assets/img/queenadmin-logo.png")" alt="QueenAdmin Logo" />
 					</a>
 				</div>
 			</div>
@@ -61,19 +60,19 @@
 									<ul class="dropdown-menu" role="menu">
 										<li>
 											<p><strong>Dark Side Nav</strong></p>
-											<button type="button" class="btn-skin nav-dark full-dark" data-skin="assets/css/skins/full-dark.css"></button>
-											<button type="button" class="btn-skin nav-dark green" data-skin="assets/css/skins/green.css"></button>
-											<button type="button" class="btn-skin nav-dark blue" data-skin="assets/css/skins/blue.css"></button>
-											<button type="button" class="btn-skin nav-dark darkorange" data-skin="assets/css/skins/darkorange.css"></button>
-											<button type="button" class="btn-skin nav-dark seagreen" data-skin="assets/css/skins/seagreen.css"></button>
+											<button type="button" class="btn-skin nav-dark full-dark" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-dark.css")"></button>
+											<button type="button" class="btn-skin nav-dark green" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green.css")"></button>
+											<button type="button" class="btn-skin nav-dark blue" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue.css")"></button>
+											<button type="button" class="btn-skin nav-dark darkorange" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange.css")"></button>
+											<button type="button" class="btn-skin nav-dark seagreen" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen.css")"></button>
 										</li>
 										<li>
 											<p><strong>Light Side Nav</strong></p>
-											<button type="button" class="btn-skin nav-light full-white" data-skin="assets/css/skins/full-white.css"></button>
-											<button type="button" class="btn-skin nav-light green green-light-nav" data-skin="assets/css/skins/green-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light blue blue-light-nav" data-skin="assets/css/skins/blue-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light darkorange darkorange-light-nav" data-skin="assets/css/skins/darkorange-light-nav.css"></button>
-											<button type="button" class="btn-skin nav-light seagreen seagreen-light-nav" data-skin="assets/css/skins/seagreen-light-nav.css"></button>
+											<button type="button" class="btn-skin nav-light full-white" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-white.css")"></button>
+											<button type="button" class="btn-skin nav-light green green-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light blue blue-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light darkorange darkorange-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange-light-nav.css")"></button>
+											<button type="button" class="btn-skin nav-light seagreen seagreen-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen-light-nav.css")"></button>
 										</li>
 										<li>
 											<label class="fancy-checkbox">
@@ -102,7 +101,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user1.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user1.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Antonius</h5>
@@ -116,7 +115,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user2.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user2.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Michael</h5>
@@ -130,7 +129,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user3.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user3.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Stella</h5>
@@ -144,7 +143,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user4.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user4.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">Jane Doe</h5>
@@ -158,7 +157,7 @@
 										<a href="#">
 											<div class="media">
 												<div class="pull-left">
-													<img class="media-object" src="assets/img/user5.png" alt="Antonio">
+													<img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user5.png")" alt="Antonio">
 												</div>
 												<div class="media-body">
 													<h5 class="media-heading name">John Simmons</h5>
@@ -251,7 +250,7 @@
 				<div class="logged-user">
 					<div class="btn-group">
 						<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/img/user-loggedin.png" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
+							<img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li>
@@ -294,21 +293,21 @@
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Dashboards</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li><a href="index.html"><span class="text">Dashboard v1</span></a></li>
-								<li><a href="index2.html"><span class="text">Dashboard v2</span></a></li>
+								<li><a href="@routes.PatientController.getIndex()"><span class="text">Dashboard v1</span></a></li>
+								<li><a href="@routes.PatientController.getIndex2()"><span class="text">Dashboard v2</span></a></li>
 							</ul>
 						</li>
-						<li class="has-submenu">
+						<li class="has-submenu active">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Forms</span></a>
-							<ul class="list-unstyled sub-menu collapse">
-								<li><a href="form-fancy-elements.html"><span class="text">Fancy Elements</span></a></li>
-								<li><a href="form-inplace-editing.html"><span class="text">In-place Editing</span></a></li>
-								<li><a href="form-bootstrap-elements.html"><span class="text">Bootstrap Elements</span></a></li>
-								<li><a href="form-layouts.html"><span class="text">Form Layouts</span></a></li>
-								<li><a href="form-validations.html"><span class="text">Validation</span></a></li>
+							<ul class="list-unstyled sub-menu collapse in">
+								<li><a href="@routes.PatientController.getFormFancyElements()"><span class="text">Fancy Elements</span></a></li>
+								<li><a href="@routes.PatientController.getFormInplace()"><span class="text">In-place Editing</span></a></li>
+								<li><a href="@routes.PatientController.getFormBootStrapElements"><span class="text">Bootstrap Elements</span></a></li>
+								<li><a href="@routes.PatientController.getFormLayouts()"><span class="text">Form Layouts</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getFormValidations()"><span class="text">Validation</span></a></li>
 								<li><a href="form-upload.html"><span class="text">File Upload</span></a></li>
-								<li><a href="form-text-editor.html"><span class="text">Text Editor</span></a></li>
-								<li><a href="form-wizard.html"><span class="text">Wizards</span></a></li>
+								<li><a href="@routes.PatientController.getFormTextEditor()"><span class="text">Text Editor</span></a></li>
+								<li><a href="@routes.PatientController.getFormWizard()"><span class="text">Wizards</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
@@ -322,27 +321,27 @@
 							</ul>
 						</li>
 						<li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
-						<li class="has-submenu active">
+						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
-							<ul class="list-unstyled sub-menu collapse in">
-								<li><a href="page-projects.html"><span class="text">Projects</span></a></li>
-								<li class="active"><a href="page-project-detail.html"><span class="text">Project Detail</span></a></li>
+							<ul class="list-unstyled sub-menu collapse">
+								<li><a href="@routes.PatientController.getPageProject()"><span class="text">Projects</span></a></li>
+								<li><a href="@routes.PatientController.getProjectDetail()"><span class="text">Project Detail</span></a></li>
 								<li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
 								<li><a href="page-search-result.html"><span class="text">Search Result</span></a></li>
-								<li><a href="page-inbox.html"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
+								<li><a href="@routes.PatientController.getPageInbox()"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
 								<li><a href="page-view-message.html"><span class="text">View Message</span></a></li>
-								<li><a href="page-new-message.html"><span class="text">New Message</span></a></li>
-								<li><a href="page-knowledgebase.html"><span class="text">Knowledge Base</span></a></li>
+								<li><a href="@routes.PatientController.getNewMessage()"><span class="text">New Message</span></a></li>
+								<li><a href="@routes.PatientController.getPageKnowledge()"><span class="text">Knowledge Base</span></a></li>
 								<li><a href="page-submit-ticket.html"><span class="text">Submit Ticket</span></a></li>
-								<li><a href="page-faq.html"><span class="text">FAQ</span></a></li>
-								<li><a href="page-pricing-tables.html"><span class="text">Pricing Tables</span></a></li>
+								<li><a href="@routes.PatientController.getPageFaq()"><span class="text">FAQ</span></a></li>
+								<li><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
 								<li><a href="page-invoice.html"><span class="text">Invoice</span></a></li>
 								<li><a href="page-register.html"><span class="text">Register</span></a></li>
-								<li><a href="page-login.html"><span class="text">Login</span></a></li>
-								<li><a href="page-login-alt.html"><span class="text">Login Alt.</span></a></li>
-								<li><a href="page-404.html"><span class="text">Not Found 404</span></a></li>
-								<li><a href="page-505.html"><span class="text">Error 505</span></a></li>
-								<li><a href="page-blank.html"><span class="text">Blank Page</span></a></li>
+								<li><a href="@routes.PatientController.getPageLogin()"><span class="text">Login</span></a></li>
+								<li><a href="@routes.PatientController.getPageLoginAlt()"><span class="text">Login Alt.</span></a></li>
+								<li><a href="@routes.PatientController.get404"><span class="text">Not Found 404</span></a></li>
+								<li><a href="@routes.PatientController.get505"><span class="text">Error 505</span></a></li>
+								<li><a href="@routes.PatientController.getPageBlank()"><span class="text">Blank Page</span></a></li>
 							</ul>
 						</li>
 					</ul>
@@ -351,8 +350,8 @@
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
 							<ul class="list-unstyled sub-menu collapse">
-								<li class="active"><a href="charts-basic.html"><span class="text">Basic</span></a></li>
-								<li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
+								<li class="active"><a href="@routes.PatientController.getChartsBasic"><span class="text">Basic</span></a></li>
+								<li><a href="@routes.PatientController.getChartsInteractive()"><span class="text">Interactive Charts</span></a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
@@ -362,7 +361,7 @@
 								<li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
 							</ul>
 						</li>
-						<li><a href="maps.html"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
+						<li><a href="@routes.PatientController.getMaps()"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
 						<li><a href="typography.html"><i class="icon ion-ios-compose-outline"></i><span class="text">Typography</span></a></li>
 						<li class="has-submenu">
 							<a href="#" class="submenu-toggle"><i class="icon ion-navicon"></i><span class="text">Menu Levels</span></a>
@@ -390,11 +389,11 @@
 			<div class="container-fluid primary-content">
 				<!-- PRIMARY CONTENT HEADING -->
 				<div class="primary-content-heading clearfix">
-					<h2>PROJECT 123GO</h2>
+					<h2>FORM VALIDATION</h2>
 					<ul class="breadcrumb pull-left">
 						<li><i class="icon ion-home"></i><a href="#">Home</a></li>
-						<li><a href="#">Pages</a></li>
-						<li class="active">Project Detail</li>
+						<li><a href="#">Forms</a></li>
+						<li class="active">Validations</li>
 					</ul>
 					<div class="sticky-content pull-right">
 						<div class="btn-group btn-dropdown">
@@ -443,255 +442,138 @@
 				</div>
 				<!-- END PRIMARY CONTENT HEADING -->
 				<div class="row">
-					<div class="col-md-8">
-						<div class="project-section general-info">
-							<h3>General Info</h3>
-							<button type="button" class="btn btn-sm btn-default pull-right"><i class="icon ion-compose"></i> Edit Project</button>
-							<p>Rapidiously monetize orthogonal platforms with 24/7 convergence. Uniquely create error-free alignments for customized users. Credibly facilitate just in time benefits rather than user friendly imperatives. Continually promote extensible process improvements whereas virtual. Enthusiastically pontificate proactive infrastructures vis-a-vis value-added products. Enthusiastically coordinate pandemic platforms rather than team building best practices. Globally facilitate plug-and-play materials and interoperable interfaces. Enthusiastically.</p>
-							<div class="row">
-								<div class="col-sm-9">
-									<dl class="dl-horizontal">
-										<dt>Date:</dt>
-										<dd>20-09-2014 - 20-12-2014</dd>
-										<dt>Duration:</dt>
-										<dd>90 days <span class="text-muted"><small>(50 days remaining)</small></span></dd>
-										<dt>Client:</dt>
-										<dd><a href="#">ZenArt</a></dd>
-										<dt>Priority:</dt>
-										<dd><span class="label label-danger">HIGH</span></dd>
-										<dt>Status:</dt>
-										<dd><span class="label label-success">ACTIVE</span></dd>
-										<dt>Team:</dt>
-										<dd>
-											<ul class="list-inline team-list">
-												<li>
-													<img src="assets/img/user1.png" class="img-circle" alt="Avatar" />
-													<p><a href="#"><strong>Antonius</strong></a></p>
-													<span class="text-muted">Project Leader</span>
-												</li>
-												<li>
-													<img src="assets/img/user2.png" class="img-circle" alt="Avatar" />
-													<p><a href="#"><strong>Michael</strong></a></p>
-													<span class="text-muted">Art Director</span>
-												</li>
-												<li>
-													<img src="assets/img/user3.png" class="img-circle" alt="Avatar" />
-													<p><a href="#"><strong>Stella Ray</strong></a></p>
-													<span class="text-muted">Account Executive</span>
-												</li>
-												<li>
-													<img src="assets/img/user4.png" class="img-circle" alt="Avatar" />
-													<p><a href="#"><strong>Jane Doe</strong></a></p>
-													<span class="text-muted">Marketing</span>
-												</li>
-												<li>
-													<img src="assets/img/user5.png" class="img-circle" alt="Avatar" />
-													<p><a href="#"><strong>Jason</strong></a></p>
-													<span class="text-muted">Operational</span>
-												</li>
-												<li class="team-add">
-													<i class="icon ion-person"></i>
-													<button type="button" class="btn btn-sm btn-default"><i class="icon ion-plus-circled"></i> Add</button>
-												</li>
-											</ul>
-										</dd>
-									</dl>
-								</div>
-								<div class="col-sm-3">
-									<div class="status-chart project-progress bottom-30px">
-										<div class="pie-chart" data-percent="60"><span class="percent">60%</span></div>
-										<span class="chart-title">OVERALL PROGRESS</span>
-									</div>
+					<div class="col-md-6">
+						<!-- BASIC VALIDATION -->
+						<div class="widget">
+							<div class="widget-header clearfix">
+								<h3><i class="icon ion-checkmark-circled"></i> <span>BASIC VALIDATION</span></h3>
+								<div class="btn-group widget-header-toolbar visible-lg">
+									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
 								</div>
 							</div>
+							<div class="widget-content">
+								<form id="basic-form" method="post" data-parsley-validate>
+									<div class="form-group">
+										<label for="text-input">Text Input</label>
+										<input type="text" id="text-input" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label>Text Area</label>
+										<textarea class="form-control" name="textarea" rows="5" cols="30" required></textarea>
+									</div>
+									<div class="form-group">
+										<label>Checkbox</label>
+										<label class="fancy-checkbox">
+											<input type="checkbox" name="checkbox1" required data-parsley-errors-container="#error-checkbox">
+											<span>Option 1</span>
+										</label>
+										<label class="fancy-checkbox">
+											<input type="checkbox" name="checkbox1">
+											<span>Option 2</span>
+										</label>
+										<label class="fancy-checkbox">
+											<input type="checkbox" name="checkbox1">
+											<span>Option 3</span>
+										</label>
+										<p id="error-checkbox"></p>
+									</div>
+									<div class="form-group">
+										<label>Radio Button</label>
+										<label class="fancy-radio">
+											<input type="radio" name="gender" required data-parsley-errors-container="#error-radio">
+											<span><i></i>Male</span>
+										</label>
+										<label class="fancy-radio">
+											<input type="radio" name="gender">
+											<span><i></i>Female</span>
+										</label>
+										<p id="error-radio"></p>
+									</div>
+									<div class="form-group">
+										<label for="multiselect1">Multiselect</label>
+										<br/>
+										<select id="multiselect1" name="multiselect1[]" class="multiselect-validation" data-parsley-error-container="#multiselect-error" multiple="multiple" required>
+											<option value="cheese">Cheese</option>
+											<option value="tomatoes">Tomatoes</option>
+											<option value="mozarella">Mozzarella</option>
+											<option value="mushrooms">Mushrooms</option>
+											<option value="pepperoni">Pepperoni</option>
+											<option value="onions">Onions</option>
+										</select>
+										<span id="multiselect-error"></span>
+									</div>
+									<input type="submit" class="btn btn-primary" value="Validate">
+								</form>
+							</div>
 						</div>
-						<div class="project-section activity">
-							<h3>Activity</h3>
-							<ul class="list-unstyled project-activity-list">
-								<li>
-									<div class="media activity-item">
-										<i class="icon ion-checkmark-circled pull-left text-success"></i>
-										<div class="media-body">
-											<p class="activity-title">All project tasks are on schedule</p>
-											<small class="text-muted">2m ago</small>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<a href="#" class="pull-left">
-											<img src="assets/img/user2.png" alt="Avatar" class="media-object avatar" />
-										</a>
-										<div class="media-body">
-											<p class="activity-title"><a href="#">Michael</a> has achieved 80% of his completed tasks</p>
-											<small class="text-muted">36m ago</small>
-										</div>
-										<div class="btn-group pull-right activity-actions">
-											<button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
-												<i class="icon ion-ios-arrow-down"></i>
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#">Message Michael</a></li>
-												<li><a href="#">Assign Task</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<i class="icon ion-unlocked pull-left text-danger"></i>
-										<div class="media-body">
-											<p class="activity-title">You have unsecure file permission on this project. Go to <a href="">File Manager</a> to fix it</p>
-											<small class="text-muted">1h ago</small>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<a href="#" class="pull-left">
-											<img src="assets/img/user5.png" alt="Avatar" class="media-object avatar" />
-										</a>
-										<div class="media-body">
-											<p class="activity-title"><a href="#">Jason</a> has been added to the team</p>
-											<small class="text-muted">2h ago</small>
-										</div>
-										<div class="btn-group pull-right activity-actions">
-											<button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
-												<i class="icon ion-ios-arrow-down"></i>
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#">Message Jason</a></li>
-												<li><a href="#">Assign Task</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<i class="fa fa-file-word-o pull-left"></i>
-										<div class="media-body">
-											<p class="activity-title">New file <a href="#">Project Proposalv2.docx</a> has been uploaded by <a href="#">Antonius</a></p>
-											<small class="text-muted">3h ago</small>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<i class="icon ion-printer pull-left text-warning"></i>
-										<div class="media-body">
-											<p class="activity-title">You have <a href="#">pending documents</a> on the printer server</p>
-											<small class="text-muted">23h ago</small>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<i class="icon ion-flag pull-left text-success"></i>
-										<div class="media-body">
-											<p class="activity-title">Project: <a href="#">Phase 1</a> has been flagged as completed by <a href="#">Antonius</a></p>
-											<small class="text-muted">Yesterday</small>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="media activity-item">
-										<a href="#" class="pull-left">
-											<img src="assets/img/user4.png" alt="Avatar" class="media-object avatar" />
-										</a>
-										<div class="media-body">
-											<p class="activity-title"><a href="#">Jane Doe</a> has updated file <a href="#">Marketing Campaign.docx</a></p>
-											<small class="text-muted">Yesterday</small>
-											<div class="activity-attachment">
-												<div class="well well-sm">
-													<strong>Revision Note:</strong>
-													<p>Professionally evolve corporate services without ethical leadership. Proactively re-engineer client-focused infrastructures before alternative potentialities. Competently predominate just in time e-tailers for leveraged solutions.</p>
-												</div>
-											</div>
-										</div>
-										<div class="btn-group pull-right activity-actions">
-											<button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
-												<i class="icon ion-ios-arrow-down"></i>
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#">Message Jane Doe</a></li>
-												<li><a href="#">Assign Task</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<button type="button" class="btn btn-default center-block"><i class="icon ion-ios-refresh"></i> Load more</button>
-						</div>
+						<!-- END BASIC VALIDATION -->
 					</div>
-					<div class="col-md-4">
-						<!-- MY TODO LIST -->
+					<div class="col-md-6">
+						<!-- ADVANCED VALIDATION -->
 						<div class="widget">
 							<div class="widget-header clearfix">
-								<h3><i class="icon ion-calendar"></i> <span>MY TODO LIST</span></h3>
-								<div class="btn-group widget-header-toolbar">
+								<h3><i class="icon ion-checkmark-circled"></i> <span>ADVANCED VALIDATION</span></h3>
+								<div class="btn-group widget-header-toolbar visible-lg">
 									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
 									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
 								</div>
 							</div>
 							<div class="widget-content">
-								<ul class="list-unstyled simple-todo-list">
-									<li>
+								<form id="advanced-form" data-parsley-validate>
+									<div class="form-group">
+										<label for="text-input1">Min. 8 Characters</label>
+										<input type="text" id="text-input1" class="form-control" required data-parsley-minlength="8">
+									</div>
+									<div class="form-group">
+										<label for="text-input2">Between 5-10 Characters</label>
+										<input type="text" id="text-input2" class="form-control" required data-parsley-length="[5,10]">
+									</div>
+									<div class="form-group">
+										<label for="text-input3">Min. Number ( >= 5 )</label>
+										<input type="text" id="text-input3" class="form-control" required data-parsley-min="5">
+									</div>
+									<div class="form-group">
+										<label for="text-input4">Between 20-30</label>
+										<input type="text" id="text-input4" class="form-control" required data-parsley-range="[20,30]">
+									</div>
+									<div class="form-group">
+										<label>Select Min. 2 Options</label>
 										<label class="fancy-checkbox">
-											<input type="checkbox" checked="checked">
-											<span class="todo-text">Upload new revision</span>
+											<input type="checkbox" name="checkbox2" required data-parsley-mincheck="2" data-parsley-errors-container="#error-checkbox2">
+											<span>Option 1</span>
 										</label>
-									</li>
-									<li>
 										<label class="fancy-checkbox">
-											<input type="checkbox">
-											<span class="todo-text">Responsive test</span>
+											<input type="checkbox" name="checkbox2">
+											<span>Option 2</span>
 										</label>
-									</li>
-									<li>
 										<label class="fancy-checkbox">
-											<input type="checkbox" checked="checked">
-											<span class="todo-text">Cross-browser check</span>
+											<input type="checkbox" name="checkbox2">
+											<span>Option 3</span>
 										</label>
-									</li>
-									<li>
+										<p id="error-checkbox2"></p>
+									</div>
+									<div class="form-group">
+										<label>Select Between 1-2 Options</label>
 										<label class="fancy-checkbox">
-											<input type="checkbox">
-											<span class="todo-text">Social media research</span>
+											<input type="checkbox" name="checkbox3" required data-parsley-range="[1,2]" data-parsley-errors-container="#error-checkbox3">
+											<span>Option 1</span>
 										</label>
-									</li>
-									<li>
 										<label class="fancy-checkbox">
-											<input type="checkbox">
-											<span class="todo-text">Conduct A/B test</span>
+											<input type="checkbox" name="checkbox3">
+											<span>Option 2</span>
 										</label>
-									</li>
-								</ul>
+										<label class="fancy-checkbox">
+											<input type="checkbox" name="checkbox3">
+											<span>Option 3</span>
+										</label>
+										<p id="error-checkbox3"></p>
+									</div>
+									<input type="submit" class="btn btn-primary" value="Validate">
+								</form>
 							</div>
 						</div>
-						<!-- END MY TODO LIST -->
-						<!-- RECENT FILES -->
-						<div class="widget">
-							<div class="widget-header clearfix">
-								<h3><i class="icon ion-document"></i> <span>RECENT FILES</span></h3>
-								<div class="btn-group widget-header-toolbar">
-									<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-									<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-								</div>
-							</div>
-							<div class="widget-content">
-								<ul class="fa-ul recent-file-list bottom-30px">
-									<li><i class="fa-li fa fa-file-pdf-o"></i><a href="#">Project Requirements.pdf</a></li>
-									<li><i class="fa-li fa fa-file-word-o"></i><a href="#">[DRAFT] System Specifications.docx</a></li>
-									<li><i class="fa-li fa fa-file-picture-o"></i><a href="#">Marketing Content-v2.jpg</a></li>
-									<li><i class="fa-li fa fa-file-zip-o"></i><a href="#">All-files-backup.zip</a></li>
-								</ul>
-								<button type="button" class="btn btn-sm btn-primary"><i class="icon ion-upload"></i> Upload</button> <a href="#" class="btn btn-sm btn-default"><i class="icon ion-folder"></i> See all files</a>
-							</div>
-						</div>
-						<!-- END RECENT FILES -->
+						<!-- END ADVANCED VALIDATION -->
 					</div>
 				</div>
 			</div>
@@ -719,37 +601,37 @@
 						<strong>Online (4)</strong>
 						<ul class="list-unstyled chat-contacts">
 							<li>
-								<a href="#" id="theusername"><img src="assets/img/user1.png" class="img-circle" alt="Antonius">Antonius</a>
+								<a href="#" id="theusername"><img src="@routes.Assets.at("bootstrap/assets/img/user1.png")" class="img-circle" alt="Antonius">Antonius</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user2.png" class="img-circle" alt="Antonius">Michael Smith</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user2.png")" class="img-circle" alt="Antonius">Michael Smith</a>
 							</li>
 							<li class="away">
-								<a href="#"><img src="assets/img/user3.png" class="img-circle" alt="Antonius">Stella Ray</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user3.png")" class="img-circle" alt="Antonius">Stella Ray</a>
 							</li>
 							<li class="busy">
-								<a href="#"><img src="assets/img/user4.png" class="img-circle" alt="Antonius">Jane Doe</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user4.png")" class="img-circle" alt="Antonius">Jane Doe</a>
 							</li>
 						</ul>
 						<strong>Offline (6)</strong>
 						<ul class="list-unstyled chat-contacts contacts-offline">
 							<li>
-								<a href="#"><img src="assets/img/user5.png" class="img-circle" alt="John Simmons">John Simmons</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user5.png")" class="img-circle" alt="John Simmons">John Simmons</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user6.png" class="img-circle" alt="Jack Bay">Jack Bay</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user6.png")" class="img-circle" alt="Jack Bay">Jack Bay</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user7.png" class="img-circle" alt="Daraiana">Daraiana</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user7.png")" class="img-circle" alt="Daraiana">Daraiana</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user8.png" class="img-circle" alt="Alessio Ferrara">Alessio Ferrara</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user8.png")" class="img-circle" alt="Alessio Ferrara">Alessio Ferrara</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user9.png" class="img-circle" alt="Sorana">Sorana</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user9.png")" class="img-circle" alt="Sorana">Sorana</a>
 							</li>
 							<li>
-								<a href="#"><img src="assets/img/user10.png" class="img-circle" alt="Regan Morton">Regan Morton</a>
+								<a href="#"><img src="@routes.Assets.at("bootstrap/assets/img/user10.png")" class="img-circle" alt="Regan Morton">Regan Morton</a>
 							</li>
 						</ul>
 					</div>
@@ -761,13 +643,14 @@
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="assets/js/jquery/jquery-2.1.0.min.js"></script>
-	<script src="assets/js/bootstrap/bootstrap.js"></script>
-	<script src="assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/js/queen-common.js"></script>
-	<script src="assets/js/plugins/stat/jquery-easypiechart/jquery.easypiechart.min.js"></script>
-	<script src="assets/js/queen-page.js"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/bootstrap/bootstrap.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/parsley-validation/parsley.min.js")"></script>
+	<script src="@routes.Assets.at("bootstrap/assets/js/queen-elements.js")"></script>
 </body>
 
 </html>

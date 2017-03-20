@@ -61,14 +61,102 @@ public class PatientController extends Controller
         return ok(views.html.formLayouts.render());
     }
 
+    public Result getFormTextEditor()
+    {
+        return ok(views.html.formTextEditor.render());
+    }
+
+    public Result getFormValidations()
+    {
+        return ok(views.html.formValidations.render());
+    }
+
+    public Result getFormWizard()
+    {
+        return ok(views.html.formWizard.render());
+    }
+
+    public Result getIndex()
+    {
+        return ok(views.html.index.render());
+    }
+
+    public Result getIndex2()
+    {
+        return ok(views.html.index2.render());
+    }
+
+    public Result getMaps()
+    {
+        return ok(views.html.maps.render());
+    }
+
     public Result get404()
     {
         return ok(views.html.page404.render());
+    }
 
+    public Result get505()
+    {
+        return ok(views.html.page505.render());
+    }
+
+    public Result getPageBlank()
+    {
+        return ok(views.html.pageBlank.render());
+    }
+
+    public Result getPageFaq()
+    {
+        return ok(views.html.pageFaq.render());
+    }
+
+    public Result getPageInbox()
+    {
+        return ok(views.html.pageInbox.render());
+    }
+
+    public Result getPageKnowledge()
+    {
+        return ok(views.html.pageKnowledgebase.render());
+    }
+
+    public Result getPageLogin()
+    {
+        return ok(views.html.pageLogin.render());
+    }
+
+    public Result getPageLoginAlt()
+    {
+        return ok(views.html.pageLoginAlt.render());
+    }
+
+    public Result getNewMessage()
+    {
+        return ok(views.html.pageNewMessage.render());
+    }
+
+    public Result getPagePricingTables()
+    {
+        return ok(views.html.pagePricingTables.render());
+    }
+
+    public Result getProjectDetail()
+    {
+        return ok(views.html.pageProjectDetail.render());
+    }
+
+    public Result getPageProject()
+    {
+        return ok(views.html.pageProjects.render());
     }
 
     public Result bootstrapTest()
     {
-        return ok(views.html.formTextEditor.render());
+        return ok(views.html.pageRegister.render());
     }
+
+
+
+
 }
