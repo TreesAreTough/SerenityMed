@@ -548,8 +548,7 @@
                                 <tr>
                                     <th>Current Medical Condition</th>
                                     <th>Date Diagnosed</th>
-                                    <th>Resolved</th>
-                                    <th>Delete</th>
+                                    <th>Resolved?</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -560,26 +559,20 @@
                                     <td>@current.dateDiagnosed</td>
                                     <td>
                                         <form>
-                                            <button>Resolved</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form>
-                                            <button>Delete</button>
+                                            <button type="button" class="btn btn-primary">Resolve</button>
                                         </form>
                                     </td>
                                 </tr>
                                 }
                                 </tbody>
-
                             </table>
+                                <br>
                                 <table class="table table-sorting table-striped table-hover datatable">
                                     <thead>
                                     <tr>
                                         <th>Past Medical Condition</th>
                                         <th>Date Diagnosed</th>
                                         <th>Resolved</th>
-                                        <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -589,15 +582,14 @@
                                         <td>@past.dateDiagnosed</td>
                                         <td>@past.dateResolved</td>
 
-                                        <td>
-                                            <form>
-                                                <button>Delete</button>
-                                            </form>
-                                        </td>
                                     </tr>
                                     }
                                     </tbody>
                                 </table>
+                                <br>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-block">Learn More about Your Medical Conditions</button>
+                                </div>
                             </div>
                         </div>
                     </div>
