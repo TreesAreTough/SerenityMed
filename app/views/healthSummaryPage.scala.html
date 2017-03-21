@@ -1,4 +1,4 @@
-@(lineChart: List[GoogleCharts], barChart: List[GoogleCharts])
+@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager])
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -24,6 +24,9 @@
     <link rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon72x72.png")">
     <link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon57x57.png")">
     <link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body class="fixed-top-active dashboard">
@@ -52,7 +55,7 @@
             <div class="action-group hidden-xs hidden-sm">
                 <ul>
                     <!-- skins -->
-                    <li class="action-item skins">
+                    <!--<li class="action-item skins">
                         <form id="style-switcher">
                             <div class="btn-group open">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -88,7 +91,7 @@
                                 </ul>
                             </div>
                         </form>
-                    </li>
+                    </li>-->
                     <!-- end skins -->
                     <!-- notification: inbox -->
                     <li class="action-item inbox">
@@ -446,25 +449,24 @@
             <!-- END PRIMARY CONTENT HEADING -->
             <div class="row">
                 <div class="col-md-8">
-                    <!-- CHART WITH JUSTIFIED TAB -->
+
                     <div class="widget">
                         <div class="widget-header clearfix no-padding">
-                            <h3 class="sr-only"><span>SALES AND VISITS STAT</span></h3>
-                            <ul id="dashboard-stat-tab" class="nav nav-pills nav-justified">
-                                <li class="active"><a href="#tab-sales" data-cid="#dashboard-sales-chart">Weight/Cholesterol</a></li>
-                                <li class=""><a href="#tab-visits" data-cid="#dashboard-visits-chart">Visits</a></li>
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="active"><a data-toggle="tab" href="#tab-sales1" data-cid="#dashboard-sales-chart">Glucose/A1c</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-visits1" data-cid="#dashboard-visits-chart">Weight/Cholesterol</a></li>
                             </ul>
-                        </div>
-                        <div id="dashboard-stat-tab-content" class="widget-content tab-content">
-                            <div class="tab-pane fade in active" id="tab-sales">
-                                <div id="chart_div" style="width: 900px; height: 500px;"></div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-visits">
-
+                            <div class="tab-content">
+                                <div id="tab-sales1" class="tab-pane fade in active">
+                                    <div id="chart_div"></div>
+                                </div>
+                                <div id="tab-visits1" class="tab-pane fade">
+                                    <div id="curve_chart"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END CHART WITH JUSTIFIED TAB -->
+
                 </div>
                 <div class="col-md-4">
                     <!-- ORDER STATUS -->
@@ -533,23 +535,69 @@
                     <!-- MAP -->
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-location"></i> <span>SALES ORIGINS</span></h3>
-                            <div class="btn-group widget-header-toolbar">
+                            <h3><i class="icon ion-ios-grid-view-outline"></i> <span>MEDICAL HISTORY</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
                         <div class="widget-content">
-                            <div class="data-visualization-map">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="map"></div>
-                                        <p class="text-muted"><i class="icon ion-android-information"></i> Click the text legend to see interactivity in action.</p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="areaLegend legend-right"></div>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                            <table class="table table-sorting table-striped table-hover datatable">
+                                <thead>
+                                <tr>
+                                    <th>Current Medical Condition</th>
+                                    <th>Date Diagnosed</th>
+                                    <th>Resolved</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for(current <- currentMedical){
+                                <tr>
+
+                                    <td>@current.mcName</td>
+                                    <td>@current.dateDiagnosed</td>
+                                    <td>
+                                        <form>
+                                            <button>Resolved</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <button>Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                }
+                                </tbody>
+
+                            </table>
+                                <table class="table table-sorting table-striped table-hover datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>Past Medical Condition</th>
+                                        <th>Date Diagnosed</th>
+                                        <th>Resolved</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(past <- pastMedical){
+                                    <tr>
+                                        <td>@past.mcName</td>
+                                        <td>@past.dateDiagnosed</td>
+                                        <td>@past.dateResolved</td>
+
+                                        <td>
+                                            <form>
+                                                <button>Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -559,28 +607,34 @@
                     <!-- COMPLETENESS METER -->
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-person"></i> <span>COMPLETE YOUR PROFILE</span></h3>
-                            <div class="btn-group widget-header-toolbar">
+                            <h3><i class="icon ion-ios-grid-view-outline"></i> <span>PRESCRIPTION</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
-                        <div class="widget-content">
-                            <div class="completeness-meter">
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-info completeness-progress" data-transitiongoal="60"></div>
-                                </div>
-                                <p class="complete-info">Your profile is <strong class="completeness-percentage">60%</strong> complete, please provide information below:</p>
-                                <p><a href="#" id="complete-phone-number" data-type="text" data-pk="1" data-title="Phone number">Add your phone number</a></p>
-                                <p>
-                                    <a href="#" id="complete-sex" data-type="select" data-pk="1" data-value="" data-prepend="Select sex" data-title="Select sex"></a>
-                                </p>
-                                <p><a href="#" id="complete-birthdate" data-type="combodate" data-value="1984-05-23" data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1" data-title="Select date of birth">Select date of birth</a></p>
-                                <p><a href="#" id="complete-nickname" data-type="text" data-pk="1" data-title="Nickname" data-placeholder="your nickname">Add your nickname</a></p>
-                            </div>
-                        </div>
-                        <div class="widget-footer">
-                            <a href="#">View my profile</a>
+                    <div class="widget-content">
+                        <div class="table-responsive">
+                            <table id="datatable-basic-scrolling" class="table table-sorting table-hover datatable">
+                                <thead>
+                                <tr>
+                                    <th>Drug Name</th>
+                                    <th>Dosage</th>
+                                    <th>Frequency</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for(prescription <- prescription){
+                                <tr>
+                                    <td>@prescription.medicationName</td>
+                                    <td>@prescription.dosage</td>
+                                    <td>@prescription.frequency Seconds</td>
+                                </tr>
+                                }
+                                </tbody>
+
+                            </table>
                         </div>
                     </div>
                     <!-- END COMPLETENESS METER -->
@@ -591,131 +645,81 @@
                     <!-- TASK PROGRESS -->
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-android-list"></i> <span>TASK PROGRESS</span></h3>
-                            <div class="btn-group widget-header-toolbar">
+                            <h3><i class="icon ion-ios-grid-view-outline"></i> <span>LATEST VITALS</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
                         <div class="widget-content">
-                            <ul class="task-list list-unstyled">
-                                <li>
-                                    <p>Updating Users Settings <span class="label label-danger">23%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width:23%">
-                                            <span class="sr-only">23% Complete</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Load &amp; Stress Test <span class="label label-success">80%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Data Duplication Check <span class="label label-success">100%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                            <span class="sr-only">Success</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Server Check <span class="label label-warning">45%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                            <span class="sr-only">45% Complete</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Mobile App Development <span class="label label-danger">10%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                                            <span class="sr-only">10% Complete</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Ticket <a href="#">#7465</a> <span class="label label-warning">35%</span></p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-                                            <span class="sr-only">35% Complete</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <br/>
-                            <a href="#">View all tasks</a> <span class="badge">15</span>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Vital Name</th>
+                                    @for(date <- date){
+                                    <th>@date.dateTaken</th>
+                                    }
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for(vital <- vitalTable){
+                                <tr>
+                                    <td>@vital.getVitalName</td>
+                                    <td>@vital.getValue1</td>
+                                    <td>@vital.getValue2</td>
+                                    <td>@vital.getValue3</td>
+                                </tr>
+                                }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!-- END TASK PROGRESS -->
                 </div>
                 <div class="col-md-4">
                     <!-- NEWS FEED WIDGET -->
-                    <div class="widget widget-live-feed">
+                    <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-paper-airplane"></i> <span>NEWS FEED</span></h3>
-                            <div class="btn-group widget-header-toolbar">
-                                <a href="#" title="Refresh" class="btn btn-link"><i class="icon ion-ios-refresh-empty"></i></a>
+                            <h3><i class="icon ion-ios-grid-view-outline"></i> <span>ALLERGY and VACCINATION</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
                         <div class="widget-content">
-                            <div class="media activity-item">
-                                <i class="icon ion-checkmark-circled pull-left text-success"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">The system is running well, no error found</p>
-                                    <small class="text-muted">2m ago</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-unlocked pull-left text-danger"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">You have unsecure file permission on the server. Go to <a href="">File Manager</a> to fix it</p>
-                                    <small class="text-muted">6m ago</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-person pull-left text-info"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">New user <a href="#">Michael</a> registered</p>
-                                    <small class="text-muted">10m ago</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-bug pull-left text-info"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">New <a href="">bug report</a> has been submitted</p>
-                                    <small class="text-muted">15m ago</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-printer pull-left text-warning"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">You have <a href="#">pending documents</a> on the printer server.</p>
-                                    <small class="text-muted">23h ago</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-close-circled pull-left text-danger"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">Background job <a href="#">#783458</a> has failed. See the <a href="#">logs</a></p>
-                                    <small class="text-muted">Today</small>
-                                </div>
-                            </div>
-                            <div class="media activity-item">
-                                <i class="icon ion-flag pull-left text-success"></i>
-                                <div class="media-body">
-                                    <p class="activity-title">Project <a href="#">Social Boost</a> has been flagged as finished</p>
-                                    <small class="text-muted">Yesterday</small>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-default center-block"><i class="icon ion-ios-refresh"></i> Load more</button>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Vaccine Name</th>
+                                    <th>Date</th>
+                                    <th>Booster?</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for(vaccine <- vaccine){
+                                <tr>
+                                    <td>@vaccine.vaccineName</td>
+                                    <td>@vaccine.date</td>
+                                    <td>@vaccine.boosterRequired</td>
+                                </tr>
+                                }
+                                </tbody>
+                            </table>
+                            <br>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Allergy</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for(allergy <- allergy){
+                                <tr>
+                                    <td>@allergy.allergyName</td>
+                                </tr>
+                                }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!-- END NEWS FEED WIDGET -->
@@ -723,25 +727,33 @@
                 <div class="col-md-4">
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-person"></i> <span>EMPLOYEE OF THE MONTH</span></h3>
-                            <div class="btn-group widget-header-toolbar">
-                                <a href="#" title="Refresh" class="btn btn-link"><i class="icon ion-ios-refresh-empty"></i></a>
+                            <h3><i class="icon ion-ios-grid-view-outline"></i> <span>LAB WORK</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
-                        <div class="widget-content text-center">
-                            <img src="@routes.Assets.at("bootstrap/assets/img/avatar145px.png")" class="img-circle" alt="Avatar" />
-                            <h4>Jack Bay</h4>
-                            <hr class="dashed" />
-                            <ul class="list-unstyled text-muted">
-                                <li>Most on-time</li>
-                                <li>Most attitude, talkative and independent</li>
-                                <li>Most fit and healthy</li>
-                                <li>Most hard worker</li>
-                            </ul>
-                            <hr class="dashed" />
-                            <button type="button" class="btn btn-large btn-primary"><i class="icon ion-thumbsup"></i> Appreciate!</button>
+                        <div class="widget-content">
+                            <div class="table-responsive">
+                                <table id="datatable-basic" class="table table-sorting table-striped table-hover datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>Lab Name</th>
+                                        <th>Value</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(lab <- lab){
+                                    <tr>
+                                        <td>@lab.labName</td>
+                                        <td>@lab.value</td>
+                                        <td>@lab.dateTaken</td>
+                                    </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -809,101 +821,117 @@
             <!-- END CHAT -->
         </div>
     </div>
+    </div>
     <!-- END COLUMN RIGHT -->
 </div>
+
 <!-- END WRAPPER -->
 <!-- Javascript -->
-<script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/bootstrap/bootstrap.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.time.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/raphael/raphael-min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/jquery.mapael.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/maps/world_countries.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/moment/moment.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-editable/bootstrap-editable.min.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-maskedinput/jquery.masked-input.min.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/queen-charts.js")"></script>
-<script src="@routes.Assets.at("bootstrap/assets/js/queen-maps.js")"></script>
-	<script src="@routes.Assets.at("bootstrap/assets/js/queen-elements.js")"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+    <script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/bootstrap/bootstrap.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.time.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/raphael/raphael-min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/jquery.mapael.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/maps/world_countries.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/moment/moment.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-editable/bootstrap-editable.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-maskedinput/jquery.masked-input.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/queen-charts.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/queen-maps.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/queen-elements.js")"></script>
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Date Taken', 'Weight in lb', 'Total Cholesterol'],
-           @for(lineChart <- lineChart){
-          ['@lineChart.dateTaken', @lineChart.val1, @lineChart.val2],}
-        ]);
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/jquery.dataTables.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.colReorder.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.tableTools.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/dataTables.bootstrap.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/assets/js/queen-table.js")"></script>
 
-        var options = {
-          title: 'Weight and Cholesterol Over Time',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+ <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawDualY);
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    function drawDualY() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Date');
+          data.addColumn('string', 'Hc A1C');
+          data.addColumn('string', 'Glucose');
 
-        chart.draw(data, options);
-      }
-    </script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-      google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawDualY);
+          data.addRows([
+            @for(barChart <- barChart){
+              ['@barChart.dateTaken', '@barChart.val1', '@barChart.val2'],}
+          ]);
 
-function drawDualY() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Date');
-      data.addColumn('string', 'Hemoglobin A1C');
-      data.addColumn('string', 'Glucose');
+          var options = {
+            chart: {
 
-      data.addRows([
-        @for(barChart <- barChart){
-          ['@barChart.dateTaken', '@barChart.val1', '@barChart.val2'],}
-      ]);
 
-      var options = {
-        chart: {
-          title: 'Hemoglobin A1c and Glucose over Time',
-          subtitle: 'Based on a scale of 1 to 10'
-        },
-        series: {
-          0: {axis: 'MotivationLevel'},
-          1: {axis: 'EnergyLevel'}
-        },
-        axes: {
-          y: {
-            MotivationLevel: {label: 'Hemoglobin A1C (5-5.2%)'},
-            EnergyLevel: {label: 'Glucose (1-100)'}
-          }
-        },
-        hAxis: {
-          title: 'Time of Day',
+            },
+            series: {
+              0: {axis: 'MotivationLevel'},
+              1: {axis: 'EnergyLevel'}
+            },
+            axes: {
+              y: {
+                MotivationLevel: {label: 'Hemoglobin A1C (5-5.2%)'},
+                EnergyLevel: {label: 'Glucose (1-100)'}
+              }
+            },
+            hAxis: {
+              title: 'Time of Day',
 
-          viewWindow: {
-            min: [7, 30, 0],
-            max: [17, 30, 0]
-          }
-        },
-        vAxis: {
-          title: 'Rating (scale of 1-10)'
+              viewWindow: {
+                min: [7, 30, 0],
+                max: [17, 30, 0]
+              }
+            },
+            vAxis: {
+              title: 'Rating (scale of 1-10)'
+            }
+          };
+
+          var material = new google.charts.Bar(document.getElementById('chart_div'));
+          material.draw(data, options);
         }
-      };
 
-      var material = new google.charts.Bar(document.getElementById('chart_div'));
-      material.draw(data, options);
-    }
+    /* curve_chart */
+
+    $('.nav-pills a').on('shown.bs.tab', function(event){
+        var x = $(event.target).text();
+
+        if (x == 'Weight/Cholesterol') {
+
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Date Taken', 'Weight in lb', 'Total Cholesterol'],
+               @for(lineChart <- lineChart){
+              ['@lineChart.dateTaken', @lineChart.val1, @lineChart.val2],}
+            ]);
+
+            var options = {
+              title: 'Weight and Cholesterol Over Time',
+              curveType: 'function',
+              legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+          }
+        }
+});
     </script>
+
 </body>
 
 </html>
