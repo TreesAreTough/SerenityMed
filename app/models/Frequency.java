@@ -12,5 +12,5 @@ public class Frequency
     public Long frequencyID;
 
     @Column (name="FREQUENCY")
-    public LocalTime frequency;
+    public Long frequency;
 }

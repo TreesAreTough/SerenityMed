@@ -43,6 +43,9 @@ GET     /pageSubmitTicket    controllers.PatientController.getPageSubmitTicket()
 # Health Summary Dashboard
 GET     /healthSummary       controllers.HealthSummaryController.getHealthSummary()
 
+# Prescription Manager
+GET     /prescription        controllers.PrescriptionController.getPrescriptionManager()
+
 
 
 
