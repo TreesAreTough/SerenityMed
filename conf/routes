@@ -42,6 +42,7 @@ GET     /pageSubmitTicket    controllers.PatientController.getPageSubmitTicket()
 
 # Health Summary Dashboard
 GET     /healthSummary       controllers.HealthSummaryController.getHealthSummary()
+POST    /resolved            controllers.HealthSummaryController.resolveConditionHS(id:Long)
 
 # Prescription Manager
 GET     /prescription        controllers.PrescriptionController.getPrescriptionManager()
@@ -49,6 +50,15 @@ GET     /editScript/:id      controllers.PrescriptionController.getPrescriptionE
 POST    /addScript           controllers.PrescriptionController.addPrescription()
 POST    /deleteScript        controllers.PrescriptionController.deletePrescription(id:Long)
 POST    /updateScript        controllers.PrescriptionController.updatePrescription()
+
+# Medical History Manager
+GET     /moreInfo            controllers.MedicalHistoryController.getMoreInfo()
+GET     /healthManager       controllers.MedicalHistoryController.getHealthConditionManager()
+POST    /deleteCondition     controllers.MedicalHistoryController.deleteCondition(id:Long)
+POST    /addCondition        controllers.MedicalHistoryController.addMedicalHistory()
+POST    /conditionRes        controllers.MedicalHistoryController.resolveCondition(id:Long)
+
+
 
 
 

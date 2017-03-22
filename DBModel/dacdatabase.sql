@@ -41,12 +41,12 @@ REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `ALLERGY_DESCRIPTION`) V
 
 -- Dumping structure for table dac.appointment
 CREATE TABLE IF NOT EXISTS `appointment` (
-  `APPONTMENT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `APPOINTMENT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PATIENT_ID` int(11) NOT NULL,
   `DOCTOR_ID` int(11) NOT NULL,
   `APPOINTMENT_TIME` time NOT NULL,
   `APPOINTMENT_DATE` date NOT NULL,
-  PRIMARY KEY (`APPONTMENT_ID`),
+  PRIMARY KEY (`APPOINTMENT_ID`),
   KEY `PATIENT_ID` (`PATIENT_ID`),
   KEY `DOCTOR_ID` (`DOCTOR_ID`),
   CONSTRAINT `FK_APPOINTMENT_doctor` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 
 -- Dumping data for table dac.appointment: ~2 rows (approximately)
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-REPLACE INTO `appointment` (`APPONTMENT_ID`, `PATIENT_ID`, `DOCTOR_ID`, `APPOINTMENT_TIME`, `APPOINTMENT_DATE`) VALUES
+REPLACE INTO `appointment` (`APPOINTMENT_ID`, `PATIENT_ID`, `DOCTOR_ID`, `APPOINTMENT_TIME`, `APPOINTMENT_DATE`) VALUES
 	(1, 11, 10, '10:30:00', '2017-04-21'),
 	(2, 11, 2, '08:15:00', '2017-05-15');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
@@ -489,17 +489,17 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
   KEY `patient_current_medical_condition_fk` (`PATIENT_ID`),
   CONSTRAINT `medical_condition_current_medical_condition_fk` FOREIGN KEY (`MEDICAL_CONDITION_ID`) REFERENCES `medical_condition` (`MEDICAL_CONDITION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_current_medical_condition_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.medical_history: ~7 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
 REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
-	(2, '2016-09-16', 11, NULL, 16),
+	(2, '2016-09-16', 11, '2017-03-21', 16),
 	(3, '2009-02-03', 11, '2009-02-20', 7),
 	(4, '2001-10-03', 11, '2001-10-13', 30),
 	(11, '2017-03-15', 11, NULL, 8),
-	(12, '2017-03-15', 1, '2017-03-17', 24);
+	(14, '2012-09-21', 11, NULL, 26);
 /*!40000 ALTER TABLE `medical_history` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medication
@@ -581,8 +581,8 @@ REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`
 	(7, 'Wesley', 'Williamson', '1982-08-17', 'M', '1004 Manor Road', 'Conway', 'AR', '5012363951', '72032', 'wesley.williamson@example.com'),
 	(8, 'Cody', 'Styers', '1990-10-28', 'M', '1672 st. Lawrence Ave', 'Conway', 'AR', '5015157225', '72034', 'cstye417@gmail.com'),
 	(9, 'Ashley', 'Jumper', '1989-02-26', 'F', '6320 Groveland Terrace', 'Conway', 'AR', '5013439513', '72034', 'ajumper1999@gmail.com'),
-	(10, 'David', 'Mack', '1988-02-28', 'M', '2323 Lovers Ln', 'Conway', 'AR', '5014288989', '72034', 'vaselinegroove@gmail.com'),
-	(11, 'Mike', 'Jones', '1987-05-24', 'M', '52 Caney Creek Rd', 'Conway', 'AR', '5014281287', '72032', 'ajumper12@gmail.com');
+	(10, 'David', 'Mack', '1988-02-28', 'M', '2323 Lovers Ln', 'Conway', 'AR', '5014281288', '72034', 'vaselinegroove@gmail.com'),
+	(11, 'Mike', 'Jones', '1987-05-24', 'M', '52 Caney Creek Rd', 'Conway', 'AR', '5014281287', '72032', 'mikejones@example.com');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 
 -- Dumping structure for table dac.patient_allergy
@@ -686,7 +686,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   CONSTRAINT `medication_id_fk` FOREIGN KEY (`MEDICATION_ID`) REFERENCES `medication` (`MEDICATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_perscription_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pharmacy_id_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.prescription: ~10 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
@@ -697,10 +697,11 @@ REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`
 	(4, '2016-05-07', '25mg', 5, 23, 11, 3, 6),
 	(5, '2017-03-15', '800mg', 1, 12, 11, 7, 11),
 	(6, '2017-03-15', '16mg', 4, 6, 11, 7, 4),
-	(7, '2017-03-15', '10mg', 4, 20, 11, 7, 1),
+	(7, '2017-03-15', '20 mg', 4, 20, 11, 4, 1),
 	(8, '2017-03-15', '300mg', 1, 15, 11, 7, 6),
 	(9, '2017-03-15', '10mg', 1, 24, 11, 7, 1),
-	(10, '2017-03-15', '20mg', 1, 27, 11, 7, 14);
+	(10, '2017-03-15', '20mg', 1, 27, 11, 7, 14),
+	(11, '2017-03-21', '500mg', 1, 4, 11, 4, 7);
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 
 -- Dumping structure for table dac.prescription_reminder
@@ -719,9 +720,8 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
 -- Dumping data for table dac.prescription_reminder: ~4 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
 REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
-	(2, 11, 1, '09:56:43'),
-	(4, 11, 3, '09:55:49'),
-	(7, 11, 4, '09:55:45');
+	(2, 11, 1, '13:37:50'),
+	(4, 11, 3, '13:36:55');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
 
 -- Dumping structure for table dac.user
@@ -732,10 +732,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PASSWORD_SALT` varbinary(50) NOT NULL DEFAULT '0',
   `USER_EMAIL` varchar(50) NOT NULL DEFAULT '0',
   `USER_CELL_PHONE` varchar(13) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`USER_ID`)
+  PRIMARY KEY (`USER_ID`),
+  KEY `PATIENT_ID` (`PATIENT_ID`),
+  CONSTRAINT `FK_user_patient` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.user: ~5 rows (approximately)
+-- Dumping data for table dac.user: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 REPLACE INTO `user` (`USER_ID`, `PATIENT_ID`, `PASSWORD`, `PASSWORD_SALT`, `USER_EMAIL`, `USER_CELL_PHONE`) VALUES
 	(1, 1, '��B��   �h�����2Q8}���E', '$���uh�+���"�(4', 'jeanne.gagnon@example.com', '15019762427'),
@@ -746,9 +748,9 @@ REPLACE INTO `user` (`USER_ID`, `PATIENT_ID`, `PASSWORD`, `PASSWORD_SALT`, `USER
 	(6, 6, 'M�X��y?��4�up��v4D�<   �;=n�', 'iF��Z��pF!x(�[0�', 'ellen.hicks@example.com', '15014676727'),
 	(7, 7, '�)�R���ip����X�vk��q��', 'hRu�����:C�K1', 'wesley.williamson@example.com', '15012363951'),
 	(8, 8, 'b%�d�>��D����E�[���]��', '���Z�e�R��BE', 'cstye417@gmail.com', '15015157225'),
-	(9, 9, 'W_ac�u�-�����I��Х�~1�<�P', '��U�x!"�c�,�', 'ajumper123@gmail.com', '15013439513'),
-	(10, 10, '��f\\��c1�Rx&@S+�XG T�л�U$�3�i', 'hidr�.±/�љ�X�', 'vaselinegroove@gmail.com', '15014281287'),
-	(11, 11, '$��ؐ�O\rW�b�s�L;4).�c(�c���', 'ff���]PO���Qw8��', 'ajumper12@gmail.com', '15013439513');
+	(9, 9, 'W_ac�u�-�����I��Х�~1�<�P', '��U�x!"�c�,�', 'ajumper12@gmail.com', '15013439513'),
+	(10, 10, '��f\\��c1�Rx&@S+�XG T�л�U$�3�i', 'hidr�.±/�љ�X�', 'vaselinegroove@gmail.com', '15014281288'),
+	(11, 11, '$��ؐ�O\rW�b�s�L;4).�c(�c���', 'ff���]PO���Qw8��', 'mikejones@example.com', '15014281287');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vaccination
