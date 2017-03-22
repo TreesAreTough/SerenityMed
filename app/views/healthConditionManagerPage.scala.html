@@ -1,5 +1,4 @@
-@(prescription: List[PrescriptionManager], patientList: List[Patient], frequencyList: List[Frequency], medicationList: List[Medication], doctorList: List[Doctor], pharmacyList: List[Pharmacy])
-
+@(currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], patientList: List[Patient], medicalCondition: List[Medical_Condition])
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -7,7 +6,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Prescription Manager</title>
+    <title>Health Condition Manager</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -260,8 +259,8 @@
                     <li class="has-submenu active">
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Managers</span></a>
                         <ul class="list-unstyled sub-menu collapse">
-                            <li class="active"><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
-                            <li><a href="@routes.MedicalHistoryController.getHealthConditionManager()"><span class="text">Health Condition Manager</span></a></li>
+                            <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
+                            <li class="active"><a href="@routes.MedicalHistoryController.getHealthConditionManager()"><span class="text">Health Condition Manager</span></a></li>
                             <li><a href="form-bootstrap-elements.html"><span class="text">Lab Manager</span></a></li>
                             <li><a href="form-layouts.html"><span class="text">Vital Manager</span></a></li>
                             <li><a href="form-validations.html"><span class="text">Appointment Manager</span></a></li>
@@ -315,11 +314,11 @@
         <div class="container-fluid primary-content">
             <!-- PRIMARY CONTENT HEADING -->
             <div class="primary-content-heading clearfix">
-                <h2>PRESCRIPTION MANAGER</h2>
+                <h2>HEALTH CONDITION MANAGER</h2>
                 <ul class="breadcrumb pull-left">
-                    <li><i class="icon ion-home"></i><a href="#">Home</a></li>
+                    <li><i class="icon ion-home"></i><a href="@routes.HealthSummaryController.getHealthSummary">Home</a></li>
                     <li><a href="#">Managers</a></li>
-                    <li class="active">Prescription Manager</li>
+                    <li class="active">Health Condition Manager</li>
                 </ul>
                 <div class="sticky-content pull-right">
                     <div class="btn-group btn-dropdown">
@@ -370,7 +369,7 @@
             <!-- SHOW HIDE COLUMNS -->
             <div class="widget">
                 <div class="widget-header clearfix">
-                    <h3><i class="fa fa-toggle-on" aria-hidden="true"></i> <span>PRESCRIPTION LIST</span></h3>
+                    <h3><i class="ion-ios-medkit-outline" aria-hidden="true"></i> <span>CURRENT HEALTH CONDITION LIST</span></h3>
                     <div class="btn-group widget-header-toolbar visible-lg">
                         <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                         <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
@@ -378,36 +377,70 @@
                 </div>
                 <div class="widget-content">
                     <div class="table-responsive">
-                        <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered colored-header datatable">
+                        <table class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
-                                <th>Drug Name</th>
-                                <th>Dosage</th>
-                                <th>Frequency</th>
-                                <th>Date</th>
-                                <th>Doctor</th>
-                                <th>Pharmacy</th>
-                                <th>Edit</th>
+                                <th>Medical Condition Name</th>
+                                <th>Date Diagnosed</th>
+                                <th>Resolved</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @for(prescription <- prescription){
+                            @for(current <- currentMedical){
                             <tr>
-                                <td>@prescription.medicationName</td>
-                                <td>@prescription.dosage</td>
-                                <td>@prescription.frequency Seconds</td>
-                                <td>@prescription.date</td>
-                                <td>@prescription.docName</td>
-                                <td>@prescription.pharmName</td>
+                                <td>@current.mcName</td>
+                                <td>@current.dateDiagnosed</td>
                                 <td>
-                                    <form method="GET" action="@routes.PrescriptionController.getPrescriptionEdit(prescription.prescriptionID)">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <form method="POST" action="@routes.MedicalHistoryController.resolveCondition(current.medicalHistoryID)">
+                                    <button type="submit" class="btn btn-primary">Resolve</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="POST" action="@routes.PrescriptionController.deletePrescription(prescription.prescriptionID)">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <form method="POST" action="@routes.MedicalHistoryController.deleteCondition(current.medicalHistoryID)">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <form method="GET" action="@routes.MedicalHistoryController.getMoreInfo()">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-block">Learn More about Your Medical Conditions</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-header clearfix">
+                    <h3><i class="ion-ios-medkit-outline" aria-hidden="true"></i> <span>PAST HEALTH CONDITION LIST</span></h3>
+                    <div class="btn-group widget-header-toolbar visible-lg">
+                        <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                        <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="table-responsive">
+                        <table class="table table-sorting table-hover table-bordered colored-header datatable">
+                            <thead>
+                            <tr>
+                                <th>Medical Condition Name</th>
+                                <th>Date Diagnosed</th>
+                                <th>Resolved</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for(past <- pastMedical){
+                            <tr>
+                                <td>@past.mcName</td>
+                                <td>@past.dateDiagnosed</td>
+                                <td>@past.dateResolved</td>
+                                <td>
+                                    <form method="POST" action="@routes.MedicalHistoryController.deleteCondition(past.medicalHistoryID)">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -419,71 +452,34 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <!-- TICKET FORM -->
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-compose"></i> <span>NEW PRESCRIPTION</span></h3>
+                            <h3><i class="icon ion-compose"></i> <span>NEW MEDICAL CONDITION</span></h3>
                             <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
                         <div class="widget-content">
-                            <form method="POST" action="@routes.PrescriptionController.addPrescription()" class="form-horizontal form-ticket" role="form">
+                            <form method="POST" action="@routes.MedicalHistoryController.addMedicalHistory()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
-                                    <legend>Prescription Details</legend>
+                                    <legend>Select Health Condition</legend>
                                     <div class="form-group">
                                         <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
                                         <div class="col-sm-9">
                                             <select id="patientID" name="patientID" class="select-ticket-type">
-                                                    @for(patient <- patientList){
-                                                    <option value=@patient.patientID>@patient.firstName</option>
-                                                    }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="medicationID" class="col-sm-3 control-label">Medication Name</label>
-                                        <div class="col-sm-9">
-                                            <select name="medicationID" id="medicationID" class="select2">
-                                                @for(medication <- medicationList){
-                                                <option value=@medication.medicationID>@medication.medicationName</option>
+                                                @for(patient <- patientList){
+                                                <option value=@patient.patientID>@patient.firstName</option>
                                                 }
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dosage" class="col-sm-3 control-label">Enter Dosage:</label>
+                                        <label for="medicalConditionID" class="col-sm-3 control-label">Medication Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="dosage" class="form-control" id="dosage" placeholder="Dosage">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="frequencyID" class="col-sm-3 control-label">Frequency</label>
-                                        <div class="col-sm-9">
-                                            <select id="frequencyID" name="frequencyID" class="select-ticket-priority">
-                                                @for(frequency <- frequencyList){
-                                                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
-                                        <div class="col-sm-9">
-                                            <select name="doctorID" id="doctorID" class="select2">
-                                                @for(doctor <- doctorList){
-                                                <option value=@doctor.doctorID>@doctor.docName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pharmacyID" class="col-sm-3 control-label">Pharmacy</label>
-                                        <div class="col-sm-9">
-                                            <select name="pharmacyID" id="pharmacyID" class="select2">
-                                                @for(pharmacy <- pharmacyList){
-                                                <option value=@pharmacy.pharmacyID>@pharmacy.pharmName</option>
+                                            <select name="medicalConditionID" id="medicalConditionID" class="select2">
+                                                @for(medical <- medicalCondition){
+                                                <option value=@medical.medicalConditionID>@medical.mcName</option>
                                                 }
                                             </select>
                                         </div>
@@ -491,22 +487,24 @@
                                     <br>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-primary btn-block">Add New Prescription</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Add New Health Condition</button>
                                         </div>
                                     </div>
                                 </fieldset>
                             </form>
                         </div>
                     </div>
-            <!-- END SHOW HIDE COLUMNS -->
-            <!-- DATA EXPORT -->
-            <!-- END DATA EXPORT -->
-            <!-- COLUMN FILTER -->
-            <!-- END COLUMN FILTER -->
-            <!-- SCROLLING DATA TABLE -->
-            <!-- END SCROLLING DATA TABLE -->
-            <!-- BASIC DATA TABLE -->
-            <!-- END BASIC DATA TABLE -->
+                    <!-- TICKET FORM -->
+                    <!-- place new condition form here -->
+                    <!-- END SHOW HIDE COLUMNS -->
+                    <!-- DATA EXPORT -->
+                    <!-- END DATA EXPORT -->
+                    <!-- COLUMN FILTER -->
+                    <!-- END COLUMN FILTER -->
+                    <!-- SCROLLING DATA TABLE -->
+                    <!-- END SCROLLING DATA TABLE -->
+                    <!-- BASIC DATA TABLE -->
+                    <!-- END BASIC DATA TABLE -->
                 </div>
             </div>
         </div>
@@ -548,4 +546,3 @@
 
 
 </html>
-
