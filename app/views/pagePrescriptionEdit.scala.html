@@ -1,4 +1,4 @@
-@(prescription: List[PrescriptionManager], patientList: List[Patient], frequencyList: List[Frequency], medicationList: List[Medication], doctorList: List[Doctor], pharmacyList: List[Pharmacy])
+@(prescription: List[PrescriptionManager], patientList: List[Patient], frequencyList: List[Frequency], medicationList: List[Medication], doctorList: List[Doctor], pharmacyList: List[Pharmacy], current: PrescriptionManager)
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -277,14 +277,14 @@
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
                         <ul class="list-unstyled sub-menu collapse">
                             <li><a href="charts-basic.html"><span class="text">Basic</span></a></li>
-                            <li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
+                            <li class="active"><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-grid-view-outline"></i><span class="text">Tables</span></a>
                         <ul class="list-unstyled sub-menu collapse in">
                             <li><a href="tables-static.html"><span class="text">Static Table</span></a></li>
-                            <li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
+                            <li class="active"><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
                         </ul>
                     </li>
                     <li><a href="maps.html"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
@@ -402,12 +402,12 @@
                                 <td>@prescription.pharmName</td>
                                 <td>
                                     <form method="GET" action="@routes.PrescriptionController.getPrescriptionEdit(prescription.prescriptionID)">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                        <button type="submit" class="btn btn-primary">Edit</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form method="POST" action="@routes.PrescriptionController.deletePrescription(prescription.prescriptionID)">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -436,9 +436,9 @@
                                         <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
                                         <div class="col-sm-9">
                                             <select id="patientID" name="patientID" class="select-ticket-type">
-                                                    @for(patient <- patientList){
-                                                    <option value=@patient.patientID>@patient.firstName</option>
-                                                    }
+                                                @for(patient <- patientList){
+                                                <option value=@patient.patientID>@patient.firstName</option>
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -498,15 +498,98 @@
                             </form>
                         </div>
                     </div>
-            <!-- END SHOW HIDE COLUMNS -->
-            <!-- DATA EXPORT -->
-            <!-- END DATA EXPORT -->
-            <!-- COLUMN FILTER -->
-            <!-- END COLUMN FILTER -->
-            <!-- SCROLLING DATA TABLE -->
-            <!-- END SCROLLING DATA TABLE -->
-            <!-- BASIC DATA TABLE -->
-            <!-- END BASIC DATA TABLE -->
+                </div>
+                <div class="col-md-6">
+                    <!-- TICKET FORM -->
+                    <div class="widget">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-compose"></i> <span>EDIT PRESCRIPTION</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <form method="POST" action="@routes.PrescriptionController.updatePrescription()" class="form-horizontal form-ticket" role="form">
+                                <input type="hidden" name="prescriptionID" value="@current.prescriptionID"/>
+                                <fieldset>
+                                    <legend>Prescription Details</legend>
+                                    <div class="form-group">
+                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
+                                        <div class="col-sm-9">
+                                            <select id="patientID1" name="patientID" class="select-ticket-type">
+                                                <option selected value="@current.patientID">@current.firstName</option>
+                                                @for(patient <- patientList){
+                                                @if(!current.patientID.equals(patient.patientID)){
+                                                <option value=@patient.patientID>@patient.firstName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="medicationID1" class="col-sm-3 control-label">Medication Name</label>
+                                        <div class="col-sm-9">
+                                            <select name="medicationID" id="medicationID1" class="select2">
+                                                <option selected value="@current.medicationID">@current.medicationName</option>
+                                                @for(medication <- medicationList){
+                                                @if(!current.medicationID.equals(medication.medicationID)){
+                                                <option value=@medication.medicationID>@medication.medicationName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dosage1" class="col-sm-3 control-label">Enter Dosage:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="dosage" class="form-control" id="dosage1" value="@current.dosage">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="frequencyID1" class="col-sm-3 control-label">Frequency</label>
+                                        <div class="col-sm-9">
+                                            <select id="frequencyID1" name="frequencyID" class="select-ticket-priority">
+                                                <option selected value="@current.frequencyID">@current.frequency Seconds</option>
+                                                @for(frequency <- frequencyList){
+                                                @if(!current.frequencyID.equals(frequency.frequencyID)){
+                                                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctorID1" class="col-sm-3 control-label">Doctor</label>
+                                        <div class="col-sm-9">
+                                            <select name="doctorID" id="doctorID1" class="select2">
+                                                <option selected value="@current.doctorID">@current.docName</option>
+                                                @for(doctor <- doctorList){
+                                                @if(!current.doctorID.equals(doctor.doctorID)){
+                                                <option value=@doctor.doctorID>@doctor.docName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pharmacyID1" class="col-sm-3 control-label">Pharmacy</label>
+                                        <div class="col-sm-9">
+                                            <select name="pharmacyID" id="pharmacyID1" class="select2">
+                                                <option selected value="@current.pharmacyID">@current.pharmName</option>
+                                                @for(pharmacy <- pharmacyList){
+                                                @if(!current.pharmacyID.equals(pharmacy.pharmacyID)){
+                                                <option value=@pharmacy.pharmacyID>@pharmacy.pharmName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-primary btn-block">Edit Prescription</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -548,4 +631,3 @@
 
 
 </html>
-

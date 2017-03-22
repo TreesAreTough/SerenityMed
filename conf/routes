@@ -45,6 +45,11 @@ GET     /healthSummary       controllers.HealthSummaryController.getHealthSummar
 
 # Prescription Manager
 GET     /prescription        controllers.PrescriptionController.getPrescriptionManager()
+GET     /editScript/:id      controllers.PrescriptionController.getPrescriptionEdit(id:Long)
+POST    /addScript           controllers.PrescriptionController.addPrescription()
+POST    /deleteScript        controllers.PrescriptionController.deletePrescription(id:Long)
+POST    /updateScript        controllers.PrescriptionController.updatePrescription()
+
 
 
 

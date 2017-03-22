@@ -295,61 +295,20 @@
             <nav id="main-nav" class="main-nav">
                 <h3>MAIN</h3>
                 <ul class="main-menu">
-                    <li><a href="@routes.HealthSummaryController.getHealthSummary"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Health Summary</span></a></li>
-                    <li class="has-submenu active">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Dashboards</span></a>
-                        <ul class="list-unstyled sub-menu collapse in">
-                            <li class="active"><a href="@routes.PatientController.getIndex()"><span class="text">Dashboard v1</span></a></li>
-                            <li><a href="@routes.PatientController.getIndex2()"><span class="text">Dashboard v2</span></a></li>
-                        </ul>
-                    </li>
+                    <li class="active"><a href="@routes.HealthSummaryController.getHealthSummary"><i class="icon ion-ios-speedometer-outline"></i><span class="text">Health Summary</span></a></li>
                     <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Forms</span></a>
+                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Managers</span></a>
                         <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="@routes.PatientController.getFormFancyElements()"><span class="text">Fancy Elements</span></a></li>
-                            <li><a href="@routes.PatientController.getFormInplace()"><span class="text">In-place Editing</span></a></li>
-                            <li><a href="@routes.PatientController.getFormBootStrapElements"><span class="text">Bootstrap Elements</span></a></li>
-                            <li><a href="@routes.PatientController.getFormLayouts()"><span class="text">Form Layouts</span></a></li>
-                            <li><a href="@routes.PatientController.getFormValidations()"><span class="text">Validation</span></a></li>
-                            <li><a href="form-upload.html"><span class="text">File Upload</span></a></li>
-                            <li><a href="@routes.PatientController.getFormTextEditor()"><span class="text">Text Editor</span></a></li>
-                            <li><a href="@routes.PatientController.getFormWizard()"><span class="text">Wizards</span></a></li>
+                            <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
+                            <li><a href="form-inplace-editing.html"><span class="text">Health Condition Manager</span></a></li>
+                            <li><a href="form-bootstrap-elements.html"><span class="text">Lab Manager</span></a></li>
+                            <li><a href="form-layouts.html"><span class="text">Vital Manager</span></a></li>
+                            <li><a href="form-validations.html"><span class="text">Appointment Manager</span></a></li>
+                            <li><a href="form-upload.html"><span class="text">Vaccination Manager</span></a></li>
+                            <li><a href="form-text-editor.html"><span class="text">Allergy Manager</span></a></li>
                         </ul>
                     </li>
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-flask-outline"></i><span class="text">UI Elements</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="ui-elements-general.html"><span class="text">General</span></a></li>
-                            <li><a href="ui-elements-buttons.html"><span class="text">Buttons</span></a></li>
-                            <li><a href="ui-elements-tabs.html"><span class="text">Tabs</span></a></li>
-                            <li><a href="ui-elements-tour.html"><span class="text">Tour</span></a></li>
-                            <li><a href="ui-elements-icons.html"><span class="text">Icons</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Widgets</span></a></li>
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-copy-outline"></i><span class="text">Pages</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="@routes.PatientController.getPageProject()"><span class="text">Projects</span></a></li>
-                            <li><a href="@routes.PatientController.getProjectDetail()"><span class="text">Project Detail</span></a></li>
-                            <li><a href="page-user-profile.html"><span class="text">Profile</span></a></li>
-                            <li><a href="@routes.PatientController.getSearchResult()"><span class="text">Search Result</span></a></li>
-                            <li><a href="@routes.PatientController.getPageInbox()"><span class="text">Inbox</span><span class='badge bg-orange'>12</span></a></li>
-                            <li><a href="page-view-message.html"><span class="text">View Message</span></a></li>
-                            <li><a href="@routes.PatientController.getNewMessage()"><span class="text">New Message</span></a></li>
-                            <li><a href="@routes.PatientController.getPageKnowledge()"><span class="text">Knowledge Base</span></a></li>
-                            <li><a href="@routes.PatientController.getPageSubmitTicket()"><span class="text">Submit Ticket</span></a></li>
-                            <li><a href="@routes.PatientController.getPageFaq()"><span class="text">FAQ</span></a></li>
-                            <li><a href="@routes.PatientController.getPagePricingTables()"><span class="text">Pricing Tables</span></a></li>
-                            <li><a href="@routes.PatientController.getPageInvoice()"><span class="text">Invoice</span></a></li>
-                            <li><a href="@routes.PatientController.getRegistration()"><span class="text">Register</span></a></li>
-                            <li><a href="@routes.PatientController.getPageLogin()"><span class="text">Login</span></a></li>
-                            <li><a href="@routes.PatientController.getPageLoginAlt()"><span class="text">Login Alt.</span></a></li>
-                            <li><a href="@routes.PatientController.get404"><span class="text">Not Found 404</span></a></li>
-                            <li><a href="@routes.PatientController.get505"><span class="text">Error 505</span></a></li>
-                            <li><a href="@routes.PatientController.getPageBlank()"><span class="text">Blank Page</span></a></li>
-                        </ul>
-                    </li>
+                    <li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Reminders</span></a></li>
                 </ul>
                 <h3>ESSENTIALS</h3>
                 <ul class="main-menu">

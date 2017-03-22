@@ -10,7 +10,7 @@ public class Prescription
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name ="PRESCRIPTION_ID")
-    public Integer prescriptionId;
+    public Long prescriptionID;
 
     @Column (name ="DATE")
     public LocalDate date;
@@ -25,7 +25,7 @@ public class Prescription
     public Long patientID;
 
     @Column (name ="PHARMACY_ID")
-    public Long pharamcyID;
+    public Long pharmacyID;
 
     @Column (name ="DOCTOR_ID")
     public Long doctorID;
