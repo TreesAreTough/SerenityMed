@@ -15,7 +15,7 @@ public class MedicalHistoryManager {
     public LocalDate dateDiagnosed;
 
     @Column(name = "PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column(name = "DATE_RESOLVED")
     public LocalDate dateResolved;

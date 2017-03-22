@@ -105,7 +105,7 @@ public class PrescriptionController  extends Controller
     {
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         Long prescriptionID = new Long(postedForm.get("prescriptionID"));
-        Long patientID = new Long(postedForm.get("patientID"));
+        String patientID = postedForm.get("patientID");
         String dosage = postedForm.get("dosage");
         Long medicationID = new Long(postedForm.get("medicationID"));
         Long pharmacyID = new Long(postedForm.get("pharmacyID"));

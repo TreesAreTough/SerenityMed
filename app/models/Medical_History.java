@@ -21,6 +21,6 @@ public class Medical_History
     public Long medicalConditionID;
 
     @Column(name = "PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
 }

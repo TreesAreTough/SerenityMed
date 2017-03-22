@@ -12,7 +12,7 @@ public class AllergyManager {
     public Long patientAllergyID;
 
     @Column(name ="PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column (name ="ALLERGY_ID")
     public Long allergyID;

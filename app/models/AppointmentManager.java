@@ -13,7 +13,7 @@ public class AppointmentManager {
     public Long appointmentID;
 
     @Column(name = "PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column(name = "DOCTOR_ID")
     public Long doctorID;

@@ -1,0 +1,25 @@
+@()
+<!DOCTYPE html>
+<html lang="en" xmlns:background-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Log In Form</title>
+    <h1>SERENITY</h1>
+    <h2>A better way to manage personal health and medicine.</h2>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/login_twofactor.css")"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<form method="POST" action="@routes.SMSAmazonController.twoFactorGenerator">
+    Email <br>
+    <input type="text" name="sessionEmail" id="sessionEmail"> <br>
+    Password <br>
+    <input type="password" name="password" id="password"> <br>
+    Confirm Password <br>
+    <input type= "password" name="confirmPassword" id="confirmPassword"> <br>
+    <button type="submit">Log In</button> <br>
+</form>
+<form method="GET" action="@routes.UserController.showAddUser">
+    <button type="submit">Create an account</button> <br>
+</form>
+</body>
