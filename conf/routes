@@ -64,6 +64,17 @@ GET     /allergyManager      controllers.AllergyController.getAllergyManager()
 # Lab Manager
 GET     /labManager          controllers.LabController.getLabManager()
 
+# Vital Manager
+GET     /vitalManager        controllers.VitalController.getVitalManager()
+
+# Vaccine Manager
+GET     /vaccineManager      controllers.VaccineController.getVaccineManager()
+
+# Appointment Manager
+GET     /appointment         controllers.AppointmentController.getAppointmentManager()
+
+# Prescription Reminder Manager
+GET     /preReminder         controllers.ReminderPrescriptionController.getReminderManager()
 
 
 

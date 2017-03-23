@@ -1,4 +1,4 @@
-
+@(reminder: List[PrescriptionReminderManager])
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -6,7 +6,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Prescription Manager</title>
+    <title>Prescription Reminder Manager</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -256,7 +256,7 @@
                 <h3>MAIN</h3>
                 <ul class="main-menu">
                     <li><a href="@routes.HealthSummaryController.getHealthSummary"><i class="ion-ios-pulse"></i><span class="text">Health Summary</span></a></li>
-                    <li class="has-submenu active">
+                    <li class="has-submenu">
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Managers</span></a>
                         <ul class="list-unstyled sub-menu collapse">
                             <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
@@ -268,10 +268,10 @@
                             <li><a href="@routes.AllergyController.getAllergyManager()"><span class="text">Allergy Manager</span></a></li>
                         </ul>
                     </li>
-                    <li class="has-submenu">
+                    <li class="has-submenu active">
                         <a href="#" class="submenu-toggle"><i class="ion-ios-alarm-outline"></i><span class="text">Reminders</span></a>
                         <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="charts-basic.html"><span class="text">Prescription</span></a></li>
+                            <li class="active"><a href="@routes.ReminderPrescriptionController.getReminderManager()"><span class="text">Prescription</span></a></li>
                             <li><a href="charts-interactive.html"><span class="text">Appointment</span></a></li>
                         </ul>
                     </li>
@@ -281,7 +281,7 @@
                     <li class="has-submenu">
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
                         <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="@routes.ReminderPrescriptionController.getReminderManager()"><span class="text">Basic</span></a></li>
+                            <li><a href="charts-basic.html"><span class="text">Basic</span></a></li>
                             <li><a href="charts-interactive.html"><span class="text">Interactive Charts</span></a></li>
                         </ul>
                     </li>
@@ -320,11 +320,11 @@
         <div class="container-fluid primary-content">
             <!-- PRIMARY CONTENT HEADING -->
             <div class="primary-content-heading clearfix">
-                <h2>LAB MANAGER</h2>
+                <h2>PRESCRIPTION REMINDER MANAGER</h2>
                 <ul class="breadcrumb pull-left">
                     <li><i class="icon ion-home"></i><a href="@routes.HealthSummaryController.getHealthSummary">Home</a></li>
                     <li><a href="#">Managers</a></li>
-                    <li class="active">Lab Manager</li>
+                    <li class="active">Prescription Reminder Manager</li>
                 </ul>
                 <div class="sticky-content pull-right">
                     <div class="btn-group btn-dropdown">
@@ -375,7 +375,7 @@
             <!-- SHOW HIDE COLUMNS -->
             <div class="widget">
                 <div class="widget-header clearfix">
-                    <h3><i class="fa fa-toggle-on" aria-hidden="true"></i> <span>LAB LIST</span></h3>
+                    <h3><i class="ion-ios-alarm-outline" aria-hidden="true"></i> <span>PRESCRIPTION REMINDER LIST</span></h3>
                     <div class="btn-group widget-header-toolbar visible-lg">
                         <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                         <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
@@ -383,28 +383,20 @@
                 </div>
                 <div class="widget-content">
                     <div class="table-responsive">
-                        <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered colored-header datatable">
+                        <table class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
-                                <th>Drug Name</th>
-                                <th>Dosage</th>
-                                <th>Frequency</th>
-                                <th>Date</th>
-                                <th>Doctor</th>
-                                <th>Pharmacy</th>
+                                <th>Prescription</th>
+                                <th>SMS Number</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            @for(reminder <- reminder){
                             <tr>
-                                <td>prescription.medicationName</td>
-                                <td>prescription.dosage</td>
-                                <td>prescription.frequency Seconds</td>
-                                <td>prescription.date</td>
-                                <td>prescription.docName</td>
-                                <td>prescription.pharmName</td>
+                                <td>@reminder.medicationName @reminder.dosage Taken Every @reminder.frequency Seconds</td>
+                                <td>@reminder.cellPhone</td>
                                 <td>
                                     <form>
                                         <button type="submit" class="btn btn-primary">Edit</button>
@@ -416,7 +408,7 @@
                                     </form>
                                 </td>
                             </tr>
-
+                                }
                             </tbody>
                         </table>
                     </div>
