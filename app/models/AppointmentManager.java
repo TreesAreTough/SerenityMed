@@ -26,4 +26,7 @@ public class AppointmentManager {
 
     @Column(name = "APPOINTMENT_TIME")
     public LocalTime time;
+
+    @Column(name = "DOC_SPECIALTY")
+    public String docSpecialty;
 }

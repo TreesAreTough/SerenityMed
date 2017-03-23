@@ -7,7 +7,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Prescription Manager</title>
+    <title>Allergy Manager</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -263,13 +263,19 @@
                             <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
                             <li><a href="@routes.MedicalHistoryController.getHealthConditionManager()"><span class="text">Health Condition Manager</span></a></li>
                             <li><a href="@routes.LabController.getLabManager()"><span class="text">Lab Manager</span></a></li>
-                            <li><a href="form-layouts.html"><span class="text">Vital Manager</span></a></li>
-                            <li><a href="form-validations.html"><span class="text">Appointment Manager</span></a></li>
-                            <li><a href="form-upload.html"><span class="text">Vaccination Manager</span></a></li>
+                            <li><a href="@routes.VitalController.getVitalManager()"><span class="text">Vital Manager</span></a></li>
+                            <li><a href="@routes.AppointmentController.getAppointmentManager()"><span class="text">Appointment Manager</span></a></li>
+                            <li><a href="@routes.VaccineController.getVaccineManager()"><span class="text">Vaccination Manager</span></a></li>
                             <li class="active"><a href="@routes.AllergyController.getAllergyManager()"><span class="text">Allergy Manager</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="widgets.html"><i class="icon ion-ios-color-wand-outline"></i><span class="text">Reminders</span></a></li>
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle"><i class="ion-ios-alarm-outline"></i><span class="text">Reminders</span></a>
+                        <ul class="list-unstyled sub-menu collapse">
+                            <li><a href="@routes.ReminderPrescriptionController.getReminderManager()"><span class="text">Prescription</span></a></li>
+                            <li><a href="charts-interactive.html"><span class="text">Appointment</span></a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <h3>ESSENTIALS</h3>
                 <ul class="main-menu">
