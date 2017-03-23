@@ -58,6 +58,17 @@ POST    /deleteCondition     controllers.MedicalHistoryController.deleteConditio
 POST    /addCondition        controllers.MedicalHistoryController.addMedicalHistory()
 POST    /conditionRes        controllers.MedicalHistoryController.resolveCondition(id:Long)
 
+# Allergy Manager
+GET     /allergyManager      controllers.AllergyController.getAllergyManager()
+
+# Lab Manager
+GET     /labManager          controllers.LabController.getLabManager()
+
+
+
+
+
+
 #Log In Page
 GET     /login                      controllers.UserController.showLogin
 POST    /user                       controllers.SMSAmazonController.twoFactorGenerator

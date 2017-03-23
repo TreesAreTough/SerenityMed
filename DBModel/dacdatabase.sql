@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `allergies` (
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.allergies: ~8 rows (approximately)
+-- Dumping data for table dac.allergies: ~10 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
 REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `ALLERGY_DESCRIPTION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `drug_interaction` (
   PRIMARY KEY (`DRUG_INTERACTION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.drug_interaction: ~194 rows (approximately)
+-- Dumping data for table dac.drug_interaction: ~216 rows (approximately)
 /*!40000 ALTER TABLE `drug_interaction` DISABLE KEYS */;
 REPLACE INTO `drug_interaction` (`DRUG_INTERACTION_ID`, `RXCUI`, `INTER_RXCUI`, `INTER_DESCRIPTION`) VALUES
 	(1, 435, 5487, 'Albuterol may increase the hypokalemic activities of Hydrochlorothiazide'),
@@ -331,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `frequency` (
   PRIMARY KEY (`FREQUENCY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.frequency: ~2 rows (approximately)
+-- Dumping data for table dac.frequency: ~3 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
 REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
 	(1, 60),
@@ -442,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `medical_condition` (
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_condition: ~27 rows (approximately)
+-- Dumping data for table dac.medical_condition: ~30 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
 REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `MC_NAME`, `MC_DESCRIPTION`, `MC_URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
@@ -491,7 +491,7 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
   CONSTRAINT `patient_current_medical_condition_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_history: ~7 rows (approximately)
+-- Dumping data for table dac.medical_history: ~6 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
 REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
@@ -597,7 +597,7 @@ CREATE TABLE IF NOT EXISTS `patient_allergy` (
   CONSTRAINT `patient_patient_allergy_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_allergy: ~3 rows (approximately)
+-- Dumping data for table dac.patient_allergy: ~2 rows (approximately)
 /*!40000 ALTER TABLE `patient_allergy` DISABLE KEYS */;
 REPLACE INTO `patient_allergy` (`PATIENT_ALLERGY_ID`, `PATIENT_ID`, `ALLERGY_ID`) VALUES
 	(1, 11, 8),
@@ -618,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~14 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~16 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
@@ -688,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   CONSTRAINT `pharmacy_id_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription: ~10 rows (approximately)
+-- Dumping data for table dac.prescription: ~11 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
 REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
 	(1, '2017-01-15', '20mg', 1, 16, 11, 3, 6),
@@ -717,7 +717,7 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription_reminder: ~4 rows (approximately)
+-- Dumping data for table dac.prescription_reminder: ~2 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
 REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
 	(2, 11, 1, '13:37:50'),
@@ -740,17 +740,17 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table dac.user: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 REPLACE INTO `user` (`USER_ID`, `PATIENT_ID`, `PASSWORD`, `PASSWORD_SALT`, `USER_EMAIL`, `USER_CELL_PHONE`) VALUES
-	(1, 1, '��B��   �h�����2Q8}���E', '$���uh�+���"�(4', 'jeanne.gagnon@example.com', '15019762427'),
-	(2, 2, '�}G�}��o�04)Ak����L�����', '�QG+�u���\0"�', 'hailey.lam@example.com', '15017196534'),
-	(3, 3, 'dY�.�vz�l��秃X�P&��x�~��#', '���e掔�oQ���', 'phil.harrison@example.com', '15015394546'),
-	(4, 4, '���U_�t��S��=]n"��ǘh�+��', 'F ƿT�4��в\'', 'rosie.davies@example.com', '15019811225'),
-	(5, 5, 'J�^N��^q�>H���0��<}x\r���$�', '�.�4�&#��=ڽ�\'�', 'arnold.jacobs@example.com', '15012958387'),
-	(6, 6, 'M�X��y?��4�up��v4D�<   �;=n�', 'iF��Z��pF!x(�[0�', 'ellen.hicks@example.com', '15014676727'),
-	(7, 7, '�)�R���ip����X�vk��q��', 'hRu�����:C�K1', 'wesley.williamson@example.com', '15012363951'),
-	(8, 8, 'b%�d�>��D����E�[���]��', '���Z�e�R��BE', 'cstye417@gmail.com', '15015157225'),
-	(9, 9, 'W_ac�u�-�����I��Х�~1�<�P', '��U�x!"�c�,�', 'ajumper12@gmail.com', '15013439513'),
-	(10, 10, '��f\\��c1�Rx&@S+�XG T�л�U$�3�i', 'hidr�.±/�љ�X�', 'vaselinegroove@gmail.com', '15014281288'),
-	(11, 11, '$��ؐ�O\rW�b�s�L;4).�c(�c���', 'ff���]PO���Qw8��', 'mikejones@example.com', '15014281287');
+	(1, 1, '�Q$<E$��R�j 3\0%ی�me6�\rN����r', 'R��=q<�F��I�Ϸ�', 'jeanne.gagnon@example.com', '115019762427'),
+	(2, 2, '�#�B}�W�C5]��\\c(�-��>����2��', '�Ǔ㣝���U�TV+', 'hailey.lam@example.com', '15017196534'),
+	(3, 3, 'X�(���q���g�+E$d���G-&�ݖ`LJ���', 'P%��I9o�0�4�K', 'phil.harrison@example.com', '15015394546'),
+	(4, 4, '���\n\ny�$~����h%Hߡ޳\0��_n\n\\��', 'Y���v�!����d�', 'rosie.davies@example.com', '15019811225'),
+	(5, 5, '��j=�TbWI9:�-#/�:�\\�[�K,\'��`', '|��jo�w�Sk��', 'arnold.jacobs@example.com', '15012958387'),
+	(6, 6, 'W����v�{��CY$�}\')�w��$,-�.\r�', 'r��>֡��i���v�', 'ellen.hicks@example.com', '15014676727'),
+	(7, 7, ',�p�S8]��@��Z�r��ԨԎ�"����\n', 'ƨ~D\'\0i	��d�C��', 'wesley.williamson@example.com', '15012363951'),
+	(8, 8, 'H��w�YWI��Z��\'u��N����p�*���!@�', '�mMM�����ra��y', 'cstye417@gmail.com', '15012363951'),
+	(9, 9, '�$���­�����������:�B�f!�', 'J�܎%5ϻE`Ӏ�\n�', 'ajumper12@gmail.com', '15013439513'),
+	(10, 10, '�W��4����`A-)�:]�]�i�6�\'��', 'eV��7�$dmV����', 'vaselinegroove@gmail.com', '15014281288'),
+	(11, 11, '���{��]�\0�O̟�i�\nǘ���p��e}�`', '숇$�J���=`�', 'mikejones@example.com', '15014281287');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vaccination
@@ -795,7 +795,7 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
   CONSTRAINT `vaccinations_vaccination_given_fk` FOREIGN KEY (`VACCINE_ID`) REFERENCES `vaccination` (`VACCINE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.vaccination_given: ~5 rows (approximately)
+-- Dumping data for table dac.vaccination_given: ~4 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
 REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
 	(1, '2010-06-16', NULL, 11, 4, 6),
