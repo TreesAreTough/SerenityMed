@@ -42,6 +42,60 @@ GET     /pageSubmitTicket    controllers.PatientController.getPageSubmitTicket()
 
 # Health Summary Dashboard
 GET     /healthSummary       controllers.HealthSummaryController.getHealthSummary()
+POST    /resolved            controllers.HealthSummaryController.resolveConditionHS(id:Long)
+
+# Prescription Manager
+GET     /prescription        controllers.PrescriptionController.getPrescriptionManager()
+GET     /editScript/:id      controllers.PrescriptionController.getPrescriptionEdit(id:Long)
+POST    /addScript           controllers.PrescriptionController.addPrescription()
+POST    /deleteScript        controllers.PrescriptionController.deletePrescription(id:Long)
+POST    /updateScript        controllers.PrescriptionController.updatePrescription()
+
+# Medical History Manager
+GET     /moreInfo            controllers.MedicalHistoryController.getMoreInfo()
+GET     /healthManager       controllers.MedicalHistoryController.getHealthConditionManager()
+POST    /deleteCondition     controllers.MedicalHistoryController.deleteCondition(id:Long)
+POST    /addCondition        controllers.MedicalHistoryController.addMedicalHistory()
+POST    /conditionRes        controllers.MedicalHistoryController.resolveCondition(id:Long)
+
+# Allergy Manager
+GET     /allergyManager      controllers.AllergyController.getAllergyManager()
+
+# Lab Manager
+GET     /labManager          controllers.LabController.getLabManager()
+
+
+
+
+
+
+#Log In Page
+GET     /login                      controllers.UserController.showLogin
+POST    /user                       controllers.SMSAmazonController.twoFactorGenerator
+
+#Two Factor
+GET    /twoFactor                  controllers.SMSAmazonController.showTwoFactor
+POST   /twoFactor                  controllers.SMSAmazonController.allowAccess
+
+#Password Wizard
+GET    /addPassword                controllers.UserController.showAddPassword
+POST   /addPassword                controllers.UserController.passwordWizard
+
+#Add A New User
+GET    /showAddUser                controllers.UserController.showAddUser
+POST   /postAddUser                controllers.UserController.addUser
+
+#View Edit And Update A User
+GET    /viewMyInfo                 controllers.UserController.viewMyInfo
+GET    /editUser/:id               controllers.UserController.editUser(id:String)
+POST   /updatePatient              controllers.UserController.updatePatient
+
+#Log Out/Clear Session
+POST   /logout                     controllers.UserController.logout
+
+
+
+
 
 
 

@@ -16,7 +16,7 @@ public class Prescription_Reminder
     public LocalTime nextReminder;
 
     @Column (name ="PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column (name = "PRESCRIPTION_ID")
     public Long prescriptionID;

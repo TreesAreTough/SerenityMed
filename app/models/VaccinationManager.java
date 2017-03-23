@@ -16,7 +16,7 @@ public class VaccinationManager {
     public LocalDate date;
 
     @Column(name = "PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column(name = "VACCINE_ID")
     public Long vaccineID;

@@ -22,7 +22,7 @@ public class PrescriptionManager {
     public Long medicationID;
 
     @Column(name = "PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column(name = "PHARMACY_ID")
     public Long pharmacyID;

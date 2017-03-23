@@ -19,7 +19,7 @@ public class Patient_Vital
     public LocalDate dateTaken;
 
     @Column (name ="PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column (name ="VITAL_ID")
     public Long vitalID;

@@ -15,3 +15,10 @@ libraryDependencies += javaWs % "test"
 libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
 
 libraryDependencies += "org.mariadb.jdbc" % "mariadb-java-client" % "1.5.7"
+
+libraryDependencies += "com.amazonaws" % "aws-java-sdk-ec2" % "1.11.22"
+
+libraryDependencies += "com.amazonaws" % "aws-java-sdk-s3" % "1.11.22"
+
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.11.22"
+

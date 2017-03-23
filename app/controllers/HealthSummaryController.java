@@ -9,6 +9,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,10 +66,6 @@ public class HealthSummaryController extends Controller
 
         List<VitalDate> vitalDates = (List<VitalDate>) jpaApi.em().createNativeQuery("select date_taken from patient_vital group by date_taken desc limit 3", VitalDate.class).getResultList();
 
-        for(VitalDate date: vitalDates)
-        {
-            System.out.println(date);
-        }
 
         List<VitalList> vitalList = new ArrayList<>();
         VitalList vitalItem = null;
@@ -125,7 +122,19 @@ public class HealthSummaryController extends Controller
                 "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
                 "join patient p on vg.PATIENT_ID = p.PATIENT_ID",VaccinationManager.class).getResultList();
 
-        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers));
+        List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.appointment_id, a.patient_id, a.doctor_id, d.doc_name, a.appointment_date, a.appointment_time from appointment a\n" +
+                "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID", AppointmentManager.class).getResultList();
+
+        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment));
+    }
+
+    @Transactional
+    public Result resolveConditionHS(Long medicalHistoryID)
+    {
+        Medical_History current = (Medical_History) jpaApi.em().createQuery("select mh from Medical_History mh where mh.medicalHistoryID = :Id").setParameter("Id", medicalHistoryID).getSingleResult();
+        current.dateResolved = LocalDate.now();
+        jpaApi.em().persist(current);
+        return redirect(routes.HealthSummaryController.getHealthSummary());
     }
 
 

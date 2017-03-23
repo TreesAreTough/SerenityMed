@@ -13,7 +13,7 @@ public class LabManager
     public Date dateTaken;
 
     @Column (name ="PATIENT_ID")
-    public Long patientId;
+    public String  patientId;
 
     @Column (name ="LAB_ID")
     public Long labId;

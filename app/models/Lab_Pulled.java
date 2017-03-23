@@ -16,7 +16,7 @@ public class Lab_Pulled
     public LocalDate labDate;
 
     @Column (name ="PATIENT_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column (name ="LAB_ID")
     public Long labID;
