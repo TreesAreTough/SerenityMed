@@ -12,6 +12,7 @@ import play.mvc.Result;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 public class PrescriptionController  extends Controller
 {
@@ -86,8 +87,28 @@ public class PrescriptionController  extends Controller
     @Transactional
     public Result addPrescription()
     {
-        Prescription prescription = formFactory.form(Prescription.class).bindFromRequest().get();
-        prescription.date = LocalDate.now();
+        DynamicForm postedForm = formFactory.form().bindFromRequest();
+        String patientID = postedForm.get("patientID");
+        String dosage = postedForm.get("dosage");
+        String date = postedForm.get("date");
+        Long medicationID = new Long(postedForm.get("medicationID"));
+        Long pharmacyID = new Long(postedForm.get("pharmacyID"));
+        Long doctorID = new Long(postedForm.get("doctorID"));
+        Long frequencyID = new Long(postedForm.get("frequencyID"));
+
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        formatter = formatter.withLocale(Locale.US);
+        LocalDate dd = LocalDate.parse(date, formatter);
+        Prescription prescription = new Prescription();
+
+        prescription.patientID = patientID;
+        prescription.dosage = dosage;
+        prescription.date = dd;
+        prescription.medicationID = medicationID;
+        prescription.pharmacyID = pharmacyID;
+        prescription.doctorID = doctorID;
+        prescription.frequencyID = frequencyID;
+
         jpaApi.em().persist(prescription);
         return redirect(routes.PrescriptionController.getPrescriptionManager());
     }
@@ -107,15 +128,21 @@ public class PrescriptionController  extends Controller
         Long prescriptionID = new Long(postedForm.get("prescriptionID"));
         String patientID = postedForm.get("patientID");
         String dosage = postedForm.get("dosage");
+        String date = postedForm.get("date");
         Long medicationID = new Long(postedForm.get("medicationID"));
         Long pharmacyID = new Long(postedForm.get("pharmacyID"));
         Long doctorID = new Long(postedForm.get("doctorID"));
         Long frequencyID = new Long(postedForm.get("frequencyID"));
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        formatter = formatter.withLocale(Locale.US);
+        LocalDate dd = LocalDate.parse(date, formatter);
+
         Prescription prescription = (Prescription) jpaApi.em().createQuery("select pre from Prescription pre where pre.prescriptionID = :Id").setParameter("Id", prescriptionID).getSingleResult();
 
         prescription.prescriptionID = prescriptionID;
         prescription.patientID = patientID;
         prescription.dosage = dosage;
+        prescription.date = dd;
         prescription.medicationID = medicationID;
         prescription.pharmacyID = pharmacyID;
         prescription.doctorID = doctorID;

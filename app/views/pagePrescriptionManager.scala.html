@@ -27,7 +27,7 @@
     <link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
 
-<body class="fixed-top-active dynamic-tables">
+<body class="fixed-top-active fancy-form-elements">
 <!-- WRAPPER -->
 <div class="wrapper">
     <!-- TOP NAV BAR -->
@@ -448,6 +448,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="medicationID" class="col-sm-3 control-label">Medication Name</label>
                                         <div class="col-sm-9">
@@ -462,6 +463,15 @@
                                         <label for="dosage" class="col-sm-3 control-label">Enter Dosage:</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="dosage" class="form-control" id="dosage" placeholder="Dosage">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="datepicker" class="col-sm-3 control-label">Date Prescribed</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon ion-calendar"></i></span>
+                                                <input name="date" type="text" id="datepicker" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">

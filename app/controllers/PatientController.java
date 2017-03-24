@@ -1,6 +1,8 @@
 package controllers;
 
 
+import models.MedicalHistoryManager;
+import models.Medical_Condition;
 import models.Patient;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -46,9 +48,22 @@ public class PatientController extends Controller
         return ok(views.html.formBootstrapElements.render());
     }
 
+    @Transactional(readOnly = true)
     public Result getFormFancyElements()
     {
-        return ok(views.html.formFancyElements.render());
+        List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
+                "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
+                "where mh.DATE_RESOLVED is null", MedicalHistoryManager.class).getResultList();
+
+        List<MedicalHistoryManager> pastMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
+                "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
+                "where mh.DATE_RESOLVED is not null", MedicalHistoryManager.class).getResultList();
+
+        List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
+
+        List<Medical_Condition> medCondition = (List<Medical_Condition>) jpaApi.em().createQuery("select mc from Medical_Condition mc", Medical_Condition.class).getResultList();
+
+        return ok(views.html.formFancyElements.render(currentMedicalHistory, pastMedicalHistory, patientList, medCondition));
     }
 
     public Result getFormInplace()

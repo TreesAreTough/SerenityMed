@@ -25,4 +25,5 @@ public class MedicalHistoryManager {
 
     @Column(name = "MC_NAME")
     public String mcName;
+
 }
