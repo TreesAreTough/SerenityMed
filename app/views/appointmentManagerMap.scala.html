@@ -419,7 +419,7 @@
                                 </td>
 
                             </tr>
-                                }
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -428,6 +428,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <!-- TICKET FORM -->
+
                     <div class="widget">
                         <div class="widget-header clearfix">
                             <h3><i class="icon ion-compose"></i> <span>NEW APPOINTMENT</span></h3>
@@ -436,6 +437,7 @@
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
+
                         <div class="widget-content">
                             <form method="POST" action="@routes.AppointmentController.addAppointment()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
@@ -451,7 +453,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+
+                        <div class="form-group">
                                         <label for="time" class="col-sm-3 control-label">Enter Time:</label>
                                         <div class="col-sm-9">
                                             <input type="time" name="time" class="form-control" id="time" placeholder="time">
@@ -460,7 +463,7 @@
                                     <div class="form-group">
                                         <label for="date" class="col-sm-3 control-label">Enter Date:</label>
                                         <div class="col-sm-9">
-                                                <input type="date" name="date" class="form-control" id="date" placeholder="date">
+                                            <input type="date" name="date" class="form-control" id="date" placeholder="date">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -479,13 +482,46 @@
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" class="btn btn-primary btn-block">Add New Appointment</button>
                                         </div>
+
                                     </div>
+
                                 </fieldset>
                             </form>
                         </div>
                     </div>
+
+                </div>
+                </div>
+
                     <!-- put add box here -->
-                    <!-- END SHOW HIDE COLUMNS -->
+                    <div class="widget">
+                        <div class="col-md-12">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-map"></i> <span>@doc.docName Location</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            <div class="google-map">
+                                <div id="map-canvas"><iframe
+                                        width="1250"
+                                        height="500"
+                                        frameborder="0" style="border:0"
+                                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDQWa_oX8gO8zwdVCNc8UyJPx8GDDMA_Ic
+                                        &q=@doc.getDocAddress">
+
+                                </iframe></div>
+                            </div>
+                        </div>
+                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- DATA EXPORT -->
                     <!-- END DATA EXPORT -->
                     <!-- COLUMN FILTER -->
@@ -494,12 +530,8 @@
                     <!-- END SCROLLING DATA TABLE -->
                     <!-- BASIC DATA TABLE -->
                     <!-- END BASIC DATA TABLE -->
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- END COLUMN RIGHT -->
-</div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
 <script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
