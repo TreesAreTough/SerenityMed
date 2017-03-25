@@ -1,4 +1,4 @@
-@(vaccinationManager: List[VaccinationManager], vaccine: List[Vaccination], patientList: List[Patient], doctorList: List[Doctor])
+@(vaccinationManager: List[VaccinationManager], vaccine: List[Vaccination], patientList: List[Patient], doctorList: List[Doctor], currentVaccination: VaccinationManager)
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -403,8 +403,8 @@
                                 <td>@vaccine.boosterRequired</td>
                                 <td>@vaccine.docName</td>
                                 <td>
-                                    <form method="GET" action="@routes.VaccineController.editVaccine(vaccine.vaccinationGivenID)">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <form>
+                                        <button type="submit" class="btn btn-primary">Edit</button>
                                     </form>
                                 </td>
                                 <td>
@@ -413,7 +413,7 @@
                                     </form>
                                 </td>
                             </tr>
-                                }
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -477,6 +477,87 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" class="btn btn-primary btn-block">Add New Vaccination</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- put add box here -->
+                    <!-- END SHOW HIDE COLUMNS -->
+                    <!-- DATA EXPORT -->
+                    <!-- END DATA EXPORT -->
+                    <!-- COLUMN FILTER -->
+                    <!-- END COLUMN FILTER -->
+                    <!-- SCROLLING DATA TABLE -->
+                    <!-- END SCROLLING DATA TABLE -->
+                    <!-- BASIC DATA TABLE -->
+                    <!-- END BASIC DATA TABLE -->
+                </div>
+                <div class="col-md-6">
+                    <!-- TICKET FORM -->
+                    <div class="widget">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-compose"></i> <span>EDIT VACCINATION</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <form method="POST" action="@routes.VaccineController.updateVaccine()" class="form-horizontal form-ticket" role="form">
+                                <input type="hidden" name="vaccinationGivenID" value="@currentVaccination.vaccinationGivenID"/>
+                                <fieldset>
+                                    <legend>Select Vaccination</legend>
+                                    <div class="form-group">
+                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
+                                        <div class="col-sm-9">
+                                            <select id="patientID1" name="patientID" class="select-ticket-type">
+                                                <option selected value="@currentVaccination.patientID">@currentVaccination.firstName</option>
+                                                @for(patient <- patientList){
+                                                @if(!currentVaccination.patientID.equals(patient.patientID)){
+                                                <option value=@patient.patientID>@patient.firstName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vaccineID1" class="col-sm-3 control-label">Allergy Name</label>
+                                        <div class="col-sm-9">
+                                            <select name="vaccineID" id="vaccineID1" class="select2">
+                                                <option selected value="@currentVaccination.vaccineID">@currentVaccination.vaccineName</option>
+                                                @for(vaccine <- vaccine){
+                                                @if(!currentVaccination.vaccineID.equals(vaccine.vaccineID)){
+                                                <option value=@vaccine.vaccineID>@vaccine.vaccineName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="datepicker" class="col-sm-3 control-label">Vaccination Date</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon ion-calendar"></i></span>
+                                                <input name="date" type="text" id="datepicker" class="form-control" value="@currentVaccination.date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctorID1" class="col-sm-3 control-label">Doctor</label>
+                                        <div class="col-sm-9">
+                                            <select name="doctorID" id="doctorID1" class="select2">
+                                                <option selected value="@currentVaccination.doctorID">@currentVaccination.docName</option>
+                                                @for(doctor <- doctorList){
+                                                @if(!currentVaccination.doctorID.equals(doctor.doctorID)){
+                                                <option value=@doctor.doctorID>@doctor.docName</option>
+                                                }}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-primary btn-block">Edit Vaccination</button>
                                         </div>
                                     </div>
                                 </fieldset>

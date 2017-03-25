@@ -482,29 +482,29 @@
                         </div>
                         <div class="widget-content">
                             <div class="table-responsive">
-                            <table class="table table-sorting table-striped table-hover datatable">
-                                <thead>
-                                <tr>
-                                    <th>Current Medical Condition</th>
-                                    <th>Date Diagnosed</th>
-                                    <th>Resolved?</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @for(current <- currentMedical){
-                                <tr>
+                                <table class="table table-sorting table-striped table-hover datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>Current Medical Condition</th>
+                                        <th>Date Diagnosed</th>
+                                        <th>Resolved?</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(current <- currentMedical){
+                                    <tr>
 
-                                    <td>@current.mcName</td>
-                                    <td>@current.dateDiagnosed</td>
-                                    <td>
-                                        <form method="POST" action="@routes.HealthSummaryController.resolveConditionHS(current.medicalHistoryID)">
-                                            <button type="submit" class="btn btn-primary">Resolve</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                }
-                                </tbody>
-                            </table>
+                                        <td>@current.mcName</td>
+                                        <td>@current.dateDiagnosed</td>
+                                        <td>
+                                            <form method="POST" action="@routes.HealthSummaryController.resolveConditionHS(current.medicalHistoryID)">
+                                                <button type="submit" class="btn btn-primary">Resolve</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    }
+                                    </tbody>
+                                </table>
                                 <br>
                                 <table class="table table-sorting table-striped table-hover datatable">
                                     <thead>
@@ -526,9 +526,9 @@
                                     </tbody>
                                 </table>
                                 <form method="GET" action="@routes.MedicalHistoryController.getMoreInfo()">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary btn-block">Learn More about Your Medical Conditions</button>
-                                </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary btn-block">Learn More about Your Medical Conditions</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -545,33 +545,33 @@
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
-                    <div class="widget-content">
-                        <div class="table-responsive">
-                            <table id="datatable-basic-scrolling" class="table table-sorting table-hover datatable">
-                                <thead>
-                                <tr>
-                                    <th>Drug Name</th>
-                                    <th>Dosage</th>
-                                    <th>Frequency</th>
+                        <div class="widget-content">
+                            <div class="table-responsive">
+                                <table id="datatable-basic-scrolling" class="table table-sorting table-hover datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>Drug Name</th>
+                                        <th>Dosage</th>
+                                        <th>Frequency</th>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @for(prescription <- prescription){
-                                <tr>
-                                    <td>@prescription.medicationName</td>
-                                    <td>@prescription.dosage</td>
-                                    <td>@prescription.frequency Seconds</td>
-                                </tr>
-                                }
-                                </tbody>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(prescription <- prescription){
+                                    <tr>
+                                        <td>@prescription.medicationName</td>
+                                        <td>@prescription.dosage</td>
+                                        <td>@prescription.frequency Seconds</td>
+                                    </tr>
+                                    }
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
                         </div>
+                        <!-- END COMPLETENESS METER -->
                     </div>
-                    <!-- END COMPLETENESS METER -->
                 </div>
-            </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -694,59 +694,54 @@
         </div>
 
     </div>
-    </div>
-    <!-- END COLUMN RIGHT -->
+</div>
+<!-- END COLUMN RIGHT -->
 </div>
 
 <!-- END WRAPPER -->
 <!-- Javascript -->
-    <script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/bootstrap/bootstrap.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/queen-common.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.resize.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.time.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.orderBars.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/stat/flot/jquery.flot.tooltip.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/raphael/raphael-min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/raphael/raphael-min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/jquery.mapael.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/maps/world_countries.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/mapael/maps/world_countries.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/moment/moment.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/moment/moment.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/bootstrap-editable/bootstrap-editable.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-maskedinput/jquery.masked-input.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/jquery-maskedinput/jquery.masked-input.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/queen-charts.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/queen-maps.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/queen-maps.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/queen-elements.js")"></script>
 
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/jquery.dataTables.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/jquery.dataTables.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.colReorder.min.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.colReorder.min.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/exts/dataTables.tableTools.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/dataTables.bootstrap.js")"></script>
+<script src="@routes.Assets.at("bootstrap/assets/js/plugins/datatable/dataTables.bootstrap.js")"></script>
     <script src="@routes.Assets.at("bootstrap/assets/js/queen-table.js")"></script>
 
- <script type="text/javascript">
+<script type="text/javascript">
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawDualY);
-
     function drawDualY() {
           var data = new google.visualization.DataTable();
           data.addColumn('string', 'Date');
           data.addColumn('string', 'Hc A1C');
           data.addColumn('string', 'Glucose');
-
           data.addRows([
             @for(barChart <- barChart){
               ['@barChart.dateTaken', '@barChart.val1', '@barChart.val2'],}
           ]);
-
           var options = {
             chart: {
-
-
             },
             series: {
               0: {axis: 'MotivationLevel'},
@@ -760,7 +755,6 @@
             },
             hAxis: {
               title: 'Time of Day',
-
               viewWindow: {
                 min: [7, 30, 0],
                 max: [17, 30, 0]
@@ -770,34 +764,26 @@
               title: 'Rating (scale of 1-10)'
             }
           };
-
           var material = new google.charts.Bar(document.getElementById('chart_div'));
           material.draw(data, options);
         }
-
     /* curve_chart */
-
     $('.nav-pills a').on('shown.bs.tab', function(event){
         var x = $(event.target).text();
-
         if (x == 'Weight/Cholesterol') {
-
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
-
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
               ['Date Taken', 'Weight in lb', 'Total Cholesterol'],
                @for(lineChart <- lineChart){
               ['@lineChart.dateTaken', @lineChart.val1, @lineChart.val2],}
             ]);
-
             var options = {
               title: 'Weight and Cholesterol Over Time',
               curveType: 'function',
               legend: { position: 'bottom' }
             };
-
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             chart.draw(data, options);
           }

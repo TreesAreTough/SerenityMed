@@ -44,6 +44,7 @@ public class HealthSummaryController extends Controller
                 "on x.date_taken = y.date_taken\n" +
                 "order by date_taken asc", BarChart.class).getResultList();
 
+
         List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
                 "where mh.DATE_RESOLVED is null", MedicalHistoryManager.class).getResultList();
@@ -60,7 +61,7 @@ public class HealthSummaryController extends Controller
                 "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
 
 
-        List<VitalManager> vitalManagerList = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
+        List<VitalManager> vitalManagerList = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, pv.VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
                 "join vitals v on pv.VITAL_ID = v.VITAL_ID\n" +
                 "order by v.VITAL_NAME, pv.DATE_TAKEN desc", VitalManager.class).getResultList();
 

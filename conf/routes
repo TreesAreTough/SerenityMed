@@ -68,9 +68,17 @@ GET     /labManager              controllers.LabController.getLabManager()
 
 # Vital Manager
 GET     /vitalManager            controllers.VitalController.getVitalManager()
+POST    /addVitals               controllers.VitalController.addVitals()
+POST    /deleteVitals            controllers.VitalController.deleteVitals()
+GET     /editVitals/:id          controllers.VitalController.editVitals(id:Long)
+POST    /updateVitals            controllers.VitalController.updateVitals()
 
 # Vaccine Manager
 GET     /vaccineManager          controllers.VaccineController.getVaccineManager()
+POST    /addVaccine              controllers.VaccineController.addVaccine()
+POST    /deleteVaccine           controllers.VaccineController.deleteVaccine(id:Long)
+GET     /editVaccine/:id         controllers.VaccineController.editVaccine(id:Long)
+POST    /updateVaccine           controllers.VaccineController.updateVaccine()
 
 # Appointment Manager
 GET     /appointment             controllers.AppointmentController.getAppointmentManager()
@@ -80,8 +88,6 @@ GET     /editAppointment/:appointmentId     controllers.AppointmentController.ge
 POST    /updateAppointment       controllers.AppointmentController.updateAppointment()
 GET     /map/:doctorId           controllers.AppointmentController.getMap(doctorId:Long)
 GET     /editMap/:doctorId/:appointmentID   controllers.AppointmentController.getEditMap(doctorId:Long,appointmentID:Long)
-
-
 
 
 

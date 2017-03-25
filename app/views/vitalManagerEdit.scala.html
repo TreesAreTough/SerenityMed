@@ -1,4 +1,5 @@
-@(vaccinationManager: List[VaccinationManager], vaccine: List[Vaccination], patientList: List[Patient], doctorList: List[Doctor])
+@(vital: List[VitalList], date: List[VitalDate], current: List[VitalManager], currentName: VitalStringName)
+@import java.math.BigInteger; var i=1
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -6,7 +7,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Vaccine Manager</title>
+    <title>Vital Manager</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -261,10 +262,10 @@
                         <ul class="list-unstyled sub-menu collapse">
                             <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
                             <li><a href="@routes.MedicalHistoryController.getHealthConditionManager()"><span class="text">Health Condition Manager</span></a></li>
-                            <li ><a href="@routes.LabController.getLabManager()"><span class="text">Lab Manager</span></a></li>
-                            <li><a href="@routes.VitalController.getVitalManager()"><span class="text">Vital Manager</span></a></li>
+                            <li><a href="@routes.LabController.getLabManager()"><span class="text">Lab Manager</span></a></li>
+                            <li class="active"><a href="@routes.VitalController.getVitalManager()"><span class="text">Vital Manager</span></a></li>
                             <li><a href="@routes.AppointmentController.getAppointmentManager()"><span class="text">Appointment Manager</span></a></li>
-                            <li class="active"><a href="@routes.VaccineController.getVaccineManager()"><span class="text">Vaccination Manager</span></a></li>
+                            <li><a href="@routes.VaccineController.getVaccineManager()"><span class="text">Vaccination Manager</span></a></li>
                             <li><a href="@routes.AllergyController.getAllergyManager()"><span class="text">Allergy Manager</span></a></li>
                         </ul>
                     </li>
@@ -320,11 +321,11 @@
         <div class="container-fluid primary-content">
             <!-- PRIMARY CONTENT HEADING -->
             <div class="primary-content-heading clearfix">
-                <h2>VACCINE MANAGER</h2>
+                <h2>VITAL MANAGER</h2>
                 <ul class="breadcrumb pull-left">
                     <li><i class="icon ion-home"></i><a href="@routes.HealthSummaryController.getHealthSummary">Home</a></li>
                     <li><a href="#">Managers</a></li>
-                    <li class="active">Vaccine Manager</li>
+                    <li class="active">Vital Manager</li>
                 </ul>
                 <div class="sticky-content pull-right">
                     <div class="btn-group btn-dropdown">
@@ -375,7 +376,7 @@
             <!-- SHOW HIDE COLUMNS -->
             <div class="widget">
                 <div class="widget-header clearfix">
-                    <h3><i class="fa fa-stethoscope" aria-hidden="true"></i> <span>VACCINE LIST</span></h3>
+                    <h3><i class="fa fa-heartbeat" aria-hidden="true"></i> <span>LATEST VITALS LIST</span></h3>
                     <div class="btn-group widget-header-toolbar visible-lg">
                         <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                         <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
@@ -386,36 +387,31 @@
                         <table class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
-                            <tr>
-                                <th>Vaccine Name</th>
-                                <th>Date</th>
-                                <th>Booster?</th>
-                                <th>Doctor</th>
+                                <th>Vital Name</th>
+                                @for(date <- date){
+                                <th>@date.dateTaken</th>
+                                }
+
                                 <th>Edit</th>
-                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @for(vaccine <- vaccinationManager){
+                            @for(vital <- vital){
                             <tr>
-                                <td>@vaccine.vaccineName</td>
-                                <td>@vaccine.date</td>
-                                <td>@vaccine.boosterRequired</td>
-                                <td>@vaccine.docName</td>
+                                <td>@vital.getVitalName</td>
+                                <td>@vital.getValue1</td>
+                                <td>@vital.getValue2</td>
+                                <td>@vital.getValue3</td>
                                 <td>
-                                    <form method="GET" action="@routes.VaccineController.editVaccine(vaccine.vaccinationGivenID)">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="POST" action="@routes.VaccineController.deleteVaccine(vaccine.vaccinationGivenID)">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    <form method="GET" action="@routes.VitalController.editVitals(vital.getVitalID)">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
                                     </form>
                                 </td>
                             </tr>
-                                }
+                            }
                             </tbody>
                         </table>
+                        <!-- delete option here-->
                     </div>
                 </div>
             </div>
@@ -424,38 +420,18 @@
                     <!-- TICKET FORM -->
                     <div class="widget">
                         <div class="widget-header clearfix">
-                            <h3><i class="icon ion-compose"></i> <span>NEW VACCINATION</span></h3>
+                            <h3><i class="icon ion-compose"></i> <span>NEW VITALS</span></h3>
                             <div class="btn-group widget-header-toolbar visible-lg">
                                 <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
                         <div class="widget-content">
-                            <form method="POST" action="@routes.VaccineController.addVaccine()" class="form-horizontal form-ticket" role="form">
+                            <form method="POST" action="@routes.VitalController.addVitals()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
-                                    <legend>Select Vaccination</legend>
+                                    <legend>Enter Vitals</legend>
                                     <div class="form-group">
-                                        <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID" name="patientID" class="select-ticket-type">
-                                                @for(patient <- patientList){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="vaccineID" class="col-sm-3 control-label">Allergy Name</label>
-                                        <div class="col-sm-9">
-                                            <select name="vaccineID" id="vaccineID" class="select2">
-                                                @for(vaccine <- vaccine){
-                                                <option value=@vaccine.vaccineID>@vaccine.vaccineName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="datepicker" class="col-sm-3 control-label">Vaccination Date</label>
+                                        <label for="datepicker" class="col-sm-3 control-label">Date Taken</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icon ion-calendar"></i></span>
@@ -464,11 +440,100 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
+                                        <label for="BP" class="col-sm-3 control-label">Blood Pressure:</label>
                                         <div class="col-sm-9">
-                                            <select name="doctorID" id="doctorID" class="select2">
-                                                @for(doctor <- doctorList){
-                                                <option value=@doctor.doctorID>@doctor.docName</option>
+                                            <input type="text" name="bloodPressure" class="form-control" id="BP" placeholder="Blood Pressure">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pulse" class="col-sm-3 control-label">Pulse:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="pulse" class="form-control" id="pulse" placeholder="Pulse">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rr" class="col-sm-3 control-label">Respiration Rate:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="rr" class="form-control" id="rr" placeholder="Respiration Rate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="temp" class="col-sm-3 control-label">Temperature:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="temp" class="form-control" id="temp" placeholder="Temperature">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="weight" class="col-sm-3 control-label">Weight:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="weight" class="form-control" id="weight" placeholder="Weight">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-primary btn-block">Add New Vitals</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-compose"></i> <span>EDIT VITALS</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <form method="POST" action="@routes.VitalController.updateVitals()" class="form-horizontal form-ticket" role="form">
+                                <fieldset>
+                                    <legend>Edit @currentName.vitalName Values</legend>
+
+                                    @for(current <- current){
+                                    <input type="hidden" name="currentPatientVitalID@i" value="@current.patientVitalID"/>
+                                    <div class="form-group">
+                                        <label for="value" class="col-sm-3 control-label">@current.dateTaken</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="currentValue@i" class="form-control" id="value" value="@current.value">
+                                        </div>
+                                    </div>
+                                    @{i=i+1}
+                                    }
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-primary btn-block">Edit Vitals</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-compose"></i> <span>DELETE VITALS</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <form method="POST" action="@routes.VitalController.deleteVitals()" class="form-horizontal form-ticket" role="form">
+                                <fieldset>
+                                    <legend>Select Vitals by Date</legend>
+                                    <div class="form-group">
+                                        <label for="date" class="col-sm-3 control-label">Date</label>
+                                        <div class="col-sm-9">
+                                            <select id="date" name="date" class="select-ticket-type">
+                                                @for(date <- date){
+                                                <option value=@date.dateTaken>@date.dateTaken</option>
                                                 }
                                             </select>
                                         </div>
@@ -476,7 +541,7 @@
                                     <br>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-primary btn-block">Add New Vaccination</button>
+                                            <button type="submit" class="btn btn-danger btn-block">Delete Vitals</button>
                                         </div>
                                     </div>
                                 </fieldset>
