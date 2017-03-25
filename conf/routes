@@ -73,17 +73,17 @@ GET     /vitalManager            controllers.VitalController.getVitalManager()
 GET     /vaccineManager          controllers.VaccineController.getVaccineManager()
 
 # Appointment Manager
-GET     /appointment         controllers.AppointmentController.getAppointmentManager()
-POST    /appointment         controllers.AppointmentController.deleteAppointment(appointmentId:Long)
-POST    /addAppointment      controllers.AppointmentController.addAppointment()
+GET     /appointment             controllers.AppointmentController.getAppointmentManager()
+POST    /appointment             controllers.AppointmentController.deleteAppointment(appointmentId:Long)
+POST    /addAppointment          controllers.AppointmentController.addAppointment()
 GET     /editAppointment/:appointmentId     controllers.AppointmentController.getAppointmentEdit(appointmentId:Long)
-POST    /updateAppointment   controllers.AppointmentController.updateAppointment()
-GET     /map/:doctorId       controllers.AppointmentController.getMap(doctorId:Long)
+POST    /updateAppointment       controllers.AppointmentController.updateAppointment()
+GET     /map/:doctorId           controllers.AppointmentController.getMap(doctorId:Long)
 GET     /editMap/:doctorId/:appointmentID   controllers.AppointmentController.getEditMap(doctorId:Long,appointmentID:Long)
 
 
 
-GET     /appointment             controllers.AppointmentController.getAppointmentManager()
+
 
 # Prescription Reminder Manager
 GET     /preReminder             controllers.ReminderPrescriptionController.getReminderManager()

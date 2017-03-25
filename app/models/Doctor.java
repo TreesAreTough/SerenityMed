@@ -19,8 +19,8 @@ public class Doctor
     @Column (name="DOC_NAME")
     public String docName;
 
-    @Column (name="DOC_SPECIALITY")
-    public String docSpeciality;
+    @Column (name="DOC_SPECIALTY")
+    public String docSpecialty;
 
     @Column (name="DOC_PHONE_NUMBER")
     public String docPhoneNumber;

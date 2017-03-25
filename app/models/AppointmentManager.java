@@ -28,8 +28,8 @@ public class AppointmentManager {
     @Column(name = "APPOINTMENT_TIME")
     public LocalTime time;
 
-    @Column(name = "DOC_SPECIALITY")
-    public String docSpeciality;
+    @Column(name = "DOC_SPECIALTY")
+    public String docSpecialty;
 
     @Column(name="FIRST_NAME")
     public String firstName;
