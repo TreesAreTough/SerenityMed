@@ -122,8 +122,9 @@ public class HealthSummaryController extends Controller
                 "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
                 "join patient p on vg.PATIENT_ID = p.PATIENT_ID",VaccinationManager.class).getResultList();
 
-        List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.appointment_id, a.patient_id, a.doctor_id, d.doc_name, d.DOC_SPECIALITY, a.appointment_date, a.appointment_time from appointment a\n" +
-                "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID", AppointmentManager.class).getResultList();
+        List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
+                "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
 
         return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment));
     }
