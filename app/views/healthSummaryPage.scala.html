@@ -1,4 +1,4 @@
-@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager])
+@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager], column: List[GoogleColumnChart])
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -498,11 +498,11 @@
     function drawDualY() {
           var data = new google.visualization.DataTable();
           data.addColumn('string', 'Date');
-          data.addColumn('string', 'Hc A1C');
-          data.addColumn('string', 'Glucose');
+          data.addColumn('number', 'Hc A1C');
+          data.addColumn('number', 'Glucose');
           data.addRows([
-            @for(barChart <- barChart){
-              ['@barChart.dateTaken', '@barChart.val1', '@barChart.val2'],}
+            @for(bar <- column){
+              ['@bar.getDateTaken', @bar.getHemoglobin, @bar.getGlucose],}
           ]);
           var options = {
             chart: {
