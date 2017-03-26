@@ -1,7 +1,10 @@
 package controllers;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
+import play.Logger;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -10,6 +13,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
@@ -149,6 +154,101 @@ public class PrescriptionController  extends Controller
         prescription.frequencyID = frequencyID;
 
         jpaApi.em().persist(prescription);
+        return redirect(routes.PrescriptionController.getPrescriptionManager());
+    }
+
+    @Transactional(readOnly = true)
+    public Result spellingCorrection()
+    {
+        DynamicForm postedForm = formFactory.form().bindFromRequest();
+        String med = postedForm.get("med");
+
+
+        List<PrescriptionManager> prescription = (List<PrescriptionManager>) jpaApi.em().createNativeQuery("select pre.PRESCRIPTION_ID, m.MEDICATION_ID, p.PATIENT_ID, p.FIRST_NAME, m.medication_name, pre.dosage, f.frequency, pre.frequency_id, d.doc_name, d.doctor_id, pharm.pharmacy_id, pharm.pharm_name, pre.date from patient p\n" +
+                "join prescription pre on p.PATIENT_ID = pre.PATIENT_ID\n" +
+                "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +
+                "join pharmacy pharm on pre.PHARMACY_ID = pharm.PHARMACY_ID\n" +
+                "join doctor d on pre.DOCTOR_ID = d.DOCTOR_ID\n" +
+                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
+
+        List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
+
+        List<Frequency> frequencyList = (List<Frequency>) jpaApi.em().createQuery("select f from Frequency f", Frequency.class).getResultList();
+
+        List<Medication> medicationList = (List<Medication>) jpaApi.em().createQuery("select m from Medication m", Medication.class).getResultList();
+
+        List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
+
+        List<Pharmacy> pharmacyList = (List<Pharmacy>) jpaApi.em().createQuery("select ph from Pharmacy ph", Pharmacy.class).getResultList();
+
+
+
+        RxNomSpelling jsonNode = null;
+        try
+        {
+            //The web service I am calling
+            String myURL = "https://rxnav.nlm.nih.gov/REST/spellingsuggestions.json?name="+med;
+            URL url = new URL(myURL);
+
+            //Get the request setup
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            jsonNode = objectMapper.readValue(url, RxNomSpelling.class);
+
+        }
+        catch (Exception e)
+        {
+            Logger.error("oh no! got some exception: " + e.getMessage());
+        }
+
+        if (jsonNode == null)
+        {
+            Logger.warn("oh no! got nothing back from url");
+        }
+
+        return ok(views.html.pagePrescriptionAddMedicine.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, jsonNode));
+    }
+
+    @Transactional
+    public Result addMedication()
+    {
+        DynamicForm postedForm = formFactory.form().bindFromRequest();
+        String med = postedForm.get("med");
+        RxNomName drug = null;
+
+        try
+        {
+            String myURL = "https://rxnav.nlm.nih.gov/REST/Prescribe/rxcui.json?name="+med;
+            URL url = new URL(myURL);
+
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            drug = objectMapper.readValue(url, RxNomName.class);
+
+            System.out.println(drug);
+        }
+        catch (Exception e)
+        {
+            Logger.error("oh no! got some exception: " + e.getMessage());
+        }
+
+        if (drug == null)
+        {
+            Logger.warn("oh no! got nothing back from url");
+        }
+
+        Medication medication = new Medication();
+        medication.medicationName = drug.getIdGroup().getName();
+        for (String drugRXUI: drug.getIdGroup().getRxnormId())
+        {
+            medication.rxcui = Long.parseLong(drugRXUI);
+        }
+
+        jpaApi.em().persist(medication);
         return redirect(routes.PrescriptionController.getPrescriptionManager());
     }
 

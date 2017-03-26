@@ -1,3 +1,5 @@
+@(rxnomName: RxNomName)
+
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -442,6 +444,19 @@
 				</div>
 				<!-- END PRIMARY CONTENT HEADING -->
 			</div>
+
+
+				@rxnomName.getIdGroup.getName<br>
+			@for(name <- rxnomName.getIdGroup.getRxnormId){
+
+			@name
+			}
+			<br>
+
+
+
+
+			hello
 			<div class="right-sidebar">
 				<!-- CHAT -->
 				<div class="widget widget-chat-contacts">

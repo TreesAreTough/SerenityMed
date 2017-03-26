@@ -50,6 +50,8 @@ GET     /editScript/:id          controllers.PrescriptionController.getPrescript
 POST    /addScript               controllers.PrescriptionController.addPrescription()
 POST    /deleteScript            controllers.PrescriptionController.deletePrescription(id:Long)
 POST    /updateScript            controllers.PrescriptionController.updatePrescription()
+GET     /apiSpelling             controllers.PrescriptionController.spellingCorrection()
+POST    /api                     controllers.PrescriptionController.addMedication()
 
 # Medical History Manager
 GET     /moreInfo                controllers.MedicalHistoryController.getMoreInfo()
@@ -103,7 +105,10 @@ GET     /sns                     controllers.PrescriptionReminderSNSController.s
 POST    /buttonStart             controllers.PrescriptionReminderSNSController.checkDB()
 
 # Daemon
-GET     /daemonStart                controllers.DaemonController.start()
+GET     /daemonStart             controllers.DaemonController.start()
+
+
+
 
 
 

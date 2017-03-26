@@ -1,9 +1,7 @@
 package controllers;
 
 
-import models.MedicalHistoryManager;
-import models.Medical_Condition;
-import models.Patient;
+import models.*;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -118,8 +116,10 @@ public class PatientController extends Controller
 
     public Result getPageBlank()
     {
-        return ok(views.html.pageBlank.render());
+        RxNomName rxNomName = null;
+        return ok(views.html.pageBlank.render(rxNomName));
     }
+
 
     public Result getPageFaq()
     {
