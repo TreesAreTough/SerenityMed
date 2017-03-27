@@ -208,6 +208,12 @@
                             }
                             </tbody>
                         </table>
+                        <br>
+                        <form method="GET" action="@routes.PrescriptionController.getDrugInteraction()">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block">View Possible Drug Interactions</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -295,6 +301,25 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" class="btn btn-primary btn-block">Add New Prescription</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="widget-content">
+                            <form method="GET" action="@routes.PrescriptionController.spellingCorrection()" class="form-horizontal form-ticket" role="form">
+                                <fieldset>
+                                    <legend>Don't See Your Medication?</legend>
+                                    <div class="form-group">
+                                        <label for="med" class="col-sm-3 control-label">Medication Name:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="med" class="form-control" id="med" placeholder="Search Medication Name">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success btn-block">Search for Medication</button>
                                         </div>
                                     </div>
                                 </fieldset>
