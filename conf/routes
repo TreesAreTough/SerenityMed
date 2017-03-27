@@ -65,6 +65,10 @@ POST    /deleteAllergy           controllers.AllergyController.deleteAllergy(id:
 
 # Lab Manager
 GET     /labManager              controllers.LabController.getLabManager()
+POST    /deleteLab               controllers.LabController.deleteLab(labPulledId:Long)
+POST    /addLab                  controllers.LabController.addLab()
+GET     /editLab/:labPulledId    controllers.LabController.editLab(labPulledId:Long)
+POST    /updateLab               controllers.LabController.updateLab()
 
 # Vital Manager
 GET     /vitalManager            controllers.VitalController.getVitalManager()
@@ -135,6 +139,8 @@ POST   /updatePatient              controllers.UserController.updatePatient
 #Log Out/Clear Session
 POST   /logout                     controllers.UserController.logout
 
+# Random User
+GET    /randomUser                 controllers.RandomUserController.getRandomUser
 
 
 

@@ -1,4 +1,4 @@
-@(lab: List[LabManager])
+@(lab: List[LabManager], labList:List[Lab], patientList:List[Patient], doctorList:List[Doctor])
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -6,7 +6,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Prescription Manager</title>
+    <title>Lab Manager</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -402,12 +402,12 @@
                                 <td>@lab.dateTaken</td>
                                 <td>@lab.docName</td>
                                 <td>
-                                    <form>
+                                    <form method="GET" action="@routes.LabController.editLab(lab.labPulledID)">
                                         <button type="submit" class="btn btn-primary">Edit</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form>
+                                    <form method="POST" action="@routes.LabController.deleteLab(lab.labPulledID)">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
@@ -420,7 +420,79 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <!-- TICKET FORM -->
+                            <!-- TICKET FORM -->
+
+                            <div class="widget">
+                                <div class="widget-header clearfix">
+                                    <h3><i class="icon ion-compose"></i> <span>NEW LAB</span></h3>
+                                    <div class="btn-group widget-header-toolbar visible-lg">
+                                        <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                        <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="widget-content">
+                                    <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
+                                        <fieldset>
+                                            <legend>Appointment Details</legend>
+                                            <div class="form-group">
+                                                <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
+                                                <div class="col-sm-9">
+                                                    <select id="patientID" name="patientID" class="select-ticket-type">
+                                                        @for(patient <- patientList){
+                                                        <option value=@patient.patientID>@patient.firstName</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lab" class="col-sm-3 control-label">Enter Lab:</label>
+                                                <div class="col-sm-9">
+                                                    <select id="labID" name="labID" class="select-ticket-type">
+                                                    @for(lab <- labList){
+                                                    <option value=@lab.labID>@lab.labName</option>
+                                                    }
+                                                    </select>
+                                                </div>
+                                                </div>
+
+                                            <div class="form-group">
+                                                <label for="value" class="col-sm-3 control-label">Enter Value:</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="value" class="form-control" id="value" placeholder="value">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="date" class="col-sm-3 control-label">Enter Date:</label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" name="date" class="form-control" id="date" placeholder="date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
+                                                <div class="col-sm-9">
+                                                    <select name="doctorID" id="doctorID" class="select2">
+                                                        @for(doctor <- doctorList){
+                                                        <option value=@doctor.doctorID>@doctor.docName</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <br>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-9">
+                                                    <button type="submit" class="btn btn-primary btn-block">Add New Lab</button>
+                                                </div>
+                                            </div>
+                                            </fieldset>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <!-- put add box here -->
                     <!-- END SHOW HIDE COLUMNS -->
                     <!-- DATA EXPORT -->

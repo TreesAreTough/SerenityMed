@@ -1,7 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import java.time.LocalTime;
 
 @Entity
 public class Frequency
