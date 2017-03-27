@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `allergies` (
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.allergies: ~10 rows (approximately)
+-- Dumping data for table dac.allergies: ~8 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
 REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `ALLERGY_DESCRIPTION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
@@ -51,20 +51,21 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `DOCTOR_ID` (`DOCTOR_ID`),
   CONSTRAINT `FK_APPOINTMENT_doctor` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_APPOINTMENT_patient` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.appointment: ~2 rows (approximately)
+-- Dumping data for table dac.appointment: ~3 rows (approximately)
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
 REPLACE INTO `appointment` (`APPOINTMENT_ID`, `PATIENT_ID`, `DOCTOR_ID`, `APPOINTMENT_TIME`, `APPOINTMENT_DATE`) VALUES
 	(1, 11, 10, '10:30:00', '2017-04-21'),
-	(2, 11, 2, '08:15:00', '2017-05-15');
+	(2, 11, 2, '08:15:00', '2017-05-15'),
+	(3, 11, 6, '10:45:00', '2016-11-15');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 
 -- Dumping structure for table dac.doctor
 CREATE TABLE IF NOT EXISTS `doctor` (
   `DOCTOR_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DOC_NAME` varchar(50) NOT NULL,
-  `DOC_SPECALTY` varchar(50) NOT NULL,
+  `DOC_SPECIALTY` varchar(50) NOT NULL,
   `DOC_PHONE_NUMBER` varchar(50) NOT NULL,
   `DOC_ADDRESS` varchar(50) NOT NULL,
   `DOC_CITY` varchar(50) NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 
 -- Dumping data for table dac.doctor: ~16 rows (approximately)
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-REPLACE INTO `doctor` (`DOCTOR_ID`, `DOC_NAME`, `DOC_SPECALTY`, `DOC_PHONE_NUMBER`, `DOC_ADDRESS`, `DOC_CITY`, `DOC_STATE`, `DOC_ZIP`) VALUES
+REPLACE INTO `doctor` (`DOCTOR_ID`, `DOC_NAME`, `DOC_SPECIALTY`, `DOC_PHONE_NUMBER`, `DOC_ADDRESS`, `DOC_CITY`, `DOC_STATE`, `DOC_ZIP`) VALUES
 	(1, 'Dr. Robert B. Rook', 'Family Practice', '501-329-2946', '919 Locust Street ', 'Conway', 'AR', '72034'),
 	(2, 'Dr. David Naylor', 'Family Practice', '501-329-3824', '2425 Dave Ward Drive', 'Conway', 'AR', '72034'),
 	(3, 'Dr. Bart Thornberry', 'Family Practice', '501-327-2611', '2869 College Ave', 'Conway', 'AR', '72034'),
@@ -103,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `drug_interaction` (
   PRIMARY KEY (`DRUG_INTERACTION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.drug_interaction: ~216 rows (approximately)
+-- Dumping data for table dac.drug_interaction: ~194 rows (approximately)
 /*!40000 ALTER TABLE `drug_interaction` DISABLE KEYS */;
 REPLACE INTO `drug_interaction` (`DRUG_INTERACTION_ID`, `RXCUI`, `INTER_RXCUI`, `INTER_DESCRIPTION`) VALUES
 	(1, 435, 5487, 'Albuterol may increase the hypokalemic activities of Hydrochlorothiazide'),
@@ -331,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `frequency` (
   PRIMARY KEY (`FREQUENCY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.frequency: ~3 rows (approximately)
+-- Dumping data for table dac.frequency: ~2 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
 REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
 	(1, 60),
@@ -407,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `lab_pulled` (
   CONSTRAINT `doctor_lab_pulled_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `lab_id_fk` FOREIGN KEY (`LAB_ID`) REFERENCES `lab` (`LAB_ID`),
   CONSTRAINT `patient_lab_pulled_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.lab_pulled: ~19 rows (approximately)
 /*!40000 ALTER TABLE `lab_pulled` DISABLE KEYS */;
@@ -415,20 +416,20 @@ REPLACE INTO `lab_pulled` (`LAB_PULLED_ID`, `DATE_TAKEN`, `PATIENT_ID`, `LAB_ID`
 	(1, '2017-02-03', 11, 20, 6, '37'),
 	(2, '2017-02-03', 11, 18, 6, '82'),
 	(3, '2017-02-03', 11, 14, 6, '84'),
-	(4, '2017-02-03', 11, 16, 6, '5.1%'),
-	(5, '2017-02-03', 11, 17, 6, '159'),
+	(4, '2017-02-03', 11, 16, 6, '5.1'),
+	(5, '2017-03-04', 11, 17, 6, '159'),
 	(6, '2017-02-03', 11, 19, 6, '106'),
 	(7, '2016-02-05', 11, 20, 6, '37'),
 	(8, '2016-02-05', 11, 18, 6, '44'),
 	(9, '2016-02-05', 11, 14, 5, '91'),
-	(10, '2016-02-05', 11, 16, 6, '5.2%'),
+	(10, '2016-02-05', 11, 16, 6, '5.2'),
 	(11, '2016-02-05', 11, 17, 6, '153'),
 	(12, '2016-02-05', 11, 19, 6, '100'),
 	(13, '2016-08-16', 11, 20, 6, '37'),
 	(14, '2016-08-16', 11, 18, 6, '69'),
 	(15, '2016-08-16', 11, 14, 6, '75'),
-	(16, '2016-08-16', 11, 16, 6, '5.1%'),
-	(17, '2016-08-16', 11, 17, 6, '157'),
+	(16, '2016-08-16', 11, 16, 6, '5.1'),
+	(17, '2017-03-15', 11, 17, 6, '157'),
 	(18, '2016-08-16', 11, 19, 6, '102'),
 	(19, '2015-03-08', 11, 17, 6, '200');
 /*!40000 ALTER TABLE `lab_pulled` ENABLE KEYS */;
@@ -442,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `medical_condition` (
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_condition: ~30 rows (approximately)
+-- Dumping data for table dac.medical_condition: ~27 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
 REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `MC_NAME`, `MC_DESCRIPTION`, `MC_URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
@@ -489,9 +490,9 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
   KEY `patient_current_medical_condition_fk` (`PATIENT_ID`),
   CONSTRAINT `medical_condition_current_medical_condition_fk` FOREIGN KEY (`MEDICAL_CONDITION_ID`) REFERENCES `medical_condition` (`MEDICAL_CONDITION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_current_medical_condition_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_history: ~6 rows (approximately)
+-- Dumping data for table dac.medical_history: ~8 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
 REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
@@ -499,7 +500,9 @@ REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT
 	(3, '2009-02-03', 11, '2009-02-20', 7),
 	(4, '2001-10-03', 11, '2001-10-13', 30),
 	(11, '2017-03-15', 11, NULL, 8),
-	(14, '2012-09-21', 11, NULL, 26);
+	(18, '2017-03-14', 11, NULL, 1),
+	(20, '2017-03-08', 11, NULL, 10),
+	(21, '2017-01-05', 11, NULL, 21);
 /*!40000 ALTER TABLE `medical_history` ENABLE KEYS */;
 
 -- Dumping structure for table dac.medication
@@ -595,7 +598,7 @@ CREATE TABLE IF NOT EXISTS `patient_allergy` (
   KEY `patient_patient_allergy_fk` (`PATIENT_ID`),
   CONSTRAINT `allergies_patient_allergy_fk` FOREIGN KEY (`ALLERGY_ID`) REFERENCES `allergies` (`ALLERGY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_patient_allergy_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.patient_allergy: ~2 rows (approximately)
 /*!40000 ALTER TABLE `patient_allergy` DISABLE KEYS */;
@@ -616,27 +619,27 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   KEY `VITAL_ID` (`VITAL_ID`),
   CONSTRAINT `PATIENT_ID` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`),
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.patient_vital: ~16 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
-	(1, 11, 1, '98.5', '2017-02-03'),
-	(2, 11, 2, '100', '2017-02-03'),
-	(3, 11, 3, '141/90', '2017-02-03'),
-	(4, 11, 4, '15', '2017-02-03'),
-	(5, 11, 5, '186', '2017-02-03'),
 	(6, 11, 1, '98.5', '2016-02-05'),
-	(7, 11, 2, '95', '2016-02-05'),
+	(7, 11, 2, '98', '2016-02-05'),
 	(8, 11, 3, '135/87', '2016-02-05'),
-	(9, 11, 4, '13', '2016-02-05'),
+	(9, 11, 4, '21', '2016-02-05'),
 	(10, 11, 5, '173', '2016-02-05'),
-	(11, 11, 1, '98.2', '2016-08-16'),
-	(12, 11, 2, '97 ', '2016-08-16'),
-	(13, 11, 3, '121/83', '2016-08-16'),
-	(14, 11, 4, '16', '2016-08-16'),
-	(15, 11, 5, '195', '2016-08-16'),
-	(17, 11, 5, '230', '2015-03-08');
+	(17, 11, 5, '230', '2015-03-08'),
+	(18, 11, 1, '98.5', '2017-03-04'),
+	(19, 11, 2, '111', '2017-03-04'),
+	(20, 11, 3, '149/99', '2017-03-04'),
+	(21, 11, 4, '17', '2017-03-04'),
+	(22, 11, 5, '201', '2017-03-04'),
+	(23, 11, 1, '99.0', '2017-03-15'),
+	(24, 11, 2, '115', '2017-03-15'),
+	(25, 11, 3, '152/101', '2017-03-15'),
+	(26, 11, 4, '16', '2017-03-15'),
+	(27, 11, 5, '210', '2017-03-15');
 /*!40000 ALTER TABLE `patient_vital` ENABLE KEYS */;
 
 -- Dumping structure for table dac.pharmacy
@@ -686,14 +689,14 @@ CREATE TABLE IF NOT EXISTS `prescription` (
   CONSTRAINT `medication_id_fk` FOREIGN KEY (`MEDICATION_ID`) REFERENCES `medication` (`MEDICATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_perscription_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pharmacy_id_fk` FOREIGN KEY (`PHARMACY_ID`) REFERENCES `pharmacy` (`PHARMACY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription: ~11 rows (approximately)
+-- Dumping data for table dac.prescription: ~12 rows (approximately)
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
 REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
 	(1, '2017-01-15', '20mg', 1, 16, 11, 3, 6),
 	(2, '2016-12-09', '325mg', 4, 14, 11, 3, 7),
-	(3, '2017-03-03', '50mg', 4, 35, 11, 7, 6),
+	(3, '2017-04-03', '50mg', 4, 35, 11, 7, 6),
 	(4, '2016-05-07', '25mg', 5, 23, 11, 3, 6),
 	(5, '2017-03-15', '800mg', 1, 12, 11, 7, 11),
 	(6, '2017-03-15', '16mg', 4, 6, 11, 7, 4),
@@ -701,7 +704,8 @@ REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`
 	(8, '2017-03-15', '300mg', 1, 15, 11, 7, 6),
 	(9, '2017-03-15', '10mg', 1, 24, 11, 7, 1),
 	(10, '2017-03-15', '20mg', 1, 27, 11, 7, 14),
-	(11, '2017-03-21', '500mg', 1, 4, 11, 4, 7);
+	(11, '2017-03-21', '500mg', 1, 4, 11, 4, 7),
+	(13, '2016-11-15', '40 mg', 1, 29, 11, 8, 4);
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 
 -- Dumping structure for table dac.prescription_reminder
@@ -715,13 +719,13 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
   CONSTRAINT `patient_id_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
 -- Dumping data for table dac.prescription_reminder: ~2 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
 REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
-	(2, 11, 1, '13:37:50'),
-	(4, 11, 3, '13:36:55');
+	(2, 11, 1, '16:56:25'),
+	(11, 11, 9, '09:12:18');
 /*!40000 ALTER TABLE `prescription_reminder` ENABLE KEYS */;
 
 -- Dumping structure for table dac.user
@@ -793,15 +797,16 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
   CONSTRAINT `doctor_vaccination_given_fk` FOREIGN KEY (`DOCTOR_ID`) REFERENCES `doctor` (`DOCTOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patient_vaccination_given_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vaccinations_vaccination_given_fk` FOREIGN KEY (`VACCINE_ID`) REFERENCES `vaccination` (`VACCINE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.vaccination_given: ~4 rows (approximately)
+-- Dumping data for table dac.vaccination_given: ~5 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
 REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
 	(1, '2010-06-16', NULL, 11, 4, 6),
 	(4, '2017-03-14', NULL, 11, 1, 7),
 	(5, '2017-03-14', NULL, 11, 2, 2),
-	(6, '2017-03-14', NULL, 11, 3, 7);
+	(6, '2017-03-14', NULL, 11, 3, 7),
+	(7, '2017-03-12', NULL, 11, 11, 7);
 /*!40000 ALTER TABLE `vaccination_given` ENABLE KEYS */;
 
 -- Dumping structure for table dac.vitals

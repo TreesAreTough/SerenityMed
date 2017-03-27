@@ -9,6 +9,7 @@ public class AppointmentManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name="APPOINTMENT_ID")
     public Long appointmentID;
 
@@ -26,4 +27,10 @@ public class AppointmentManager {
 
     @Column(name = "APPOINTMENT_TIME")
     public LocalTime time;
+
+    @Column(name = "DOC_SPECIALTY")
+    public String docSpecialty;
+
+    @Column(name="FIRST_NAME")
+    public String firstName;
 }

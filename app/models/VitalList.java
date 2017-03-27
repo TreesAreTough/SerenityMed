@@ -15,6 +15,7 @@ public class VitalList {
     private String value3;
     private LocalDate Date3;
     private Long id3;
+    private Long vitalID;
 
     public void setVitalName(String vitalName)
     {
@@ -23,6 +24,15 @@ public class VitalList {
     public String getVitalName()
     {
         return vitalName;
+    }
+
+    public Long getVitalID()
+    {
+        return vitalID;
+    }
+    public void setVitalID(Long vitalID)
+    {
+        this.vitalID = vitalID;
     }
 
 

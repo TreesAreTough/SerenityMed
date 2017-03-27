@@ -2,8 +2,11 @@ package controllers;
 
 
 import models.*;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.w3c.dom.Document;
 import play.Logger;
+import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -16,11 +19,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MedicalHistoryController  extends Controller
 {
     private final FormFactory formFactory;
     private final JPAApi jpaApi;
+
 
     @Inject
     public MedicalHistoryController(FormFactory formFactory, JPAApi jpaApi) {
@@ -84,6 +89,7 @@ public class MedicalHistoryController  extends Controller
     @Transactional(readOnly = true)
     public Result getHealthConditionManager()
     {
+
         List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
                 "where mh.DATE_RESOLVED is null", MedicalHistoryManager.class).getResultList();
@@ -110,8 +116,19 @@ public class MedicalHistoryController  extends Controller
     @Transactional
     public Result addMedicalHistory()
     {
-        Medical_History newCurrent = formFactory.form(Medical_History.class).bindFromRequest().get();
-        newCurrent.dateDiagnosed = LocalDate.now();
+        DynamicForm dynaForm = formFactory.form().bindFromRequest();
+        Long medicalConditionID = new Long(dynaForm.get("medicalConditionID"));
+        String patientID = dynaForm.get("patientID");
+        String dateDiagnosed = dynaForm.get("dateDiagnosed");
+
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        formatter = formatter.withLocale(Locale.US);
+        LocalDate dd = LocalDate.parse(dateDiagnosed, formatter);
+
+        Medical_History newCurrent = new Medical_History();
+        newCurrent.medicalConditionID = medicalConditionID;
+        newCurrent.patientID = patientID;
+        newCurrent.dateDiagnosed = dd;
         newCurrent.dateResolved = null;
         jpaApi.em().persist(newCurrent);
         return redirect(routes.MedicalHistoryController.getHealthConditionManager());
@@ -124,6 +141,8 @@ public class MedicalHistoryController  extends Controller
         jpaApi.em().persist(current);
         return redirect(routes.MedicalHistoryController.getHealthConditionManager());
     }
+
+
 
 
 }

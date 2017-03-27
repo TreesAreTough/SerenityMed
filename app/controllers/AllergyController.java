@@ -4,6 +4,7 @@ package controllers;
 import models.Allergies;
 import models.AllergyManager;
 import models.Patient;
+import models.Patient_Allergy;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -37,5 +38,21 @@ public class AllergyController  extends Controller {
 
         return ok(views.html.allergyManagerPage.render(allergyManagerList, allergy, patientList));
 
+    }
+
+    @Transactional
+    public Result addAllergy()
+    {
+        Patient_Allergy allergy = formFactory.form(Patient_Allergy.class).bindFromRequest().get();
+        jpaApi.em().persist(allergy);
+        return redirect(routes.AllergyController.getAllergyManager());
+    }
+
+    @Transactional
+    public Result deleteAllergy(Long patientAllergyID)
+    {
+        Patient_Allergy allergy = (Patient_Allergy) jpaApi.em().createQuery("select pa from Patient_Allergy pa where pa.patientAllergyID = :Id").setParameter("Id", patientAllergyID).getSingleResult();
+        jpaApi.em().remove(allergy);
+        return redirect(routes.AllergyController.getAllergyManager());
     }
 }

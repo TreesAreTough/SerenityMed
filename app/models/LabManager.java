@@ -7,19 +7,19 @@ public class LabManager
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="LAB_PULLED_ID")
-    public Long labPulledId;
+    public Long labPulledID;
 
     @Column (name ="DATE_TAKEN")
     public Date dateTaken;
 
     @Column (name ="PATIENT_ID")
-    public String  patientId;
+    public String  patientID;
 
     @Column (name ="LAB_ID")
-    public Long labId;
+    public Long labID;
 
     @Column (name ="DOCTOR_ID")
-    public Long doctorId;
+    public Long doctorID;
 
     @Column (name="VALUE")
     public String value;
@@ -29,4 +29,8 @@ public class LabManager
 
     @Column(name="DOC_NAME")
     public String docName;
+
+    @Column(name="FIRST_NAME")
+    public String firstName;
+
 }

@@ -20,5 +20,8 @@ public class VitalManager {
 
     @Column(name = "DATE_TAKEN")
     public LocalDate dateTaken;
+
+    @Column(name = "VITAL_ID")
+    public Long vitalID;
 }
 

@@ -44,6 +44,24 @@ public class HealthSummaryController extends Controller
                 "on x.date_taken = y.date_taken\n" +
                 "order by date_taken asc", BarChart.class).getResultList();
 
+        List<GoogleColumnChart> columnChart = new ArrayList<>();
+
+        for(BarChart join: barChart) {
+            GoogleColumnChart column = new GoogleColumnChart();
+            String hem = join.val1.replace("%", "");
+            float hemoglobin = Float.parseFloat(hem);
+            float glucose = Float.parseFloat(join.val2);
+            LocalDate dateTaken = join.dateTaken;
+            System.out.println("hemoglobin: " + hemoglobin + " glucose: " + glucose);
+            System.out.println(dateTaken);
+
+            columnChart.add(column);
+            column.setGlucose(glucose);
+            column.setHemoglobin(hemoglobin);
+            column.setDateTaken(dateTaken);
+        }
+
+
         List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
                 "where mh.DATE_RESOLVED is null", MedicalHistoryManager.class).getResultList();
@@ -60,7 +78,7 @@ public class HealthSummaryController extends Controller
                 "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
 
 
-        List<VitalManager> vitalManagerList = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
+        List<VitalManager> vitalManagerList = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, pv.VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
                 "join vitals v on pv.VITAL_ID = v.VITAL_ID\n" +
                 "order by v.VITAL_NAME, pv.DATE_TAKEN desc", VitalManager.class).getResultList();
 
@@ -122,10 +140,11 @@ public class HealthSummaryController extends Controller
                 "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
                 "join patient p on vg.PATIENT_ID = p.PATIENT_ID",VaccinationManager.class).getResultList();
 
-        List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.appointment_id, a.patient_id, a.doctor_id, d.doc_name, a.appointment_date, a.appointment_time from appointment a\n" +
-                "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID", AppointmentManager.class).getResultList();
+        List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
+                "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
 
-        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment));
+        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment, columnChart));
     }
 
     @Transactional
