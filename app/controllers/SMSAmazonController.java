@@ -36,11 +36,6 @@ public class SMSAmazonController extends Controller
         this.jpaApi = jpaApi;
     }
 
-    public Result showTwoFactor()
-    {
-        return ok(views.html.twofactor.render());
-    }
-
     @Transactional
     public Result twoFactorGenerator()
     {
@@ -120,18 +115,18 @@ public class SMSAmazonController extends Controller
                         sendSMSMessage(snsClient, message, phoneNumber, smsAttributes);
                         System.out.println("two factor code is: " + twoFactor);
 
-                        return redirect(routes.SMSAmazonController.showTwoFactor());
+                        return redirect(routes.PatientController.getPageTwoFactor());
                     }
                     else
                     {
                         session().clear();
-                        return redirect(routes.UserController.showLogin());
+                        return redirect(routes.PatientController.getPageLogin());
                     }
                 }
                 else
                 {
                     session().clear();
-                    return redirect(routes.UserController.showLogin());
+                    return redirect(routes.PatientController.getPageLogin());
                 }
             }
             catch (Exception e)
@@ -144,7 +139,7 @@ public class SMSAmazonController extends Controller
         else
         {
             session().clear();
-            return redirect(routes.UserController.showLogin());
+            return redirect(routes.PatientController.get505());
         }
     }
 
@@ -164,16 +159,25 @@ public class SMSAmazonController extends Controller
         DynamicForm dynaForm = formFactory.form().bindFromRequest();
         String userTwoFactor = dynaForm.get("userTwoFactor");
         session("userTwoFactor", userTwoFactor);
+        String confirmTwoFactor = dynaForm.get("confirmTwoFactor");
 
-
-        if (userTwoFactor.contentEquals(session("twoFactor")))
+        if (userTwoFactor.equals(confirmTwoFactor))
         {
-            return ok(toJson("Access granted: Patient ID is " + session("patientID")));
+            if (userTwoFactor.contentEquals(session("twoFactor")))
+            {
+                //return ok(toJson("Access granted: Patient ID is " + session("patientID")));
+                return redirect(routes.HealthSummaryController.getHealthSummary());
+            }
+            else
+            {
+                session().clear();
+                return redirect(routes.PatientController.getPageLogin());
+            }
         }
         else
         {
-            session().clear();
-            return ok(toJson("Access denied and session cleared. Return to log in page and log in to generate a new two factor code"));
+            return redirect(routes.PatientController.getPageLogin());
+
         }
     }
 }

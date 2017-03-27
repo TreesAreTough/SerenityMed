@@ -33,25 +33,10 @@ public class UserController extends Controller
         this.jpaApi = jpaApi;
     }
 
-    public Result showLogin()
-    {
-        return ok(views.html.login.render());
-    }
-
-    public Result showAddPassword()
-    {
-        return ok(views.html.passwordwizard.render());
-    }
-
-    public Result showAddUser()
-    {
-        return ok(views.html.createnewuser.render());
-    }
-
     @Transactional
     public Result passwordWizard()
     {
-        Call route = routes.UserController.passwordWizard();
+        Call route = routes.PatientController.getPagePasswordWizard();
 
         DynamicForm dynaForm = formFactory.form().bindFromRequest();
 
@@ -63,20 +48,34 @@ public class UserController extends Controller
 
         if (!newPassword.equals(confirmPassword))
         {
-            return internalServerError();
+            return redirect(routes.PatientController.get505());
         }
 
         List<Patient> patients = (List<Patient>) jpaApi.em().
                 createQuery("select p from Patient p where p.email = :userEmail", Patient.class).
                 setParameter("userEmail", userEmail).getResultList();
 
+
+        if (patients.size() ==1)
+        {
+            Patient patient = patients.get(0);
+            String patientID1 = patient.patientID;
+            session("patientID1", patientID1);
+            String patientID = session("patientID1");
+            session("patientID", patientID);
+        }
+        else
+            {
+                return redirect(routes.PatientController.get404());
+            }
+
+
         if (patients.size() == 1)
         {
             Patient patient = patients.get(0);
 
-            if (patient.patientID.equals(session("patientId")))
+            if (patient.patientID.equals(session("patientID1")))
             {
-                System.out.println("Patient Id equiv found and password can be persisted");
 
                 byte hash[] = null;
                 byte salt[] = null;
@@ -94,32 +93,32 @@ public class UserController extends Controller
                     {
                         System.out.println("existing user found and will be updated");
                         User user = users.get(0);
-                        //user.patientId = session("patientsId");
+                        user.patientID = session("patientID1");
                         user.password = hash;
                         user.passwordSalt = salt;
                         user.cellPhone = cellPhone1;
                         System.out.println(cellPhone1);
                         jpaApi.em().persist(user);
 
-                        return ok(toJson("refresh DB for updated values"));
+                        return redirect(routes.PatientController.getPageViewMyInfo());
                     }
                     else if (users.size() == 0)
                     {
-
                         System.out.println("New user will be created and added to the User table");
                         User user = new User();
-                        user.patientID = session("patientsID");
+                        user.patientID = session("patientID1");
                         user.password = hash;
                         user.passwordSalt = salt;
                         user.cellPhone = cellPhone1;
                         user.userEmail = userEmail;
                         jpaApi.em().persist(user);
 
-                        return ok(toJson("refresh DB for updated values"));
+
+                        return redirect(routes.PatientController.getPageViewMyInfo());
                     }
                     else
                     {
-                        return redirect(route);
+                        return redirect(routes.PatientController.get505());
                     }
                 }
                 catch (Exception e)
@@ -130,12 +129,12 @@ public class UserController extends Controller
             }
             else
             {
-                return redirect(route);
+                return ok(toJson("whoops"));
             }
         }
         else
         {
-            return redirect(route);
+            return redirect(routes.PatientController.get404());
         }
     }
 
@@ -173,28 +172,7 @@ public class UserController extends Controller
 
         jpaApi.em().persist(patient);
 
-        return redirect(routes.UserController.showAddPassword());
-    }
-
-    @Transactional
-    public Result viewMyInfo()
-    {
-        String patientID = session("patientID");
-        List<Patient> patient = (List<Patient>) jpaApi.em().
-                createQuery("select p from Patient p where p.patientID = :patientID", Patient.class).
-                setParameter("patientID", patientID).getResultList();
-
-        return ok(views.html.viewmyinfo.render(patient));
-    }
-
-    @Transactional (readOnly = true)
-    public Result editUser(String patientID)
-    {
-        session("patientID");
-        Patient patient = (Patient) jpaApi.em().
-                createQuery("select p from Patient p where p.patientID = :patientID")
-                .setParameter("patientID", session("patientID")).getSingleResult();
-        return  ok(views.html.updatepatient.render(patient));
+        return redirect(routes.PatientController.getPagePasswordWizard());
     }
 
     @Transactional
@@ -239,17 +217,17 @@ public class UserController extends Controller
 
             jpaApi.em().persist(patient);
 
-            return ok(toJson("update successful, check db for updated values"));
+            return redirect(routes.PatientController.getPageViewMyInfo());
         }
         else
         {
-            return redirect(route);
+            return redirect(routes.PatientController.get404());
         }
     }
 
     public Result logout()
     {
         session().clear();
-        return redirect(routes.UserController.showLogin());
+        return redirect(routes.PatientController.getPageLogin());
     }
 }
