@@ -1,4 +1,4 @@
-@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager])
+@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager], column: List[GoogleColumnChart])
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -44,219 +44,23 @@
                 </a>
             </div>
         </div>
-        <form class="form-inline searchbox hidden-xs" role="form">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icon ion-ios-search"></i></span>
-                    <input type="search" class="form-control" placeholder="search the site ...">
-                </div>
-            </div>
-        </form>
+
         <div class="top-bar-right pull-right">
             <div class="action-group hidden-xs hidden-sm">
                 <ul>
-                    <!-- skins -->
-                    <!--<li class="action-item skins">
-                        <form id="style-switcher">
-                            <div class="btn-group open">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="icon ion-ios-gear-outline"></i>
-                                </a>
-                                <div class="arrow"></div>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <p><strong>Dark Side Nav</strong></p>
-                                        <button type="button" class="btn-skin nav-dark full-dark" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-dark.css")"></button>
-                                        <button type="button" class="btn-skin nav-dark green" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green.css")"></button>
-                                        <button type="button" class="btn-skin nav-dark blue" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue.css")"></button>
-                                        <button type="button" class="btn-skin nav-dark darkorange" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange.css")"></button>
-                                        <button type="button" class="btn-skin nav-dark seagreen" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen.css")"></button>
-                                    </li>
-                                    <li>
-                                        <p><strong>Light Side Nav</strong></p>
-                                        <button type="button" class="btn-skin nav-light full-white" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/full-white.css")"></button>
-                                        <button type="button" class="btn-skin nav-light green green-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/green-light-nav.css")"></button>
-                                        <button type="button" class="btn-skin nav-light blue blue-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/blue-light-nav.css")"></button>
-                                        <button type="button" class="btn-skin nav-light darkorange darkorange-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/darkorange-light-nav.css")"></button>
-                                        <button type="button" class="btn-skin nav-light seagreen seagreen-light-nav" data-skin="@routes.Assets.at("bootstrap/assets/css/skins/seagreen-light-nav.css")"></button>
-                                    </li>
-                                    <li>
-                                        <label class="fancy-checkbox">
-                                            <input type="checkbox" id="fixed-top-nav" checked="checked"><span>Fixed Top Navigation</span></label>
-                                    </li>
-                                    <li data-toggle="popover" data-placement="top" data-container="body" data-content="If checked, try expanding <strong>Pages</strong> menu item on left sidebar. Disabled on minified sidebar." data-trigger="hover">
-                                        <label class="fancy-checkbox">
-                                            <input type="checkbox" id="fixed-left-nav"><span>Fixed Left Navigation</span></label>
-                                    </li>
-                                    <li class="menu-item-footer"><a href="#" title="Reset Style" class="reset-style">Reset Style</a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </li>-->
+
                     <!-- end skins -->
                     <!-- notification: inbox -->
-                    <li class="action-item inbox">
-                        <div class="btn-group">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon ion-ios-email-outline"></i><span class="count">2</span>
-                            </a>
-                            <div class="arrow"></div>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="menu-item-header">You have 2 unread messages</li>
-                                <li class="inbox-item clearfix">
-                                    <a href="#">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user1.png")" alt="Antonio">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading name">Antonius</h5>
-                                                <p class="text">The problem just happened this morning. I can't see ...</p>
-                                                <span class="timestamp text-muted">4 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="inbox-item unread clearfix">
-                                    <a href="#">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user2.png")" alt="Antonio">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading name">Michael</h5>
-                                                <p class="text">Hey dude, cool theme!</p>
-                                                <span class="timestamp text-muted">2 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="inbox-item unread clearfix">
-                                    <a href="#">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user3.png")" alt="Antonio">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading name">Stella</h5>
-                                                <p class="text">Ok now I can see the status for each item. Thanks! :D</p>
-                                                <span class="timestamp text-muted">Oct 6</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="inbox-item clearfix">
-                                    <a href="#">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user4.png")" alt="Antonio">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading name">Jane Doe</h5>
-                                                <p class="text"><i class="icon ion-reply text-muted"></i> Please check the status of your ...</p>
-                                                <span class="timestamp text-muted">Oct 2</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="inbox-item clearfix">
-                                    <a href="#">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object" src="@routes.Assets.at("bootstrap/assets/img/user5.png")" alt="Antonio">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading name">John Simmons</h5>
-                                                <p class="text"><i class="icon ion-reply text-muted"></i> I've fixed the problem :)</p>
-                                                <span class="timestamp text-muted">Sep 12</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="menu-item-footer">
-                                    <a href="#">View All Messages</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
                     <!-- end notification: inbox -->
                     <!-- notification: general -->
-                    <li class="action-item general">
-                        <div class="btn-group">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon ion-ios-bell-outline"></i><span class="count">8</span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="menu-item-header">You have 8 notifications</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-chatbubble text-success"></i>
-                                        <span class="text">New comment on the blog post</span>
-                                        <span class="timestamp text-muted">1 minute ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-person-add text-success"></i>
-                                        <span class="text">New registered user</span>
-                                        <span class="timestamp text-muted">12 minutes ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-chatbubble text-success"></i>
-                                        <span class="text">New comment on the blog post</span>
-                                        <span class="timestamp text-muted">18 minutes ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-ios-cart text-danger"></i>
-                                        <span class="text">4 new sales order</span>
-                                        <span class="timestamp text-muted">4 hours ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-edit yellow-font"></i>
-                                        <span class="text">3 product reviews awaiting moderation</span>
-                                        <span class="timestamp text-muted">1 day ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-chatbubble text-success"></i>
-                                        <span class="text">New comment on the blog post</span>
-                                        <span class="timestamp text-muted">3 days ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-chatbubble text-success"></i>
-                                        <span class="text">New comment on the blog post</span>
-                                        <span class="timestamp text-muted">Oct 15</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon ion-alert-circled text-danger"></i>
-                                        <span class="text text-danger">Low disk space!</span>
-                                        <span class="timestamp text-muted">Oct 11</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item-footer">
-                                    <a href="#">View All Notifications</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+
                     <!-- end notification: general -->
                 </ul>
             </div>
             <div class="logged-user">
                 <div class="btn-group">
                     <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Sebastian <i class="icon ion-ios-arrow-down"></i></span>
+                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Mike Jones <i class="icon ion-ios-arrow-down"></i></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
@@ -309,48 +113,8 @@
                             <li><a href="@routes.AllergyController.getAllergyManager()"><span class="text">Allergy Manager</span></a></li>
                         </ul>
                     </li>
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="ion-ios-alarm-outline"></i><span class="text">Reminders</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="@routes.ReminderPrescriptionController.getReminderManager()"><span class="text">Prescription</span></a></li>
-                            <li><a href="charts-interactive.html"><span class="text">Appointment</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h3>ESSENTIALS</h3>
-                <ul class="main-menu">
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-pie-outline"></i><span class="text">Charts</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li class="active"><a href="@routes.PatientController.getChartsBasic"><span class="text">Basic</span></a></li>
-                            <li><a href="@routes.PatientController.getChartsInteractive()"><span class="text">Interactive Charts</span></a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-ios-grid-view-outline"></i><span class="text">Tables</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li class="active"><a href="tables-static.html"><span class="text">Static Table</span></a></li>
-                            <li><a href="tables-dynamic.html"><span class="text">Dynamic Table</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="@routes.PatientController.getMaps()"><i class="icon ion-ios-world-outline"></i><span class="text">Maps</span></a></li>
-                    <li><a href="typography.html"><i class="icon ion-ios-compose-outline"></i><span class="text">Typography</span></a></li>
-                    <li class="has-submenu">
-                        <a href="#" class="submenu-toggle"><i class="icon ion-navicon"></i><span class="text">Menu Levels</span></a>
-                        <ul class="list-unstyled sub-menu collapse">
-                            <li class="has-submenu">
-                                <a href="#" class="submenu-toggle"><span class="text">Second Lvl A</span></a>
-                                <ul class="list-unstyled sub-menu collapse">
-                                    <li><a href="#"><span class="text">Third Lvl A1</span></a></li>
-                                    <li><a href="#"><span class="text">Third Lvl A2</span></a></li>
-                                    <li><a href="#"><span class="text">Third Lvl A3</span></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><span class="text">Second Lvl B</span></a></li>
-                            <li><a href="#"><span class="text">Second Lvl C</span></a></li>
-                            <li><a href="#"><span class="text">Second Lvl D</span></a></li>
-                        </ul>
-                    </li>
+                    <li><a href="@routes.ReminderPrescriptionController.getReminderManager()"><i class="ion-ios-alarm-outline"></i><span class="text">Prescription Reminders</span></a></li>
+
                 </ul>
             </nav>
         </div>
@@ -734,11 +498,11 @@
     function drawDualY() {
           var data = new google.visualization.DataTable();
           data.addColumn('string', 'Date');
-          data.addColumn('string', 'Hc A1C');
-          data.addColumn('string', 'Glucose');
+          data.addColumn('number', 'Hc A1C');
+          data.addColumn('number', 'Glucose');
           data.addRows([
-            @for(barChart <- barChart){
-              ['@barChart.dateTaken', '@barChart.val1', '@barChart.val2'],}
+            @for(bar <- column){
+              ['@bar.getDateTaken', @bar.getHemoglobin, @bar.getGlucose],}
           ]);
           var options = {
             chart: {

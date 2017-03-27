@@ -44,6 +44,23 @@ public class HealthSummaryController extends Controller
                 "on x.date_taken = y.date_taken\n" +
                 "order by date_taken asc", BarChart.class).getResultList();
 
+        List<GoogleColumnChart> columnChart = new ArrayList<>();
+
+        for(BarChart join: barChart) {
+            GoogleColumnChart column = new GoogleColumnChart();
+            String hem = join.val1.replace("%", "");
+            float hemoglobin = Float.parseFloat(hem);
+            float glucose = Float.parseFloat(join.val2);
+            LocalDate dateTaken = join.dateTaken;
+            System.out.println("hemoglobin: " + hemoglobin + " glucose: " + glucose);
+            System.out.println(dateTaken);
+
+            columnChart.add(column);
+            column.setGlucose(glucose);
+            column.setHemoglobin(hemoglobin);
+            column.setDateTaken(dateTaken);
+        }
+
 
         List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
@@ -127,7 +144,7 @@ public class HealthSummaryController extends Controller
                 "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
                 "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
 
-        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment));
+        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment, columnChart));
     }
 
     @Transactional

@@ -10,35 +10,10 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Patient
 GET     /                        controllers.PatientController.getPatient
-GET     /test                    controllers.PatientController.bootstrapTest()
 GET     /404                     controllers.PatientController.get404()
-GET     /chartBasic              controllers.PatientController.getChartsBasic()
-GET     /chartInteractive        controllers.PatientController.getChartsInteractive()
-GET     /formBootstrap           controllers.PatientController.getFormBootStrapElements()
-GET     /formFancy               controllers.PatientController.getFormFancyElements
-GET     /formInplace             controllers.PatientController.getFormInplace()
-GET     /formLayouts             controllers.PatientController.getFormLayouts()
-GET     /formTextEditor          controllers.PatientController.getFormTextEditor()
-GET     /formValidations         controllers.PatientController.getFormValidations()
-GET     /formWizard              controllers.PatientController.getFormWizard()
-GET     /index                   controllers.PatientController.getIndex()
-GET     /index2                  controllers.PatientController.getIndex2()
-GET     /maps                    controllers.PatientController.getMaps()
 GET     /505                     controllers.PatientController.get505()
-GET     /pageBlank               controllers.PatientController.getPageBlank()
-GET     /pageFaq                 controllers.PatientController.getPageFaq()
-GET     /pageInbox               controllers.PatientController.getPageInbox()
-GET     /pageKnowledge           controllers.PatientController.getPageKnowledge()
-GET     /pageLogin               controllers.PatientController.getPageLogin()
-GET     /pageLoginAlt            controllers.PatientController.getPageLoginAlt()
-GET     /pageNewMessage          controllers.PatientController.getNewMessage()
-GET     /pagePricing             controllers.PatientController.getPagePricingTables()
-GET     /pageProjectDetail       controllers.PatientController.getProjectDetail()
-GET     /pageProject             controllers.PatientController.getPageProject()
-GET     /pageRegistration        controllers.PatientController.getRegistration()
-GET     /pageInvoice             controllers.PatientController.getPageInvoice()
-GET     /pageSearchResult        controllers.PatientController.getSearchResult()
-GET     /pageSubmitTicket        controllers.PatientController.getPageSubmitTicket()
+
+
 
 # Health Summary Dashboard
 GET     /healthSummary           controllers.HealthSummaryController.getHealthSummary()
@@ -50,6 +25,9 @@ GET     /editScript/:id          controllers.PrescriptionController.getPrescript
 POST    /addScript               controllers.PrescriptionController.addPrescription()
 POST    /deleteScript            controllers.PrescriptionController.deletePrescription(id:Long)
 POST    /updateScript            controllers.PrescriptionController.updatePrescription()
+GET     /apiSpelling             controllers.PrescriptionController.spellingCorrection()
+POST    /api                     controllers.PrescriptionController.addMedication()
+GET     /interaction             controllers.PrescriptionController.getDrugInteraction()
 
 # Medical History Manager
 GET     /moreInfo                controllers.MedicalHistoryController.getMoreInfo()
@@ -107,7 +85,10 @@ GET     /sns                     controllers.PrescriptionReminderSNSController.s
 POST    /buttonStart             controllers.PrescriptionReminderSNSController.checkDB()
 
 # Daemon
-GET     /daemonStart                controllers.DaemonController.start()
+GET     /daemonStart             controllers.DaemonController.start()
+
+
+
 
 
 

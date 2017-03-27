@@ -1,4 +1,4 @@
-@(reminder: List[PrescriptionReminderManager], patientList: List[Patient], prescription: List[PrescriptionReminderJoin], current: PrescriptionReminderManager)
+@(interaction: List[Interaction])
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -6,7 +6,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Prescription Reminder Manager</title>
+    <title>Drug Interactions</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -85,12 +85,12 @@
                 <h3>MAIN</h3>
                 <ul class="main-menu">
                     <li><a href="@routes.HealthSummaryController.getHealthSummary"><i class="ion-ios-pulse"></i><span class="text">Health Summary</span></a></li>
-                    <li class="has-submenu">
+                    <li class="has-submenu active">
                         <a href="#" class="submenu-toggle"><i class="icon ion-ios-paper-outline"></i><span class="text">Managers</span></a>
                         <ul class="list-unstyled sub-menu collapse">
-                            <li><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
+                            <li class="active"><a href="@routes.PrescriptionController.getPrescriptionManager()"><span class="text">Prescription Manager</span></a></li>
                             <li><a href="@routes.MedicalHistoryController.getHealthConditionManager()"><span class="text">Health Condition Manager</span></a></li>
-                            <li class="active"><a href="@routes.LabController.getLabManager()"><span class="text">Lab Manager</span></a></li>
+                            <li><a href="@routes.LabController.getLabManager()"><span class="text">Lab Manager</span></a></li>
                             <li><a href="@routes.VitalController.getVitalManager()"><span class="text">Vital Manager</span></a></li>
                             <li><a href="@routes.AppointmentController.getAppointmentManager()"><span class="text">Appointment Manager</span></a></li>
                             <li><a href="@routes.VaccineController.getVaccineManager()"><span class="text">Vaccination Manager</span></a></li>
@@ -98,7 +98,6 @@
                         </ul>
                     </li>
                     <li><a href="@routes.ReminderPrescriptionController.getReminderManager()"><i class="ion-ios-alarm-outline"></i><span class="text">Prescription Reminders</span></a></li>
-
                 </ul>
             </nav>
         </div>
@@ -109,11 +108,11 @@
         <div class="container-fluid primary-content">
             <!-- PRIMARY CONTENT HEADING -->
             <div class="primary-content-heading clearfix">
-                <h2>PRESCRIPTION REMINDER MANAGER</h2>
+                <h2>DRUG INTERACTION</h2>
                 <ul class="breadcrumb pull-left">
                     <li><i class="icon ion-home"></i><a href="@routes.HealthSummaryController.getHealthSummary">Home</a></li>
-                    <li><a href="#">Managers</a></li>
-                    <li class="active">Prescription Reminder Manager</li>
+                    <li><a href="#">Prescription Manager</a></li>
+                    <li class="active">Drug Interactions</li>
                 </ul>
                 <div class="sticky-content pull-right">
                     <div class="btn-group btn-dropdown">
@@ -164,7 +163,7 @@
             <!-- SHOW HIDE COLUMNS -->
             <div class="widget">
                 <div class="widget-header clearfix">
-                    <h3><i class="ion-ios-alarm-outline" aria-hidden="true"></i> <span>PRESCRIPTION REMINDER LIST</span></h3>
+                    <h3><i class="fa fa-toggle-on" aria-hidden="true"></i> <span>Possible Drug Interactions</span></h3>
                     <div class="btn-group widget-header-toolbar visible-lg">
                         <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
                         <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
@@ -172,30 +171,23 @@
                 </div>
                 <div class="widget-content">
                     <div class="table-responsive">
-                        <table class="table table-sorting table-hover table-bordered colored-header datatable">
+                        <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered colored-header datatable">
                             <thead>
                             <tr>
-                                <th>Prescription</th>
-                                <th>Next Reminder</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Drug Name</th>
+                                <th>Interaction With</th>
+                                <th>Description</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            @for(reminder <- reminder){
+                            @for(interaction <- interaction){
                             <tr>
-                                <td>@reminder.medicationName @reminder.dosage Taken Every @reminder.frequency Seconds</td>
-                                <td>@reminder.nextReminder</td>
-                                <td>
-                                    <form>
-                                        <button type="submit" class="btn btn-primary">Edit</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="POST" action="@routes.ReminderPrescriptionController.deleteReminder(reminder.reminderID)">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
+                                <td>@interaction.drug1Name</td>
+                                <td>@interaction.drug2Name</td>
+                                <td>@interaction.interDescription</td>
+
+
                             </tr>
                             }
                             </tbody>
@@ -206,98 +198,6 @@
             <div class="row">
                 <div class="col-md-6">
                     <!-- TICKET FORM -->
-                    <div class="widget">
-                        <div class="widget-header clearfix">
-                            <h3><i class="icon ion-compose"></i> <span>NEW REMINDER</span></h3>
-                            <div class="btn-group widget-header-toolbar visible-lg">
-                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-                            </div>
-                        </div>
-                        <div class="widget-content">
-                            <form method="POST" action="@routes.ReminderPrescriptionController.addReminder()" class="form-horizontal form-ticket" role="form">
-                                <fieldset>
-                                    <legend>Reminder Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID" name="patientID" class="select-ticket-type">
-                                                @for(patient <- patientList){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="prescriptionID" class="col-sm-3 control-label">Select Prescription</label>
-                                        <div class="col-sm-9">
-                                            <select name="prescriptionID" id="prescriptionID" class="select2">
-                                                @for(prescription <- prescription){
-                                                <option value=@prescription.prescriptionID>@prescription.medicationName @prescription.dosage @prescription.frequency Seconds</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-primary btn-block">Add New Prescription Reminder</button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="widget">
-                        <div class="widget-header clearfix">
-                            <h3><i class="icon ion-compose"></i> <span>EDIT PRESCRIPTION REMINDER</span></h3>
-                            <div class="btn-group widget-header-toolbar visible-lg">
-                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-                            </div>
-                        </div>
-                        <div class="widget-content">
-                            <form method="POST" action="@routes.ReminderPrescriptionController.updateReminder()" class="form-horizontal form-ticket" role="form">
-                                <input type="hidden" name="reminderID" value="@current.reminderID"/>
-                                <fieldset>
-                                    <legend>Prescription Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID1" name="patientID" class="select-ticket-type">
-                                                <option selected value="@current.patientID">@current.firstName</option>
-                                                @for(patient <- patientList){
-                                                @if(!current.patientID.equals(patient.patientID)){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="prescriptionID1" class="col-sm-3 control-label">Select Prescription</label>
-                                        <div class="col-sm-9">
-                                            <select name="prescriptionID" id="prescriptionID1" class="select2">
-                                                <option selected value="@current.prescriptionID">@current.medicationName @current.dosage @current.frequency Seconds</option>
-                                                @for(prescription <- prescription){
-                                                @if(!current.prescriptionID.equals(prescription.prescriptionID)){
-                                                <option value=@prescription.prescriptionID>@prescription.medicationName @prescription.dosage @prescription.frequency Seconds</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-primary btn-block">Edit Prescription Reminder</button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-
                     <!-- put add box here -->
                     <!-- END SHOW HIDE COLUMNS -->
                     <!-- DATA EXPORT -->
