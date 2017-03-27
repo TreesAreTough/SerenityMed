@@ -5,7 +5,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Register | QueenAdmin - Beautiful Admin Dashboard</title>
+	<title>Register</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="QueenAdmin - Beautiful Bootstrap Admin Dashboard Theme">
@@ -23,18 +23,89 @@
 	<link rel="apple-touch-icon-precomposed" type="image/png" sizes="57x57" href="@routes.Assets.at("bootstrap/assets/ico/queenadmin-favicon57x57.png")">
 	<link rel="shortcut icon" href="@routes.Assets.at("bootstrap/assets/ico/favicon.ico")">
 </head>
-
 <body class="middle-content page-register">
 	<div class="container-fluid">
 		<div class="content-box-bordered register-box">
 			<h1>Create an account</h1>
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" method="POST" action="@routes.UserController.addUser">
 				<div class="form-group">
-					<label for="username" class="control-label sr-only">Username</label>
+					<label for="firstName" class="control-label sr-only">firstName</label>
 					<div class="col-sm-12">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="icon ion-person"></i></span>
-							<input type="text" class="form-control" id="username" placeholder="Username">
+							<input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lastName" class="control-label sr-only">lastName</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-person"></i></span>
+							<input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="dob" class="control-label sr-only">dob</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-calendar"></i></span>
+							<input name="dob" type="text" class="form-control" id="dob" placeholder="Date of Birth (ex YYYY-MM-DD)">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="gender" class="control-label sr-only">Gender</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-transgender"></i></span>
+							<input name="gender" type="text" class="form-control" id="gender" placeholder="Gender (ex M/F/T)">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address" class="control-label sr-only">Address</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="ion-ios-home"></i></span>
+							<input name="address" type="text" class="form-control" id="address" placeholder="Address">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="city" class="control-label sr-only">City</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-ios-location"></i></span>
+							<input name="city" type="text" class="form-control" id="city" placeholder="City">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="state" class="control-label sr-only">State</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-ios-location"></i></span>
+							<input name="state" type="text" class="form-control" id="state" placeholder="State">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="zip" class="control-label sr-only">Zip</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-ios-location"></i></span>
+							<input name="zip" type="text" class="form-control" id="zip" placeholder="Zip">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="cellPhone" class="control-label sr-only">Cell Phone</label>
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="icon ion-android-phone-portrait"></i></span>
+							<input name="cellPhone" type="text" class="form-control" id="cellPhone" placeholder="Cell Phone (ex 5556667777)">
 						</div>
 					</div>
 				</div>
@@ -43,40 +114,8 @@
 					<div class="col-sm-12">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="icon ion-email"></i></span>
-							<input type="email" class="form-control" id="email" placeholder="Email">
+							<input name="email" type="email" class="form-control" id="email" placeholder="Email">
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password" class="control-label sr-only">Password</label>
-					<div class="col-sm-12">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="icon ion-locked"></i></span>
-							<input type="password" class="form-control" id="password" placeholder="Password">
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password2" class="control-label sr-only">Repeat Password</label>
-					<div class="col-sm-12">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="icon ion-locked"></i></span>
-							<input type="password" class="form-control" id="password2" placeholder="Repeat Password">
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-12">
-						<label class="fancy-checkbox">
-							<input type="checkbox">
-							<span>Subscribe me to the newsletter</span>
-						</label>
-					</div>
-					<div class="col-sm-12">
-						<label class="fancy-checkbox">
-							<input type="checkbox">
-							<span>I accept the <a href="#" data-toggle="modal" data-target="#termsModal">Terms &amp; Agreement</a></span>
-						</label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -85,7 +124,7 @@
 					</div>
 				</div>
 			</form>
-			<p><em>Already have an account?</em> <a href="#"><strong>Login</strong></a></p>
+			<p><em>Already have an account?</em> <a href="@routes.PatientController.getPageLogin()"><strong>Login</strong></a></p>
 		</div>
 	</div>
 	<!-- Javascript -->

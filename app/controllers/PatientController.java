@@ -123,6 +123,7 @@ public class PatientController extends Controller
 
     public Result getPageLogin()
     {
+        session().clear();
         return ok(views.html.pageLogin.render());
     }
 
@@ -159,6 +160,38 @@ public class PatientController extends Controller
     public Result getPageInvoice()
     {
         return ok(views.html.pageInvoice.render());
+    }
+
+    public Result getPageTwoFactor()
+    {
+        return ok(views.html.pagetwofactor.render());
+    }
+
+    public Result getPagePasswordWizard()
+    {
+        return ok(views.html.pagePasswordWizard.render());
+    }
+
+    @Transactional
+    public Result getPageViewMyInfo()
+    {
+        String patientID = session("patientID");
+        List<Patient> patient = (List<Patient>) jpaApi.em().
+                createQuery("select p from Patient p where p.patientID = :patientID", Patient.class).
+                setParameter("patientID", patientID).getResultList();
+
+        return  ok(views.html.pageViewMyInfo.render(patient));
+    }
+
+    @Transactional (readOnly = true)
+    public Result pageEditUser(String patientID)
+    {
+        session("patientID");
+        Patient patient = (Patient) jpaApi.em().
+                createQuery("select p from Patient p where p.patientID = :patientID")
+                .setParameter("patientID", session("patientID")).getSingleResult();
+
+        return  ok(views.html.pageUpdateUser.render(patient));
     }
 
     public Result getSearchResult()
