@@ -27,10 +27,13 @@ public class LabController extends Controller {
     @Transactional(readOnly = true)
     public Result getLabManager()
     {
+        String patientID = session("patientID");
+
         List<LabManager> labManagerList = (List<LabManager>) jpaApi.em().createNativeQuery("select lp.lab_pulled_id, lp.date_taken, lp.patient_id, lp.lab_id, lp.doctor_id, lp.value, l.lab_name, p.first_name, d.doc_name from lab_pulled lp\n" +
                 "join lab l on lp.lab_id = l.LAB_ID\n" +
                 "join patient p on p.patient_id = lp.patient_id\n" +
                 "join doctor d on lp.doctor_id = d.doctor_id\n" +
+                " where p.PATIENT_ID = '"+11+"'" +
                 "order by l.lab_name", LabManager.class).getResultList();
 
         List<Lab> labList = jpaApi.em().createQuery("select l from Lab l", Lab.class).getResultList();
@@ -54,19 +57,25 @@ public class LabController extends Controller {
     @Transactional
     public Result addLab()
     {
+        String patientID = session("patientID");
 
         Lab_Pulled lab = formFactory.form(Lab_Pulled.class).bindFromRequest().get();
         lab.dateTaken = LocalDate.now();
+        lab.patientID = "11";
+
         jpaApi.em().persist(lab);
         return redirect(routes.LabController.getLabManager());
     }
     @Transactional
     public Result editLab(Long labPulledID)
     {
+        String patientID = session("patientID");
+
         List<LabManager> labManagerList = (List<LabManager>) jpaApi.em().createNativeQuery("select lp.lab_pulled_id, lp.date_taken, lp.patient_id, lp.lab_id, lp.doctor_id, lp.value, l.lab_name, p.first_name, d.doc_name from lab_pulled lp\n" +
                 "join lab l on lp.lab_id = l.LAB_ID\n" +
                 "join patient p on p.patient_id = lp.patient_id\n" +
                 "join doctor d on lp.doctor_id = d.doctor_id\n" +
+                " where p.PATIENT_ID = '"+11+"'" +
                 "order by l.lab_name", LabManager.class).getResultList();
 
         LabManager currentLab = (LabManager) jpaApi.em().createNativeQuery("select lp.lab_pulled_id, lp.date_taken, lp.patient_id, lp.lab_id, lp.doctor_id, lp.value, l.lab_name, p.first_name, d.doc_name from lab_pulled lp\n" +
@@ -89,6 +98,8 @@ public class LabController extends Controller {
     @Transactional
     public Result updateLab()
     {
+        String patientID = session("patientID");
+
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         Long labPulledId = new Long(postedForm.get("labPulledId"));
         Long doctorId = new Long(postedForm.get("doctorId"));
@@ -98,7 +109,7 @@ public class LabController extends Controller {
 
         Lab_Pulled lab_pulled = (Lab_Pulled) jpaApi.em().createQuery("select lp from Lab_Pulled lp where lp.labPulledId = :Id").setParameter("Id", labPulledId).getSingleResult();
 
-
+        lab_pulled.patientID = "11";
         lab_pulled.value = value;
         lab_pulled.doctorID=doctorId;
         lab_pulled.labPulledID=labPulledId;

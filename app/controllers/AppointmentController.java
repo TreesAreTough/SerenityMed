@@ -28,9 +28,12 @@ public class AppointmentController extends Controller {
     @Transactional(readOnly = true)
     public Result getAppointmentManager()
     {
+        String patientID = session("patientID");
+
         List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
                 "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID"+
+                " where p.PATIENT_ID = '"+11+"'", AppointmentManager.class).getResultList();
 
         List<Doctor> doctor = jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
 
@@ -61,16 +64,17 @@ public class AppointmentController extends Controller {
     @Transactional
     public Result addAppointment()
     {
+        String patientID = session("patientID");
+
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         LocalTime appTime = LocalTime.parse(postedForm.get("time"));
         LocalDate appDate = LocalDate.parse(postedForm.get("date"));
-        Long patientID = Long.parseLong(postedForm.get("patientID"));
         Long doctorID = Long.parseLong(postedForm.get("doctorID"));
 
         Appointment appointment = new Appointment();
         appointment.time = appTime;
         appointment.date = appDate;
-        appointment.patientID = patientID;
+        appointment.patientID = "11";
         appointment.doctorID = doctorID;
         jpaApi.em().persist(appointment);
 
@@ -81,7 +85,8 @@ public class AppointmentController extends Controller {
     {
         List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
                 "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID"+
+                " where p.PATIENT_ID = '"+11+"'", AppointmentManager.class).getResultList();
 
         List<Patient> patientList = jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
@@ -101,19 +106,20 @@ public class AppointmentController extends Controller {
     @Transactional
     public Result updateAppointment()
     {
+        String patientID = session("patientID");
+
         DynamicForm postedForm = formFactory.form().bindFromRequest();
 
         LocalTime time = LocalTime.parse(postedForm.get("time"));
         LocalDate date = LocalDate.parse(postedForm.get("date"));
         Long appointmentID = new Long(postedForm.get("appointmentID"));
-        Long patientID = new Long(postedForm.get("patientID"));
         Long doctorID = new Long(postedForm.get("doctorID"));
 
         Appointment appointments = (Appointment) jpaApi.em().createQuery("select ap from Appointment ap where ap.appointmentID = :Id").setParameter("Id", appointmentID).getSingleResult();
 
         appointments.time = time;
         appointments.date = date;
-        appointments.patientID = patientID;
+        appointments.patientID = "11";
         appointments.doctorID = doctorID;
         jpaApi.em().persist(appointments);
 
@@ -123,6 +129,7 @@ public class AppointmentController extends Controller {
     @Transactional(readOnly = true)
     public Result getMap(Long doctorID)
     {
+
             String id = request().getQueryString("id");
 
             if ( id == null)
@@ -133,7 +140,8 @@ public class AppointmentController extends Controller {
 
         List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
                 "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID"+
+                " where p.PATIENT_ID = '"+11+"'", AppointmentManager.class).getResultList();
 
         List<Patient> patientList = jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
@@ -157,7 +165,8 @@ public class AppointmentController extends Controller {
 
         List<AppointmentManager> appointment = (List<AppointmentManager>) jpaApi.em().createNativeQuery("select a.APPOINTMENT_ID, a.PATIENT_ID, a.DOCTOR_ID, d.doc_name, d.DOC_SPECIALTY, a.appointment_date, a.appointment_time, p.first_name from appointment a\n" +
                 "join doctor d on a.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on a.PATIENT_ID = p.PATIENT_ID", AppointmentManager.class).getResultList();
+                "join patient p on a.PATIENT_ID = p.PATIENT_ID"+
+                " where p.PATIENT_ID = '"+11+"'", AppointmentManager.class).getResultList();
 
         List<Patient> patientList = jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 

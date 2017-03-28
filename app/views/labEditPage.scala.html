@@ -207,90 +207,66 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
-                    <!-- TICKET FORM -->
-                    <div class="row">
-                        <div class="col-md-9">
-
-                            <!-- TICKET FORM -->
-
-                            <div class="widget">
-                                <div class="widget-header clearfix">
-                                    <h3><i class="icon ion-compose"></i> <span>NEW LAB</span></h3>
-                                    <div class="btn-group widget-header-toolbar visible-lg">
-                                        <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
-                                        <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="widget-content">
-                                    <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
-                                        <fieldset>
-                                            <legend>Lab Details</legend>
-                                            <div class="form-group">
-                                                <label for="patientID" class="col-sm-3 control-label">Patient Name:</label>
-                                                <div class="col-sm-9">
-                                                    <select id="patientID" name="patientID" class="select-ticket-type">
-                                                        @for(patient <- patientList){
-                                                        <option value=@patient.patientID>@patient.firstName</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="lab" class="col-sm-3 control-label">Enter Lab:</label>
-                                                <div class="col-sm-9">
-                                                    <select id="labID" name="labID" class="select-ticket-type">
-                                                        @for(lab <- labList){
-                                                        <option value=@lab.labID>@lab.labName</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="value" class="col-sm-3 control-label">Enter Value:</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="value" class="form-control" id="value" placeholder="value">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="date" class="col-sm-3 control-label">Enter Date:</label>
-                                                <div class="col-sm-9">
-                                                    <input type="date" name="date" class="form-control" id="date" placeholder="date">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="doctorID" class="col-sm-3 control-label">Doctor:</label>
-                                                <div class="col-sm-9">
-                                                    <select name="doctorID" id="doctorID" class="select2">
-                                                        @for(doctor <- doctorList){
-                                                        <option value=@doctor.doctorID>@doctor.docName</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <br>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-3 col-sm-9">
-                                                    <button type="submit" class="btn btn-primary btn-block">Add New Lab</button>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-
-                                </div>
-
+                <div class="col-md-6">
+                    <div class="widget">
+                        <div class="widget-header clearfix">
+                            <h3><i class="icon ion-compose"></i> <span>NEW LAB</span></h3>
+                            <div class="btn-group widget-header-toolbar visible-lg">
+                                <a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="icon ion-ios-arrow-up"></i></a>
+                                <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
-                    </div>
+                        <div class="widget-content">
+                            <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
+                                <fieldset>
+                                    <legend>Appointment Details</legend>
+                                    <div class="form-group">
+                                        <label for="lab" class="col-sm-3 control-label">Enter Lab:</label>
+                                        <div class="col-sm-9">
+                                            <select id="labID" name="labID" class="select-ticket-type">
+                                                @for(lab <- labList){
+                                                <option value=@lab.labID>@lab.labName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
 
-                    <div class="row">
-                        <div class="col-md-9">
-                            <!-- TICKET FORM -->
-                            <div class="row">
-                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label for="value" class="col-sm-3 control-label">Enter Value:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="value" class="form-control" id="value" placeholder="value">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date" class="col-sm-3 control-label">Enter Date:</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" name="date" class="form-control" id="date" placeholder="date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
+                                        <div class="col-sm-9">
+                                            <select name="doctorID" id="doctorID" class="select2">
+                                                @for(doctor <- doctorList){
+                                                <option value=@doctor.doctorID>@doctor.docName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-primary btn-block">Add New Lab</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="col-md-6">
                     <div class="widget">
                         <div class="widget-header clearfix">
                             <h3><i class="icon ion-compose"></i> <span>EDIT LAB</span></h3>
@@ -299,23 +275,11 @@
                                 <a href="#" title="Remove" class="btn btn-link btn-remove"><i class="icon ion-ios-close-empty"></i></a>
                             </div>
                         </div>
-
                         <div class="widget-content">
                             <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
                                     <legend>Lab Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID1" name="patientID" class="select-ticket-type">
-                                                <option selected value="@currentLab.patientID">@currentLab.firstName</option>
-                                                @for(patient <- patientList){
-                                                @if(!currentLab.patientID.equals(patient.patientID)){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="date" class="col-sm-3 control-label">Enter Date:</label>
                                         <div class="col-sm-9">
@@ -352,6 +316,7 @@
                                             <input type="value" name="value" class="form-control" id="value" value="@currentLab.value">
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">
                                             <button type="submit" class="btn btn-primary btn-block">Update Lab</button>
@@ -369,12 +334,13 @@
                     <!-- END BASIC DATA TABLE -->
                                 </fieldset>
                             </form>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- END COLUMN RIGHT -->
-</div>
+
 <!-- END WRAPPER -->
 <!-- Javascript -->
 <script src="@routes.Assets.at("bootstrap/assets/js/jquery/jquery-2.1.0.min.js")"></script>

@@ -14,7 +14,7 @@ public class Appointment
     public Long appointmentID;
 
     @Column (name="Patient_ID")
-    public Long patientID;
+    public String patientID;
 
     @Column (name="Doctor_ID")
     public Long doctorID;
