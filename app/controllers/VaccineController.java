@@ -29,10 +29,14 @@ public class VaccineController extends Controller {
     @Transactional(readOnly = true)
     public Result getVaccineManager()
     {
+        String patientID = session("patientID");
+
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
                 "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
                 "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on vg.PATIENT_ID = p.PATIENT_ID",VaccinationManager.class).getResultList();
+                "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '"+patientID+"'",VaccinationManager.class).getResultList();
 
         List<Vaccination> vaccination = (List<Vaccination>)jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
 
@@ -41,14 +45,14 @@ public class VaccineController extends Controller {
         List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
 
 
-        return ok(views.html.vaccineManagerPage.render(vaccinationManagers, vaccination, patientList, doctorList));
+        return ok(views.html.vaccineManagerPage.render(vaccinationManagers, vaccination, patientList, doctorList, fullName));
     }
 
     @Transactional
     public Result addVaccine()
     {
+        String patientID = session("patientID");
         DynamicForm postedForm = formFactory.form().bindFromRequest();
-        String patientID = postedForm.get("patientID");
         Long vaccineID = new Long(postedForm.get("vaccineID"));
         Long doctorID = new Long(postedForm.get("doctorID"));
         String date = postedForm.get("date");
@@ -78,9 +82,9 @@ public class VaccineController extends Controller {
     @Transactional
     public Result updateVaccine()
     {
+        String patientID = session("patientID");
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         Long vaccinationGivenID = new Long(postedForm.get("vaccinationGivenID"));
-        String patientID = postedForm.get("patientID");
         Long vaccineID = new Long(postedForm.get("vaccineID"));
         Long doctorID = new Long(postedForm.get("doctorID"));
         String date = postedForm.get("date");
@@ -103,10 +107,14 @@ public class VaccineController extends Controller {
     @Transactional(readOnly = true)
     public Result editVaccine(Long vaccinationGivenID)
     {
+        String patientID = session("patientID");
+
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
                 "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
                 "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on vg.PATIENT_ID = p.PATIENT_ID",VaccinationManager.class).getResultList();
+                "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '"+patientID+"'",VaccinationManager.class).getResultList();
 
         List<Vaccination> vaccination = (List<Vaccination>)jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
 
@@ -120,6 +128,6 @@ public class VaccineController extends Controller {
                 "join patient p on vg.PATIENT_ID = p.PATIENT_ID where vg.vaccination_given_ID = :Id", VaccinationManager.class).setParameter("Id", vaccinationGivenID).getSingleResult();
 
 
-        return ok(views.html.vaccineEditPage.render(vaccinationManagers, vaccination, patientList, doctorList, currentVaccination));
+        return ok(views.html.vaccineEditPage.render(vaccinationManagers, vaccination, patientList, doctorList, currentVaccination, fullName));
     }
 }

@@ -1,7 +1,7 @@
 package controllers;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
 import play.Logger;
@@ -34,12 +34,14 @@ public class PrescriptionController  extends Controller
     public Result getPrescriptionManager()
     {
         String patientID = session("patientID");
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         List<PrescriptionManager> prescription = (List<PrescriptionManager>) jpaApi.em().createNativeQuery("select pre.PRESCRIPTION_ID, m.MEDICATION_ID, p.PATIENT_ID, p.FIRST_NAME, m.medication_name, pre.dosage, f.frequency, pre.frequency_id, d.doc_name, d.doctor_id, pharm.pharmacy_id, pharm.pharm_name, pre.date from patient p\n" +
                 "join prescription pre on p.PATIENT_ID = pre.PATIENT_ID\n" +
                 "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +
                 "join pharmacy pharm on pre.PHARMACY_ID = pharm.PHARMACY_ID\n" +
                 "join doctor d on pre.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
+                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID where p.PATIENT_ID = '"+patientID+"'", PrescriptionManager.class).getResultList();
 
         List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
@@ -52,18 +54,22 @@ public class PrescriptionController  extends Controller
         List<Pharmacy> pharmacyList = (List<Pharmacy>) jpaApi.em().createQuery("select ph from Pharmacy ph", Pharmacy.class).getResultList();
 
 
-        return ok(views.html.pagePrescriptionManager.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList));
+        return ok(views.html.pagePrescriptionManager.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, fullName));
     }
 
     @Transactional(readOnly = true)
     public Result getPrescriptionEdit(Long prescriptionID)
     {
+        String patientID = session("patientID");
+
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         List<PrescriptionManager> prescription = (List<PrescriptionManager>) jpaApi.em().createNativeQuery("select pre.PRESCRIPTION_ID, m.MEDICATION_ID, p.PATIENT_ID, p.FIRST_NAME, m.medication_name, pre.dosage, f.frequency, pre.frequency_id, d.doc_name, d.doctor_id, pharm.pharmacy_id, pharm.pharm_name, pre.date from patient p\n" +
                 "join prescription pre on p.PATIENT_ID = pre.PATIENT_ID\n" +
                 "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +
                 "join pharmacy pharm on pre.PHARMACY_ID = pharm.PHARMACY_ID\n" +
                 "join doctor d on pre.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
+                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID where p.PATIENT_ID = '"+patientID+"'", PrescriptionManager.class).getResultList();
 
         List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
@@ -85,7 +91,7 @@ public class PrescriptionController  extends Controller
 
 
 
-        return ok(views.html.pagePrescriptionEdit.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, currentPrescription));
+        return ok(views.html.pagePrescriptionEdit.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, currentPrescription, fullName));
 
     }
 
@@ -93,8 +99,8 @@ public class PrescriptionController  extends Controller
     @Transactional
     public Result addPrescription()
     {
+        String patientID = session("patientID");
         DynamicForm postedForm = formFactory.form().bindFromRequest();
-        String patientID = postedForm.get("patientID");
         String dosage = postedForm.get("dosage");
         String date = postedForm.get("date");
         Long medicationID = new Long(postedForm.get("medicationID"));
@@ -132,7 +138,6 @@ public class PrescriptionController  extends Controller
     {
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         Long prescriptionID = new Long(postedForm.get("prescriptionID"));
-        String patientID = postedForm.get("patientID");
         String dosage = postedForm.get("dosage");
         String date = postedForm.get("date");
         Long medicationID = new Long(postedForm.get("medicationID"));
@@ -146,7 +151,6 @@ public class PrescriptionController  extends Controller
         Prescription prescription = (Prescription) jpaApi.em().createQuery("select pre from Prescription pre where pre.prescriptionID = :Id").setParameter("Id", prescriptionID).getSingleResult();
 
         prescription.prescriptionID = prescriptionID;
-        prescription.patientID = patientID;
         prescription.dosage = dosage;
         prescription.date = dd;
         prescription.medicationID = medicationID;
@@ -161,16 +165,18 @@ public class PrescriptionController  extends Controller
     @Transactional(readOnly = true)
     public Result spellingCorrection()
     {
+        String patientID = session("patientID");
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         DynamicForm postedForm = formFactory.form().bindFromRequest();
         String med = postedForm.get("med");
-
 
         List<PrescriptionManager> prescription = (List<PrescriptionManager>) jpaApi.em().createNativeQuery("select pre.PRESCRIPTION_ID, m.MEDICATION_ID, p.PATIENT_ID, p.FIRST_NAME, m.medication_name, pre.dosage, f.frequency, pre.frequency_id, d.doc_name, d.doctor_id, pharm.pharmacy_id, pharm.pharm_name, pre.date from patient p\n" +
                 "join prescription pre on p.PATIENT_ID = pre.PATIENT_ID\n" +
                 "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +
                 "join pharmacy pharm on pre.PHARMACY_ID = pharm.PHARMACY_ID\n" +
                 "join doctor d on pre.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID", PrescriptionManager.class).getResultList();
+                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID where p.PATIENT_ID = '"+patientID+"'", PrescriptionManager.class).getResultList();
 
         List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
@@ -209,7 +215,7 @@ public class PrescriptionController  extends Controller
             Logger.warn("oh no! got nothing back from url");
         }
 
-        return ok(views.html.pagePrescriptionAddMedicine.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, jsonNode));
+        return ok(views.html.pagePrescriptionAddMedicine.render(prescription, patientList, frequencyList, medicationList, doctorList, pharmacyList, jsonNode, fullName));
     }
 
     @Transactional
@@ -256,12 +262,13 @@ public class PrescriptionController  extends Controller
     @Transactional(readOnly = true)
     public Result getDrugInteraction()
     {
+        String patientID = session("patientID");
         List<Interaction> interaction = (List<Interaction>) jpaApi.em().createNativeQuery("select di.drug_interaction_id, m.MEDICATION_NAME as \"drug1Name\", di.rxcui, di.inter_rxcui, md.medication_name as \"drug2Name\", di.INTER_DESCRIPTION from drug_interaction di\n" +
                 "join medication m on m.RXCUI = di.RXCUI \n" +
                 "join medication md on md.RXCUI = di.INTER_RXCUI\n" +
-                "where di.rxcui in (select rxcui from prescription p  join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = 11)\n" +
-                "and di.inter_rxcui in (select rxcui from prescription p  join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = 11)\n" +
-                "and m.MEDICATION_NAME in (select medication_name from prescription p join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = 11)\n" +
+                "where di.rxcui in (select rxcui from prescription p  join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = '"+patientID+"')\n" +
+                "and di.inter_rxcui in (select rxcui from prescription p  join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = '"+patientID+"')\n" +
+                "and m.MEDICATION_NAME in (select medication_name from prescription p join medication m on p.MEDICATION_ID = m.MEDICATION_ID where patient_id = '"+patientID+"')\n" +
                 "and md.MEDICATION_NAME in (select medication_name from drug_interaction dri join medication md on dri.INTER_RXCUI = md.RXCUI)", Interaction.class).getResultList();
 
         return ok(views.html.drugInteractionPage.render(interaction));

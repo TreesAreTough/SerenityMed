@@ -28,6 +28,9 @@ public class HealthSummaryController extends Controller
     public Result getHealthSummary()
     {
         String patientID = session("patientID");
+
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         List<LineChart> lineChart = (List<LineChart>) jpaApi.em().createNativeQuery("select x.value val1, y.value val2,x.date_taken from (select pv.PATIENT_VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient p \n" +
                 "join patient_vital pv on p.PATIENT_ID = pv.PATIENT_ID\n" +
                 "join vitals v on pv.VITAL_ID = v.VITAL_ID where v.vital_NAME = 'weight in lbs' and p.PATIENT_ID = '"+patientID+"') x join\n" +
@@ -81,10 +84,10 @@ public class HealthSummaryController extends Controller
 
         List<VitalManager> vitalManagerList = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, pv.VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
                 "join vitals v on pv.VITAL_ID = v.VITAL_ID\n" +
-                "where pv.PATIENT_ID = '11'\n" +
+                "where pv.PATIENT_ID = '"+patientID+"'\n" +
                 "order by v.VITAL_NAME, pv.DATE_TAKEN desc\n", VitalManager.class).getResultList();
 
-        List<VitalDate> vitalDates = (List<VitalDate>) jpaApi.em().createNativeQuery("select date_taken from patient_vital group by date_taken desc limit 3", VitalDate.class).getResultList();
+        List<VitalDate> vitalDates = (List<VitalDate>) jpaApi.em().createNativeQuery("select pv.DATE_TAKEN from patient_vital pv where pv.PATIENT_ID = '"+patientID+"' group by date_taken desc limit 3", VitalDate.class).getResultList();
 
 
         List<VitalList> vitalList = new ArrayList<>();
@@ -150,7 +153,7 @@ public class HealthSummaryController extends Controller
                 "join patient p on a.PATIENT_ID = p.PATIENT_ID\n" +
                 "where p.PATIENT_ID = '"+patientID+"'", AppointmentManager.class).getResultList();
 
-        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment, columnChart));
+        return ok(views.html.healthSummaryPage.render(lineChart, barChart, currentMedicalHistory, pastMedicalHistory, prescriptionManagerList, vitalDates, vitalList, labManagerList, allergyManagerList, vaccinationManagers, appointment, columnChart, fullName));
     }
 
     @Transactional

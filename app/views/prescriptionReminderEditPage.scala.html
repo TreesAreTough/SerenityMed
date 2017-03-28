@@ -1,4 +1,4 @@
-@(reminder: List[PrescriptionReminderManager], patientList: List[Patient], prescription: List[PrescriptionReminderJoin], current: PrescriptionReminderManager)
+@(reminder: List[PrescriptionReminderManager], patientList: List[Patient], prescription: List[PrescriptionReminderJoin], current: PrescriptionReminderManager, fullName: Patient)
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
 <!--[if !(IE)]><!-->
@@ -44,7 +44,7 @@
             <div class="logged-user">
                 <div class="btn-group">
                     <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Mike Jones <i class="icon ion-ios-arrow-down"></i></span>
+                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">@fullName.firstName @fullName.lastName<i class="icon ion-ios-arrow-down"></i></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
@@ -166,16 +166,6 @@
                                 <fieldset>
                                     <legend>Reminder Details</legend>
                                     <div class="form-group">
-                                        <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID" name="patientID" class="select-ticket-type">
-                                                @for(patient <- patientList){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="prescriptionID" class="col-sm-3 control-label">Select Prescription</label>
                                         <div class="col-sm-9">
                                             <select name="prescriptionID" id="prescriptionID" class="select2">
@@ -210,18 +200,6 @@
                                 <input type="hidden" name="reminderID" value="@current.reminderID"/>
                                 <fieldset>
                                     <legend>Prescription Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID1" name="patientID" class="select-ticket-type">
-                                                <option selected value="@current.patientID">@current.firstName</option>
-                                                @for(patient <- patientList){
-                                                @if(!current.patientID.equals(patient.patientID)){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label for="prescriptionID1" class="col-sm-3 control-label">Select Prescription</label>
                                         <div class="col-sm-9">

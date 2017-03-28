@@ -1,4 +1,4 @@
-@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager], column: List[GoogleColumnChart])
+@(lineChart: List[LineChart], barChart: List[BarChart], currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager], prescription: List[PrescriptionManager], date: List[VitalDate], vitalTable: List[VitalList], lab: List[LabManager], allergy: List[AllergyManager], vaccine: List[VaccinationManager], appointment: List[AppointmentManager], column: List[GoogleColumnChart], fullName: Patient)
 
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -60,7 +60,7 @@
                 <div class="btn-group">
 
                     <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Mike Jones <i class="icon ion-ios-arrow-down"></i></span>
+                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">@fullName.firstName @fullName.lastName     <i class="icon ion-ios-arrow-down"></i></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>

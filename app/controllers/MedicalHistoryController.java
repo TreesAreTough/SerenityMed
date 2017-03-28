@@ -37,13 +37,15 @@ public class MedicalHistoryController  extends Controller
     public Result getMoreInfo()
     {
         String patientID = session("patientID");
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+
         //hard coded in the health conditions, will be pulling list of health conditions from database in DAC
         List<MedLine> fullSummery = new ArrayList<>();
 
 
         List<MedLineHealthCondition> currentMedCondition = (List<MedLineHealthCondition>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mc.mc_name, mc.mc_description, mc.mc_url from medical_history mh\n" +
                 "join medical_condition mc on mc.MEDICAL_CONDITION_ID = mh.MEDICAL_CONDITION_ID\n" +
-                "where date_resolved is null", MedLineHealthCondition.class).getResultList();
+                "where date_resolved is null and mh.PATIENT_ID = '"+patientID+"'", MedLineHealthCondition.class).getResultList();
 
         for(MedLineHealthCondition conditionList: currentMedCondition) {
 
@@ -84,27 +86,30 @@ public class MedicalHistoryController  extends Controller
             fullSummery.add(summary);
         }
 
-        return ok(views.html.moreInfoPage.render(fullSummery));
+        return ok(views.html.moreInfoPage.render(fullSummery, fullName));
     }
 
     @Transactional(readOnly = true)
     public Result getHealthConditionManager()
     {
+        String patientID = session("patientID");
+
+        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
 
         List<MedicalHistoryManager> currentMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
-                "where mh.DATE_RESOLVED is null", MedicalHistoryManager.class).getResultList();
+                "where mh.DATE_RESOLVED is null and mh.PATIENT_ID = '"+patientID+"'", MedicalHistoryManager.class).getResultList();
 
         List<MedicalHistoryManager> pastMedicalHistory = (List<MedicalHistoryManager>) jpaApi.em().createNativeQuery("select mh.medical_history_id, mh.date_diagnosed, mh.date_resolved, mh.patient_id, mh.medical_condition_id, mc.mc_name from medical_history mh\n" +
                 "join medical_condition mc on mh.MEDICAL_CONDITION_ID = mc.MEDICAL_CONDITION_ID\n" +
-                "where mh.DATE_RESOLVED is not null", MedicalHistoryManager.class).getResultList();
+                "where mh.DATE_RESOLVED is not null and mh.PATIENT_ID = '"+patientID+"'", MedicalHistoryManager.class).getResultList();
 
         List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
         List<Medical_Condition> medCondition = (List<Medical_Condition>) jpaApi.em().createQuery("select mc from Medical_Condition mc", Medical_Condition.class).getResultList();
 
 
-        return ok(views.html.healthConditionManagerPage.render(currentMedicalHistory, pastMedicalHistory, patientList, medCondition));
+        return ok(views.html.healthConditionManagerPage.render(currentMedicalHistory, pastMedicalHistory, patientList, medCondition, fullName));
     }
 
     @Transactional
@@ -117,9 +122,9 @@ public class MedicalHistoryController  extends Controller
     @Transactional
     public Result addMedicalHistory()
     {
+        String patientID = session("patientID");
         DynamicForm dynaForm = formFactory.form().bindFromRequest();
         Long medicalConditionID = new Long(dynaForm.get("medicalConditionID"));
-        String patientID = dynaForm.get("patientID");
         String dateDiagnosed = dynaForm.get("dateDiagnosed");
 
         java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd");
