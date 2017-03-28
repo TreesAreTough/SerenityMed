@@ -27,9 +27,11 @@ public class AllergyController  extends Controller {
 
     @Transactional(readOnly = true)
     public Result getAllergyManager() {
+        String patientID = session("patientID");
         List<AllergyManager> allergyManagerList = (List<AllergyManager>) jpaApi.em().createNativeQuery("select pa.PATIENT_ALLERGY_ID, pa.patient_id, pa.allergy_id, p.first_name, a.allergy_name from patient_allergy pa\n" +
                 "join patient p on p.PATIENT_ID = pa.PATIENT_ID\n" +
-                "join allergies a on pa.ALLERGY_ID = a.ALLERGY_ID", AllergyManager.class).getResultList();
+                "join allergies a on pa.ALLERGY_ID = a.ALLERGY_ID\n" +
+                "where p.PATIENT_ID = '"+patientID+"'", AllergyManager.class).getResultList();
 
         List<Allergies> allergy = (List<Allergies>) jpaApi.em().createQuery("select a from Allergies a", Allergies.class).getResultList();
 
@@ -43,7 +45,9 @@ public class AllergyController  extends Controller {
     @Transactional
     public Result addAllergy()
     {
+        String patientID = session("patientID");
         Patient_Allergy allergy = formFactory.form(Patient_Allergy.class).bindFromRequest().get();
+        allergy.patientID = patientID;
         jpaApi.em().persist(allergy);
         return redirect(routes.AllergyController.getAllergyManager());
     }

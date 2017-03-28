@@ -33,6 +33,7 @@ public class PrescriptionController  extends Controller
     @Transactional(readOnly = true)
     public Result getPrescriptionManager()
     {
+        String patientID = session("patientID");
         List<PrescriptionManager> prescription = (List<PrescriptionManager>) jpaApi.em().createNativeQuery("select pre.PRESCRIPTION_ID, m.MEDICATION_ID, p.PATIENT_ID, p.FIRST_NAME, m.medication_name, pre.dosage, f.frequency, pre.frequency_id, d.doc_name, d.doctor_id, pharm.pharmacy_id, pharm.pharm_name, pre.date from patient p\n" +
                 "join prescription pre on p.PATIENT_ID = pre.PATIENT_ID\n" +
                 "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +

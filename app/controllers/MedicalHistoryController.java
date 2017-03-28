@@ -36,6 +36,7 @@ public class MedicalHistoryController  extends Controller
     @Transactional(readOnly = true)
     public Result getMoreInfo()
     {
+        String patientID = session("patientID");
         //hard coded in the health conditions, will be pulling list of health conditions from database in DAC
         List<MedLine> fullSummery = new ArrayList<>();
 
