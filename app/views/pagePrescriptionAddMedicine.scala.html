@@ -49,19 +49,13 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="#">
+                            <a href="@routes.PatientController.getPageViewMyInfo">
                                 <i class="icon ion-ios-person"></i>
-                                <span class="text">Profile</span>
+                                <span class="text">Profile/Settings</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="icon ion-ios-gear"></i>
-                                <span class="text">Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="@routes.PatientController.getPageLogin">
                                 <i class="icon ion-power"></i>
                                 <span class="text">Logout</span>
                             </a>
@@ -69,13 +63,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="action-group visible-lg-inline-block">
-                <ul>
-                    <li class="action-item chat">
-                        <a><i class="icon ion-ios-chatboxes-outline"></i></a>
-                    </li>
-                </ul>
-            </div>
+
         </div>
     </nav>
     <!-- END TOP NAV BAR -->
@@ -116,49 +104,9 @@
                     <li><a href="#">Managers</a></li>
                     <li class="active">Prescription Manager</li>
                 </ul>
-                <div class="sticky-content pull-right">
-                    <div class="btn-group btn-dropdown">
-                        <button type="button" class="btn btn-default btn-sm btn-favorites" data-toggle="dropdown"><i class="icon ion-android-star"></i> Favorites</button>
-                        <ul class="dropdown-menu dropdown-menu-right list-inline">
-                            <li><a href="#"><i class="icon ion-pie-graph"></i> <span>Statistics</span></a></li>
-                            <li><a href="#"><i class="icon ion-email"></i> <span>Inbox</span></a></li>
-                            <li><a href="#"><i class="icon ion-chatboxes"></i> <span>Chat</span></a></li>
-                            <li><a href="#"><i class="icon ion-help-circled"></i> <span>Help</span></a></li>
-                            <li><a href="#"><i class="icon ion-gear-a"></i> <span>Settings</span></a></li>
-                            <li><a href="#"><i class="icon ion-help-buoy"></i> <span>Support</span></a></li>
-                        </ul>
-                    </div>
-                    <button type="button" class="btn btn-default btn-sm btn-quick-task" data-toggle="modal" data-target="#quick-task-modal"><i class="icon ion-edit"></i> Quick Task</button>
-                </div>
+
                 <!-- quick task modal -->
-                <div class="modal fade" id="quick-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Quick Task</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="task-title" class="control-label sr-only">Title</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="task-title" placeholder="Title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label sr-only">Description</label>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control" name="task-description" rows="5" cols="30" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save Task</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- end quick task modal -->
             </div>
             <!-- END PRIMARY CONTENT HEADING -->
