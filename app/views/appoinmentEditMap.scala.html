@@ -233,16 +233,6 @@
                             <form method="POST" action="@routes.AppointmentController.addAppointment()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
                                     <legend>Appointment Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID" name="patientID" class="select-ticket-type">
-                                                @for(patient <- patientList){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="time" class="col-sm-3 control-label">Enter Time:</label>
@@ -295,18 +285,6 @@
 
                                 <fieldset>
                                     <legend>Appointment Details</legend>
-                                    <div class="form-group">
-                                        <label for="patientID1" class="col-sm-3 control-label">Patient Name</label>
-                                        <div class="col-sm-9">
-                                            <select id="patientID1" name="patientID" class="select-ticket-type">
-                                                <option selected value="@currentAppointment.patientID">@currentAppointment.firstName</option>
-                                                @for(patient <- patientList){
-                                                @if(!currentAppointment.patientID.equals(patient.patientID)){
-                                                <option value=@patient.patientID>@patient.firstName</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="time" class="col-sm-3 control-label">Enter Time:</label>
