@@ -1,4 +1,4 @@
-@(vital: List[VitalList], date: List[VitalDate], current: List[VitalManager], currentName: VitalStringName)
+@(vital: List[VitalList], date: List[VitalDate], current: List[VitalManager], currentName: VitalStringName, fullName: Patient)
 @import java.math.BigInteger; var i=1
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
@@ -45,7 +45,7 @@
             <div class="logged-user">
                 <div class="btn-group">
                     <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">Mike Jones <i class="icon ion-ios-arrow-down"></i></span>
+                        <img src="@routes.Assets.at("bootstrap/assets/img/user-loggedin.png")" alt="Sebastian" /><span class="name">@fullName.firstName @fullName.lastName<i class="icon ion-ios-arrow-down"></i></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
