@@ -221,17 +221,18 @@
                                 <div class="widget-content">
                                     <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
                                         <fieldset>
-                                            <legend>Appointment Details</legend>
+                                            <legend>Lab Details</legend>
                                             <div class="form-group">
-                                                <label for="lab" class="col-sm-3 control-label">Enter Lab:</label>
+                                                <label for="labID" class="col-sm-3 control-label">Enter Lab:</label>
                                                 <div class="col-sm-9">
-                                                    <select id="labID" name="labID" class="select-ticket-type">
-                                                    @for(lab <- labList){
+                                                    <select id="labID" name="labID" class="select2">
+                                                        @for(lab <- labList){
                                                     <option value=@lab.labID>@lab.labName</option>
                                                     }
                                                     </select>
                                                 </div>
                                                 </div>
+
 
                                             <div class="form-group">
                                                 <label for="value" class="col-sm-3 control-label">Enter Value:</label>
@@ -242,11 +243,11 @@
                                             <div class="form-group">
                                                 <label for="date" class="col-sm-3 control-label">Enter Date:</label>
                                                 <div class="col-sm-9">
-                                                    <input type="date" name="date" class="form-control" id="date" placeholder="date">
+                                                    <input type="date" name="date" class="form-control" id="date">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
+                                                <label for="doctorID" class="col-sm-3 control-label">Enter Doctor:</label>
                                                 <div class="col-sm-9">
                                                     <select name="doctorID" id="doctorID" class="select2">
                                                         @for(doctor <- doctorList){

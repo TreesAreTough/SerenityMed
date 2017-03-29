@@ -221,9 +221,9 @@
                                 <fieldset>
                                     <legend>Appointment Details</legend>
                                     <div class="form-group">
-                                        <label for="lab" class="col-sm-3 control-label">Enter Lab:</label>
+                                        <label for="labID" class="col-sm-3 control-label">Enter Lab:</label>
                                         <div class="col-sm-9">
-                                            <select id="labID" name="labID" class="select-ticket-type">
+                                            <select id="labID" name="labID" class="select2">
                                                 @for(lab <- labList){
                                                 <option value=@lab.labID>@lab.labName</option>
                                                 }
@@ -244,7 +244,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="doctorID" class="col-sm-3 control-label">Doctor</label>
+                                        <label for="doctorID" class="col-sm-3 control-label">Enter Doctor:</label>
                                         <div class="col-sm-9">
                                             <select name="doctorID" id="doctorID" class="select2">
                                                 @for(doctor <- doctorList){
@@ -276,20 +276,31 @@
                             </div>
                         </div>
                         <div class="widget-content">
-                            <form method="POST" action="@routes.LabController.addLab()" class="form-horizontal form-ticket" role="form">
+                            <form method="POST" action="@routes.LabController.updateLab()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
                                     <legend>Lab Details</legend>
-
                                     <div class="form-group">
-                                        <label for="date" class="col-sm-3 control-label">Enter Date:</label>
+                                        <label for="labID" class="col-sm-3 control-label">Edit Lab:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="labPulledID" id="labPulledID" value="@currentLab.labName" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="value" class="col-sm-3 control-label">Edit Lab Value:</label>
+                                        <div class="col-sm-9">
+                                            <input type="value" name="value" class="form-control" id="value" value="@currentLab.value">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date" class="col-sm-3 control-label">Edit Date:</label>
                                         <div class="col-sm-9">
                                             <input type="date" name="date" class="form-control" id="date" value="@currentLab.dateTaken">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="doctorID1" class="col-sm-3 control-label">Doctor:</label>
+                                        <label for="doctorID" class="col-sm-3 control-label">Edit Doctor:</label>
                                         <div class="col-sm-9">
-                                            <select name="doctorID" id="doctorID1" class="select2">
+                                            <select name="doctorID" id="doctorID" class="select2">
                                                 <option selected value="@currentLab.doctorID">@currentLab.docName</option>
                                                 @for(doctor <- doctorList){
                                                 @if(!currentLab.doctorID.equals(doctor.doctorID)){
@@ -298,24 +309,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="labID" class="col-sm-3 control-label">Lab:</label>
-                                        <div class="col-sm-9">
-                                            <select name="labID" id="labID" class="select2">
-                                                <option selected value="@currentLab.labID">@currentLab.labName</option>
-                                                @for(lab <- labList){
-                                                @if(!currentLab.labID.equals(lab.labID)){
-                                                <option value=@lab.labID>@lab.labName</option>
-                                                }}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="value" class="col-sm-3 control-label">Enter Lab Value:</label>
-                                        <div class="col-sm-9">
-                                            <input type="value" name="value" class="form-control" id="value" value="@currentLab.value">
-                                        </div>
-                                    </div>
+
+
                                     <br>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">

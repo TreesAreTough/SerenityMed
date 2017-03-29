@@ -58,9 +58,12 @@ public class LabController extends Controller {
     public Result addLab()
     {
         String patientID = session("patientID");
+        DynamicForm postedForm = formFactory.form().bindFromRequest();
+
+        LocalDate dateTaken = LocalDate.parse(postedForm.get("date"));
 
         Lab_Pulled lab = formFactory.form(Lab_Pulled.class).bindFromRequest().get();
-        lab.dateTaken = LocalDate.now();
+        lab.dateTaken = dateTaken;
         lab.patientID = "11";
 
         jpaApi.em().persist(lab);
@@ -101,18 +104,18 @@ public class LabController extends Controller {
         String patientID = session("patientID");
 
         DynamicForm postedForm = formFactory.form().bindFromRequest();
-        Long labPulledId = new Long(postedForm.get("labPulledId"));
-        Long doctorId = new Long(postedForm.get("doctorId"));
+
+        Long labPulledID = new Long(postedForm.get("labPulledID"));
+        Long doctorID = new Long(postedForm.get("doctorID"));
         String value = postedForm.get("value");
-
-        LocalDate dateTaken = LocalDate.parse(postedForm.get("labDate"));
-
-        Lab_Pulled lab_pulled = (Lab_Pulled) jpaApi.em().createQuery("select lp from Lab_Pulled lp where lp.labPulledId = :Id").setParameter("Id", labPulledId).getSingleResult();
+        LocalDate dateTaken = LocalDate.parse(postedForm.get("date"));
+        System.out.println(labPulledID);
+        Lab_Pulled lab_pulled = (Lab_Pulled) jpaApi.em().createQuery("select lp from Lab_Pulled lp where lp.labPulledID = :ID").setParameter("ID", labPulledID).getSingleResult();
 
         lab_pulled.patientID = "11";
         lab_pulled.value = value;
-        lab_pulled.doctorID=doctorId;
-        lab_pulled.labPulledID=labPulledId;
+        lab_pulled.doctorID=doctorID;
+        lab_pulled.labPulledID=labPulledID;
         lab_pulled.dateTaken=dateTaken;
 
         jpaApi.em().persist(lab_pulled);
