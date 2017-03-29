@@ -30,22 +30,28 @@ public class VaccineController extends Controller {
     public Result getVaccineManager()
     {
         String patientID = session("patientID");
+        if (patientID == null)
+        {
+            return redirect(routes.PatientController.getPageLogin());
+        }
+        else {
 
-        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+            Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '" + patientID + "'", Patient.class).getSingleResult();
 
-        List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
-                "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
-                "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '"+patientID+"'",VaccinationManager.class).getResultList();
+            List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
+                    "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
+                    "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
+                    "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '" + patientID + "'", VaccinationManager.class).getResultList();
 
-        List<Vaccination> vaccination = (List<Vaccination>)jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
+            List<Vaccination> vaccination = (List<Vaccination>) jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
 
-        List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
+            List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
-        List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
+            List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
 
 
-        return ok(views.html.vaccineManagerPage.render(vaccinationManagers, vaccination, patientList, doctorList, fullName));
+            return ok(views.html.vaccineManagerPage.render(vaccinationManagers, vaccination, patientList, doctorList, fullName));
+        }
     }
 
     @Transactional
@@ -108,26 +114,32 @@ public class VaccineController extends Controller {
     public Result editVaccine(Long vaccinationGivenID)
     {
         String patientID = session("patientID");
+        if (patientID == null)
+        {
+            return redirect(routes.PatientController.getPageLogin());
+        }
+        else {
 
-        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
+            Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '" + patientID + "'", Patient.class).getSingleResult();
 
-        List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
-                "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
-                "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '"+patientID+"'",VaccinationManager.class).getResultList();
+            List<VaccinationManager> vaccinationManagers = (List<VaccinationManager>) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
+                    "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
+                    "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
+                    "join patient p on vg.PATIENT_ID = p.PATIENT_ID where p.PATIENT_ID = '" + patientID + "'", VaccinationManager.class).getResultList();
 
-        List<Vaccination> vaccination = (List<Vaccination>)jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
+            List<Vaccination> vaccination = (List<Vaccination>) jpaApi.em().createQuery("select v from Vaccination v", Vaccination.class).getResultList();
 
-        List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
+            List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
-        List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
+            List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createQuery("select d from Doctor d", Doctor.class).getResultList();
 
-        VaccinationManager currentVaccination = (VaccinationManager)jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
-                "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
-                "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
-                "join patient p on vg.PATIENT_ID = p.PATIENT_ID where vg.vaccination_given_ID = :Id", VaccinationManager.class).setParameter("Id", vaccinationGivenID).getSingleResult();
+            VaccinationManager currentVaccination = (VaccinationManager) jpaApi.em().createNativeQuery("select v.booster_required, vg.vaccination_given_id, vg.date, vg.doctor_id, vg.patient_id, p.first_name, vg.vaccine_id, v.vaccine_name, d.doc_name from vaccination_given vg\n" +
+                    "join vaccination v on vg.VACCINE_ID = v.VACCINE_ID\n" +
+                    "join doctor d on vg.DOCTOR_ID = d.DOCTOR_ID\n" +
+                    "join patient p on vg.PATIENT_ID = p.PATIENT_ID where vg.vaccination_given_ID = :Id", VaccinationManager.class).setParameter("Id", vaccinationGivenID).getSingleResult();
 
 
-        return ok(views.html.vaccineEditPage.render(vaccinationManagers, vaccination, patientList, doctorList, currentVaccination, fullName));
+            return ok(views.html.vaccineEditPage.render(vaccinationManagers, vaccination, patientList, doctorList, currentVaccination, fullName));
+        }
     }
 }

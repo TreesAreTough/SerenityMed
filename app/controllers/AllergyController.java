@@ -28,19 +28,26 @@ public class AllergyController  extends Controller {
     @Transactional(readOnly = true)
     public Result getAllergyManager() {
         String patientID = session("patientID");
+        //cant get to pages without logging in
+        if (patientID == null)
+        {
+            return redirect(routes.PatientController.getPageLogin());
+        }
+        else {
 
-        Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '"+patientID+"'", Patient.class).getSingleResult();
-        List<AllergyManager> allergyManagerList = (List<AllergyManager>) jpaApi.em().createNativeQuery("select pa.PATIENT_ALLERGY_ID, pa.patient_id, pa.allergy_id, p.first_name, a.allergy_name from patient_allergy pa\n" +
-                "join patient p on p.PATIENT_ID = pa.PATIENT_ID\n" +
-                "join allergies a on pa.ALLERGY_ID = a.ALLERGY_ID\n" +
-                "where p.PATIENT_ID = '"+patientID+"'", AllergyManager.class).getResultList();
+            Patient fullName = (Patient) jpaApi.em().createNativeQuery("select * from patient where patient_id = '" + patientID + "'", Patient.class).getSingleResult();
+            List<AllergyManager> allergyManagerList = (List<AllergyManager>) jpaApi.em().createNativeQuery("select pa.PATIENT_ALLERGY_ID, pa.patient_id, pa.allergy_id, p.first_name, a.allergy_name from patient_allergy pa\n" +
+                    "join patient p on p.PATIENT_ID = pa.PATIENT_ID\n" +
+                    "join allergies a on pa.ALLERGY_ID = a.ALLERGY_ID\n" +
+                    "where p.PATIENT_ID = '" + patientID + "'", AllergyManager.class).getResultList();
 
-        List<Allergies> allergy = (List<Allergies>) jpaApi.em().createQuery("select a from Allergies a", Allergies.class).getResultList();
+            List<Allergies> allergy = (List<Allergies>) jpaApi.em().createQuery("select a from Allergies a", Allergies.class).getResultList();
 
-        List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
+            List<Patient> patientList = (List<Patient>) jpaApi.em().createQuery("select p from Patient p", Patient.class).getResultList();
 
 
-        return ok(views.html.allergyManagerPage.render(allergyManagerList, allergy, patientList, fullName));
+            return ok(views.html.allergyManagerPage.render(allergyManagerList, allergy, patientList, fullName));
+        }
 
     }
 
