@@ -278,11 +278,10 @@
                         <div class="widget-content">
                             <form method="POST" action="@routes.LabController.updateLab()" class="form-horizontal form-ticket" role="form">
                                 <fieldset>
-                                    <legend>Lab Details</legend>
+                                    <legend>@currentLab.labName Details</legend>
                                     <div class="form-group">
-                                        <label for="labID" class="col-sm-3 control-label">Edit Lab:</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="labPulledID" id="labPulledID" value="@currentLab.labName" readonly>
+                                            <input type="hidden" name="labPulledID" id="labPulledID" value="@currentLab.labPulledID" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
