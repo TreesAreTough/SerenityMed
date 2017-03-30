@@ -5,6 +5,8 @@ import play.Logger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static play.mvc.Controller.session;
+
 public class Daemon implements Runnable
 {
     private static int runNumber = 0;
@@ -21,6 +23,7 @@ public class Daemon implements Runnable
     @Override
     public void run()
     {
+
         try {
 
             //making self call to the project to get around the transaction issues

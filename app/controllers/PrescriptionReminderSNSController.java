@@ -34,14 +34,12 @@ public class PrescriptionReminderSNSController extends Controller {
     @Transactional
     public Result checkDB()
     {
-        String patientID = session("patientID");
-
         System.out.println("In the checkDB function");
         List<PrescriptionReminderManager> reminder = (List<PrescriptionReminderManager>) jpaApi.em().createNativeQuery("select pr.REMINDER_ID, p.PATIENT_ID, p.first_name, p.cell_phone, pr.NEXT_REMINDER, f.frequency, pre.DOSAGE, m.MEDICATION_NAME, f.FREQUENCY_ID, pre.PRESCRIPTION_ID from patient p\n" +
                 "join prescription_reminder pr on p.PATIENT_ID = pr.PATIENT_ID\n" +
                 "join prescription pre on pr.PRESCRIPTION_ID = pre.PRESCRIPTION_ID\n" +
                 "join medication m on pre.MEDICATION_ID = m.MEDICATION_ID\n" +
-                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID where p.PATIENT_ID = '"+patientID+"'", PrescriptionReminderManager.class).getResultList();
+                "join frequency f on pre.FREQUENCY_ID = f.FREQUENCY_ID where p.PATIENT_ID = '11'", PrescriptionReminderManager.class).getResultList();
 
         for(PrescriptionReminderManager current : reminder)
         {   //checking to see if there is a reminder in the past
@@ -76,13 +74,13 @@ public class PrescriptionReminderSNSController extends Controller {
             }
         }
 
-
-
+        System.out.print("did you get into loop?");
         return redirect(routes.PrescriptionReminderSNSController.sendReminderSNS());
     }
 
     public Result sendReminderSNS()
     {
+
         return ok(views.html.sendReminderSNS.render());
     }
 
