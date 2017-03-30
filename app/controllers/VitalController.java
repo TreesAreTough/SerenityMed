@@ -177,9 +177,9 @@ public class VitalController extends Controller {
                     "where pv.PATIENT_ID = '" + patientID + "'\n" +
                     "order by v.VITAL_NAME, pv.DATE_TAKEN desc", VitalManager.class).getResultList();
 
-            List<VitalManager> currentVital = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, pv.VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
+            List<VitalManager> currentVital = (List<VitalManager>) jpaApi.em().createNativeQuery("select pv.PATIENT_VITAL_ID, pv.PATIENT_ID, pv.VITAL_ID, v.vital_name, pv.value, pv.date_taken from patient_vital pv\n" +
                     "join vitals v on pv.VITAL_ID = v.VITAL_ID\n" +
-                    "where pv.VITAL_ID ='" + vitalID + "'\n" +
+                    "where pv.VITAL_ID ='"+vitalID+"' and pv.PATIENT_ID ='"+patientID+"'\n" +
                     "order by v.VITAL_NAME, pv.DATE_TAKEN desc limit 3", VitalManager.class).getResultList();
 
             VitalStringName currentName = (VitalStringName) jpaApi.em().createNativeQuery("select v.vital_name from vitals v where v.VITAL_ID = '" + vitalID + "'", VitalStringName.class).getSingleResult();
